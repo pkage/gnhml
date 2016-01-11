@@ -1,0 +1,35 @@
+// stylesheet that powers the splash screen
+
+.jumbotron {
+	@extend .fullpage;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	> h1 {
+		@extend .leaguespartan;
+		font-size: 4em;
+		text-decoration: underline;
+	}
+}
+
+.splashcontainer {
+	position: relative;
+	overflow: hidden;
+}
+
+.loginpage {
+	position: absolute;
+	left: 0;
+	top: 0;
+	pointer-events: none;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	> .loginform {
+		pointer-events: auto;
+	}
+}

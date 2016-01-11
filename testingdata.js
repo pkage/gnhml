@@ -1,5 +1,4 @@
-var profiles = {
-    [{
+var profiles = [{
         name: "Jessica Shi",
         email: "jshi17@choate.edu",
         class: "2017",
@@ -18,9 +17,8 @@ var profiles = {
         team_id: "lolcoptor",
         school_id: "exeter"
     }]
-}
 
-var teams = {
+var teams =
     [{
         name: "Rofl Coptor",
         school_id: "choate",
@@ -30,12 +28,11 @@ var teams = {
         school_id: "exeter",
         level: "Varsity"
     }]
-}
 
-var schools = {
+var schools = 
     [{
         name: "Choate Rosemary Hall"
     }, {
         name: "Philips Exeter Academy"
     }]
-}
+

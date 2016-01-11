@@ -1,3 +1,13 @@
 <template name="splash">
-<p>some stuff goes here</p>
+<div class="splashcontainer">
+	<div class="jumbotron">
+		<h1>GNHML</h1>
+		<i>[click anywhere to log in]</i>
+	</div>
+	<div class="fullpage loginpage ui transition hidden">
+		<div class="loginform">
+			{{> atForm}}
+		</div>
+	</div>
+</div>
 </template>

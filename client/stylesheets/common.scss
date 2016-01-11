@@ -1,0 +1,20 @@
+.fullpage {
+	height: 100vh;
+}
+
+// set up League Spartan Bold
+
+@font-face {
+	font-family: "LeagueSpartan";
+	src: url(/fonts/LeagueSpartan-Bold.otf);
+}
+
+h1, .leaguespartan {
+	font-family: "LeagueSpartan", sans-serif;
+}
+
+
+
+/*.hidden {
+	display: none !important;
+}*/
