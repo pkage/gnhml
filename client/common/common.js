@@ -14,3 +14,8 @@ UI.registerHelper('isStudent', function() {
 	// TODO: remove todos
 	return true;
 })
+
+UI.registerHelper('isGrader', function() {
+	// TODO: check this role
+	return true;
+})
