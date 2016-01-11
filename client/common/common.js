@@ -19,3 +19,9 @@ UI.registerHelper('isGrader', function() {
 	// TODO: check this role
 	return true;
 })
+
+UI.registerHelper('bounceLoggedOut', function() {
+	if (Meteor.userId() == null) {
+		Router.go('splash');
+	}
+})
