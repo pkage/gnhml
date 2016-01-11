@@ -4,4 +4,8 @@ Router.route('/', {
 
 Router.route('/season', {
 	template: "season"
+}),
+
+Router.route('/team', {
+	template: "team"
 })
