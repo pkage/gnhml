@@ -13,3 +13,7 @@ Router.route('/season', {
 Router.route('/team', {
 	template: "team"
 })
+
+Router.route('/admin', {
+	template: "admin"
+})

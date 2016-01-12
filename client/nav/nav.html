@@ -1,0 +1,31 @@
+<template name="navigation">
+	<div class="navcontainer">
+		<div class="titlebar">
+			<i class="sidebar icon togglenav"></i>
+			<h1>{{title}}</h1>
+		</div>
+		<div class="fullpage navpage transition hidden">
+			<i class="remove icon togglenav"></i>
+			<div class="inner">
+				<h1>navigation</h1>
+				<h2><a href="#"><i class="home icon"></i>home</a></h2>
+				{{#if isAdmin}}
+				<h2><a href="{{pathFor 'admin'}}"><i class="setting icon"></i>admin panel</a></h2>
+				{{/if}}
+
+				{{#if isCoach}}
+				<h2><a href="#"><i class="users icon"></i>team selection</a></h2> 
+				<h2><a href="{{pathFor 'team'}}"><i class="flag icon"></i>team viewer</a></h2>
+				{{/if}}
+
+				{{#if isGrader}}
+				<h2><a href="#"><i class="checkmark icon"></i>grader panel</a></h2>
+				{{/if}}
+
+				<br>
+				<h2><a id="logout"><i class="sign out icon"></i>log out</a></h2>
+			</div>
+		</div>
+	</div>
+
+</template>
