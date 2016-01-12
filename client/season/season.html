@@ -1,24 +1,22 @@
 <template name="season">
 	<div class="season">
-		<div class="container">
-			<table class="ui celled table">
+		<div class="ui container">
+<!-- 			<table class="ui celled table">
 				<thead>
 					<tr>
 						<th>Team</th>
-						<!--competition names...-->
-						<th>C1</th>
-						<th>C2</th>
-						<th>C3</th>
-						<th>C4</th>
-						<th>C5</th>
+						competition names...
+						{{#each competition}}
+							<th>{{competition_name}}
+						{{/each}}
 						<th>Total</th>
 					</tr>
 				</thead>
 				<tbody>
 					{{#each team}}
 						<tr>
-							<td>{{name}}</td>
-							<!--competition scores/total score...-->
+							<td>{{team_name}}</td>
+							competition scores/total score...
 							<td>S1</td>
 							<td>S2</td>
 							<td>S3</td>
@@ -28,7 +26,8 @@
 						</tr>
 					{{/each}}
 				</tbody>
-			</table>
+			</table> -->
+			{{> reactiveTable collection=collection fields=fields settings=settings}}
 		</div>
 	</div>
 </template>
