@@ -1,6 +1,6 @@
 Template.navigation.events({
 	'click .togglenav': function() {
-		$('.navpage').transition('fade down');
+		$('.navpage').transition('fade right');
 	},
 	'click #logout': function() {
 		Meteor.logout();

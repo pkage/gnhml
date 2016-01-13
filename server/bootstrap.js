@@ -138,7 +138,10 @@ Meteor.startup(function() {
 		}
 	}
 	if (Seasons.find().count() == 0) {
-		var season_id = Seasons.insert({date: new Date()});
+		var season_id = Seasons.insert({
+			start_date: new Date(),
+			end_date: new Date()
+		});
 	}
 	if (Competitions.find().count() == 0) {
 		var competition_id = Competitions.insert({
