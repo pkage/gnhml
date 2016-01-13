@@ -162,3 +162,18 @@ var scores_competition_approach = [{
         }]
     }]
 }];
+
+var scores_individual_approach = [{
+    _question_id: "2",
+    _round_id: "1",
+    _competition_id: "1",
+    _student_id: "3",
+    score: 2
+}];
+
+var scores_round_approach = [{
+    _round_id: "1",
+    _competition_id: "1",
+    _student_id: "3",
+    scores: [0, 2, 3]
+}];
