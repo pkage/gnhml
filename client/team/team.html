@@ -1,12 +1,12 @@
 <template name="team">
 	<div class="team">
 		<div class="ui container">
-			<h1>Team Name</h1>
+			<!-- <h1>Team Name</h1>
 			<table class="ui very basic table">
 				<thead>
 					<tr>
 						<th>Student</th>
-						<!--competition names...-->
+						competition names...
 						{{#each competition}}
 							<th>{{competition_name}}</th>
 						{{/each}}
@@ -14,9 +14,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!--student names and scores-->
+					student names and scores
 				</tbody>
-			</table>
-			</div>
+			</table> -->
+
+			{{> reactiveTable collection=collection settings=settings}}
+		</div>
 	</div>
 </template>
