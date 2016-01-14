@@ -17,6 +17,12 @@ Meteor.publish('scores', function() {
 Meteor.publish('competitions', function() {
 	return Competitions.find({});
 })
+
 Meteor.publish('seasons', function() {
 	return Seasons.find({});
 })
+
+Meteor.publish('headup', function() {
+    return HeadupCollection.find({});
+})
+

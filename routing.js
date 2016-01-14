@@ -18,6 +18,10 @@ Router.route('/admin', {
 	template: "admin"
 });
 
-Router.route('/home', { 
+Router.route('/home', {
 	template: 'home'
+});
+
+Router.route('/headup', {
+    template: 'headup'
 });
