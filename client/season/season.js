@@ -23,7 +23,7 @@ Template.season.helpers({
 		return { 
 			fields: [
 				{key: 'name', label: 'Team Name'},
-				{fieldId: 'date', key: 'date', label: function(value){ return value.date; }};
+				{fieldId: 'date', key: 'date', label: function(value){ return value.date; }},
 				{key: 'score', label: 'Total', fn: function(value){
 					// sum up scores for each competition
 				}}
