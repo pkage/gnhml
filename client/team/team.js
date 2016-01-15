@@ -14,10 +14,10 @@ Template.team.helpers({
 		return { 
 			fields: [
 				{key: 'name', label: 'Student Name'},
-				{fieldId: 'date', key: 'date', label: function(value){ return value.date; }},
-				{key: 'score', label: 'Total', fn: function(value){
-					// sum up scores for each competition
-				}}
+				{fieldId: 'date', key: 'date', label: function(value){ return value.date; }}
+				// {key: 'score', label: 'Total', fn: function(value){
+				// 	// sum up scores for each competition
+				// }}
 			]
 		};
 	}
