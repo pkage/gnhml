@@ -1,8 +1,8 @@
-var headupArray = {
-    date: new Date(), //temp, in the future using new data format for competition date
-    season: 'season_id', //temp
-    teams: [{
-        team_name: 'Choate',
+var personalArray = {
+    name: 'Philip', //temp, in the future using new data format for competition date
+    team: 'Choate', //temp
+    competitions: [{
+        date: 'Jan. 1',
         scores: [{
             round: "1",
             score: Math.floor(Math.random() * 10)
@@ -23,7 +23,7 @@ var headupArray = {
             score: Math.floor(Math.random() * 10)
         }]
     }, {
-        team_name: 'Exeter',
+        date: 'Jan. 2',
         scores: [{
             round: "1",
             score: Math.floor(Math.random() * 10)
@@ -44,7 +44,7 @@ var headupArray = {
             score: Math.floor(Math.random() * 10)
         }]
     }, {
-        team_name: 'Rosemary',
+        date: 'Jan. 3',
         scores: [{
             round: "1",
             score: Math.floor(Math.random() * 10)
@@ -65,7 +65,7 @@ var headupArray = {
             score: Math.floor(Math.random() * 10)
         }]
     }, {
-        team_name: 'Andover',
+        date: 'Jan. 4',
         scores: [{
             round: "1",
             score: Math.floor(Math.random() * 10)
@@ -88,17 +88,17 @@ var headupArray = {
     }]
 }
 
-Template.headup.helpers({
-    'HeadupCollection': function() {
-        console.log(headupArray);
-        return headupArray.teams;
+Template.personal.helpers({
+    'PersonalCollection': function() {
+        console.log(personalArray);
+        return personalArray.competitions;
     },
 
     tableSettings: function() {
         return {
             fields: [{
-                key: 'team_name',
-                label: 'Teams'
+                key: 'date',
+                label: 'Competition Date'
             }, {
                 key: 'scores',
                 label: 'Round 1 Score',

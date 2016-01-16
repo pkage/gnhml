@@ -1,0 +1,8 @@
+<template name="personal">
+    {{> navigation title="personal view"}}
+    <div class="personal">
+        <div class="ui container reactiveTable ui very basic table">
+            {{> reactiveTable collection=PersonalCollection settings=tableSettings}}
+        </div>
+    </div>
+</template>
