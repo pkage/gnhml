@@ -25,3 +25,7 @@ Router.route('/home', {
 Router.route('/headup', {
     template: 'headup'
 });
+
+Router.route('/personal', {
+    template: 'personal'
+});
