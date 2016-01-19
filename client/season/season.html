@@ -1,33 +1,8 @@
 <template name="season">
+	{{> navigation title="season view"}}
 	<div class="season">
 		<div class="ui container reactiveTable">
-<!-- 			<table class="ui celled table">
-				<thead>
-					<tr>
-						<th>Team</th>
-						competition names...
-						{{#each competition}}
-							<th>{{competition_name}}
-						{{/each}}
-						<th>Total</th>
-					</tr>
-				</thead>
-				<tbody>
-					{{#each team}}
-						<tr>
-							<td>{{team_name}}</td>
-							competition scores/total score...
-							<td>S1</td>
-							<td>S2</td>
-							<td>S3</td>
-							<td>S4</td>
-							<td>S5</td>
-							<td>T</td>
-						</tr>
-					{{/each}}
-				</tbody>
-			</table> -->
-			{{> reactiveTable collection=collection settings=settings}}
+			{{> reactiveTable collection=seasonCollection settings=seasonSettings}}
 		</div>
 	</div>
 </template>

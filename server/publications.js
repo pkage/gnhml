@@ -21,8 +21,3 @@ Meteor.publish('competitions', function() {
 Meteor.publish('seasons', function() {
 	return Seasons.find({});
 })
-
-Meteor.publish('headup', function() {
-    return HeadupCollection.find({});
-})
-
