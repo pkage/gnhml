@@ -16,17 +16,17 @@ Template.season.helpers({
 	// }
 
 	collection: function(){
-		return SeasonTable.find({}, {sort: {score: -1, team: 1}});
+		return SeasonTable.find({});
 	},
 
 	settings: function(){
 		return { 
 			fields: [
-				{key: 'name', label: 'Team Name'},
-				{fieldId: 'date', key: 'date', label: function(value){ return value.date; }}
-				// {key: 'score', label: 'Total', fn: function(value){
-				// 	// sum up scores for each competition
-				// }}
+				{key: 'team', label: 'Team Name'},
+				// {fieldId: 'date', key: 'date', label: function(value){ return value.date; }}
+				// // {key: 'score', label: 'Total', fn: function(value){
+				// // 	// sum up scores for each competition
+				// // }}
 			]
 		};
 	}
