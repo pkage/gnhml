@@ -9,18 +9,37 @@
 		</div>
 		{{> Template.dynamic template=adminsubview}}
 	</div>
-
 </template>
 
-
 <template name="admin_schools">
-<p> schools list </p>
+	<table class="ui very basic hoverable table">
+		<thead>
+			<tr>
+				<th>_id</th>
+				<th>school name</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			{{#each schools}}
+			<tr class="{{activerow}} school">
+				<td>{{_id}}</td>
+				<td>{{name}}</td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+	{{#with activeSchool}}
+		{{#modal title=name id="editSchoolModal"}}
+			<p>school id: <code>{{_id}}</code></p>
+		{{/modal}}
+	{{/with}}
 </template>
 
 <template name="admin_coaches">
-<p> coaches list </p>
+	<p> coaches list </p>
 </template>
 
 <template name="admin_teams">
-<p>team lists</p>
+	<p>team lists</p>
 </template>

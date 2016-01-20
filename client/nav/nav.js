@@ -3,6 +3,8 @@ Template.navigation.events({
 		$('.navpage').transition('fade right');
 	},
 	'click #logout': function() {
-		Meteor.logout();
+		Meteor.logout(function() {
+			Router.go('/');
+		});
 	}
 })
