@@ -161,31 +161,135 @@ Meteor.startup(function() {
             teams: [choate_team_id, exeter_team_id]
         })
     }
-    /*
-        headup collection population
-    */
-    if (HeadupCollection.find().count() == 0) {
-        HeadupCollection.insert({
-            date: new Date(), //temp, in the future using new data format for competition date
-            season: season_id, //temp
-            teams: [{
-                team_name: choate_team_id,
-                r1_score: Math.floor(Math.random() * 10),
-                r2_score: Math.floor(Math.random() * 10),
-                r3_score: Math.floor(Math.random() * 10),
-                r4_score: Math.floor(Math.random() * 10),
-                r5_score: Math.floor(Math.random() * 10),
-                r6_score: Math.floor(Math.random() * 10)
-            }, {
-                team_name: exeter_team_id,
-                r1_score: Math.floor(Math.random() * 10),
-                r2_score: Math.floor(Math.random() * 10),
-                r3_score: Math.floor(Math.random() * 10),
-                r4_score: Math.floor(Math.random() * 10),
-                r5_score: Math.floor(Math.random() * 10),
-                r6_score: Math.floor(Math.random() * 10)
-            }],
 
-        })
+//     // var competition_dates = [];
+//     if (SeasonTable.find().count() == 0) {
+//         console.log("1");
+//     var competition_dates = [];
+//     if (SeasonTable.find().count() === 0) {
+//         var teams = Teams.find({}).fetch();
+//         var team_names = [];
+//         for (var i = 0; i < teams.length; i++) {
+//             team_names.push(teams[i].name);
+//         }
+
+//         // var competitions = Competitions.find({}).fetch();
+//         // for (var i = 0; i < competitions.length; i++) {
+//         //     competition_dates.push(competitions[i].date);
+//         // }
+
+//         // var scores = Scores.find({}).fetch();
+//         // var score_totals = []; // 2d array??
+//         // for (var i = 0; i < team_names.length; i++) {
+//         //  for (var j = 0; j < competition_dates.length; j++) {
+//         //      // query for all scores matching team and date + total
+//         //      score_totals[i+j] = i+j; // temporary score
+//         //  }
+//         // }
+
+//         for (var i = 0; i < team_names.length; i++) {
+//             for (var j = 0; j < competition_dates.length; j++) {
+//                 console.log("2");
+//                 SeasonTable.insert({
+//                     team: team_names[i],
+//                     // date: competition_dates[j],
+//                     // score: score_totals[i+j]
+//                 });
+//             }
+//         }
+//     }
+
+//     if (TeamTable.find().count() == 0) {
+//         var profiles = Profiles.find({}).fetch();
+//         var student_names = [];
+//         for (var i = 0; i < profiles.length; i++) {
+//             student_names.push(profiles[i].name);
+//         }
+
+//         // competitions same as previously, already added
+
+//         // var scores = Scores.find({}).fetch();
+//         // var score_totals = []; // 2d array??
+//         // for (var i = 0; i < student_names.length; i++) {
+//         //  for (var j = 0; j < competition_dates.length; j++) {
+//         //      // query for all scores matching student and date + total
+//         //      score_totals[i+j] = i+j; // temporary score
+//         //  }
+//         // }
+
+//         for (var i = 0; i < student_names.length; i++) {
+//             for (var j = 0; j < competition_dates.length; j++) {
+//                 TeamTable.insert({
+//                     student: student_names[i],
+//                     date: competition_dates[j],
+//                     // score: score_totals[i+j]
+//                 });
+//             }
+//         }
+//     }
+});
+
+Meteor.startup(function () {
+    var competition_dates = [];
+    if (Seasons.find().count() === 0) {
+        var teams = Teams.find({}).fetch();
+        var team_names = [];
+        for (var i = 0; i < teams.length; i++) {
+            team_names.push(teams[i].name);
+        }
+
+        var competitions = Competitions.find({}).fetch();
+        for (var i = 0; i < competitions.length; i++) {
+            competition_dates.push(competitions[i].date);
+        }
+
+        var scores = Scores.find({}).fetch();
+        var score_totals = []; // 2d array??
+        for (var i = 0; i < team_names.length; i++) {
+            for (var j = 0; j < competition_dates.length; j++) {
+                // query for all scores matching team and date + total
+                score_totals[i+j] = i+j; // temporary score
+            }
+        }
+        
+
+        for (var i = 0; i < team_names.length; i++) {
+            for (var j = 0; j < competition_dates.length; j++) {
+                Seasons.insert({
+                    team: team_names[i],
+                    date: competition_dates[j],
+                    score: score_totals[i+j]
+                });
+            }
+        }
+    }
+
+    if (Teams.find().count() === 0) {
+        var profiles = Profiles.find({}).fetch();
+        var student_names = [];
+        for (var i = 0; i < profiles.length; i++) {
+            student_names.push(profiles[i].name);
+        }
+
+        // competitions same as previously, already added
+
+        var scores = Scores.find({}).fetch();
+        var score_totals = []; // 2d array??
+        for (var i = 0; i < student_names.length; i++) {
+            for (var j = 0; j < competition_dates.length; j++) {
+                // query for all scores matching student and date + total
+                score_totals[i+j] = i+j; // temporary score
+            }
+        }
+
+        for (var i = 0; i < student_names.length; i++) {
+            for (var j = 0; j < competition_dates.length; j++) {
+                Teams.insert({
+                    student: student_names[i],
+                    date: competition_dates[j],
+                    score: score_totals[i+j]
+                });
+            }
+        }
     }
 });

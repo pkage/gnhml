@@ -5,4 +5,5 @@ Scores = new Mongo.Collection('scores');
 Competitions = new Mongo.Collection('competitions');
 Seasons = new Mongo.Collection('seasons');
 
-HeadupCollection = new Mongo.Collection('headup');
+SeasonTable = new Meteor.Collection("season");
+TeamTable = new Meteor.Collection("team");
