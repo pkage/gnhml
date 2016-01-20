@@ -1,0 +1,11 @@
+<template name="modal">
+<div class="popupmodal ui transition hidden" id="{{id}}">
+	<div class="inner">
+		<div class="title">
+			<h2>{{title}}</h2>
+			<i class="{{allowCloseIcon}} close icon"></i>
+		</div>
+		{{> Template.contentBlock}}
+	</div>
+</div>
+</template>

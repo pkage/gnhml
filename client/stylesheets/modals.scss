@@ -1,0 +1,77 @@
+// custom modal implementation
+@import "variables.scss";
+@import "common.scss";
+
+.popupmodal {
+	// ensure full screen coverage
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+
+	// vertically center the inner section
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	
+	> .inner {
+		// give the element some shadow
+		@extend .z-depth-5;
+
+		// flex it up
+		display: flex;
+		flex-direction: column;
+
+		// handle some padding
+		padding: 1em;
+
+		// misc.
+		z-index: 3;
+		background-color: white;
+		border-top: 2px solid #2185d0;
+		border-radius: 5px;
+
+		// fill the screen by default (mobile only)
+		min-height: 100%;
+		width: 100%;
+		@media (min-width: $screen-sm-min) {
+			width: 50%;
+			min-height: 70%;
+		}
+
+		// scroll the other shite
+		overflow: auto;
+
+		> i {
+			font-size: 2em;
+			
+		}
+
+		> .title {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			padding: 0px;
+			> h2 {
+				text-transform: uppercase;
+				margin-left: 2em;
+				flex-grow: 1;
+				text-align: center;
+			}
+			> i {
+				font-size: 2em;
+				flex-grow: 0;
+				transition: color .25s;
+				cursor: pointer;
+				&:hover {
+					color: #db2828;
+				}
+			}
+
+
+		}
+	}
+}
