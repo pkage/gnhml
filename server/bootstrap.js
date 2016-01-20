@@ -120,18 +120,29 @@ Meteor.startup(function() {
             class: "2017",
             team_id: choate_team_id,
             school_id: choate_id,
-        }, {
+            account_id: null
+        },{
+            name: "Patrick Kage",
+            email: "pkage16@choate.edu",
+            class: "2016",
+            team_id: choate_team_id,
+            school_id: choate_id,
+            account_id: null
+        },
+         {
             name: "Philip Xu",
             email: "jxu16@choate.edu",
             class: "2016",
             team_id: choate_team_id,
             school_id: choate_id,
+            account_id: null
         }, {
             name: "Prep Prepington",
             email: "pprepington@exeter.edu",
             class: "2017",
             team_id: exeter_team_id,
             school_id: exeter_id,
+            account_id: null
         }];
         for (var i = 0; i < profiles.length; i++) {
             Profiles.insert(profiles[i]);

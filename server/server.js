@@ -1,14 +1,31 @@
 // god damn nothing here
+
+bounceLoggedOut = function() {
+	if (Meteor.userId() == null) {
+		throw new Meteor.Error('unauthorized');
+	}
+}
+
+
+
 Meteor.methods({
+	'editSchoolName': function(schoolid, text) {
 
+	},
+	'checkForBindableProfiles': function() {
+		bounceLoggedOut();
+		console.log("binding profiles for " + Meteor.userId());
+		var email = Meteor.user().emails[0].address;
+		if (Profiles.find({'email': email}).count() > 0) {
+			var profiles = Profiles.update({'email': email}, {$set: {account_id: Meteor.userId()}});
+			console.log('bound ' + profiles + ' profile to user ' + Meteor.userId());
+		}
+	}
 });
-
-SeasonTable = new Meteor.Collection("season");
-TeamTable = new Meteor.Collection("team");
 
 Meteor.startup(function () {
 	var competition_dates = [];
-	if (Season.find().count() === 0) {
+	if (Seasons.find().count() === 0) {
 		var teams = Teams.find({}).fetch();
 		var team_names = [];
 		for (var i = 0; i < teams.length; i++) {
@@ -32,16 +49,16 @@ Meteor.startup(function () {
 
 		for (var i = 0; i < team_names.length; i++) {
 			for (var j = 0; j < competition_dates.length; j++) {
-				SeasonTable.insert({
+				Seasons.insert({
 					team: team_names[i],
 					date: competition_dates[j],
 					score: score_totals[i+j]
 				});
 			}
 		}
-	},
+	}
 
-	if (TeamTable.find().count() === 0) {
+	if (Teams.find().count() === 0) {
 		var profiles = Profiles.find({}).fetch();
 		var student_names = [];
 		for (var i = 0; i < profiles.length; i++) {
@@ -61,7 +78,7 @@ Meteor.startup(function () {
 
 		for (var i = 0; i < student_names.length; i++) {
 			for (var j = 0; j < competition_dates.length; j++) {
-				TeamTable.insert({
+				Teams.insert({
 					student: student_names[i],
 					date: competition_dates[j],
 					score: score_totals[i+j]
