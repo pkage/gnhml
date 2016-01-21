@@ -29,3 +29,7 @@ Router.route('/headup', {
 Router.route('/personal', {
     template: 'personal'
 });
+
+Router.route('/seasontwo', {
+	template: 'seasontwo'
+});
