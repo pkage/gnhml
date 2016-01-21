@@ -69,8 +69,7 @@ Template.season.onCreated(function() {
         }]
     });
 
-
-    Template.fields = [{
+    Template.fields = new ReactiveVar([{
         fieldId: 'team_name',
         key: 'team_name',
         label: 'Teams'
@@ -85,20 +84,28 @@ Template.season.onCreated(function() {
             }
             return total_score;
         }
-    }]
+    }]);
+});
 
+Template.season.onRendered(function() {
     this.autorun(function() {
-        for (var n = 0; n < Tables.find().fetch()[0].scores.length; n++) {
-            Template.fields.splice(1, 0, {
-                fieldId: 'competition' + n,
-                key: 'scores',
-                label: function() {
-                    return Tables.find().fetch()[0].scores[0].competition_date;
-                },
-                fn: function(value, object) {
-                    return value[0].score;
-                }
-            });
+        // console.log(Template.fields.get().length - 2)
+        // console.log(Tables.find().fetch()[0].scores.length)
+        if (Template.fields.get().length - 2 < Tables.find().fetch()[0].scores.length) {
+            for (var n = 0; n < Tables.find().fetch()[0].scores.length; n++) {
+                // console.log(Template.fields.get())
+                Template.fields.set([{
+                    fieldId: 'competition' + n,
+                    key: 'scores',
+                    label: function() {
+                        console.log(n)
+                        return Tables.find().fetch()[0].scores[0].competition_date;
+                    },
+                    fn: function(value, object) {
+                        return value[0].score;
+                    }
+                }].concat(Template.fields.get()));
+            }
         }
     });
 });
@@ -109,10 +116,10 @@ Template.season.helpers({
     },
 
     'seasonSettings': function() {
-        console.log(Template.fields)
+        console.log(Template.fields.get())
         return {
             showFilter: false,
-            fields: Template.fields
+            fields: Template.fields.get()
         }
     }
 })
