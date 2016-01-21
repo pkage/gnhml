@@ -35,15 +35,15 @@
 		border-radius: 5px;
 
 		// fill the screen by default (mobile only)
-		min-height: 100%;
-		width: 100%;
-		@media (min-width: $screen-sm-min) {
-			width: 50%;
-			min-height: 70%;
+		width: 50%;
+		@media (max-width: $screen-sm-min) {
+			min-height: 100%;
+			width: 100%;
 		}
 
 		// scroll the other shite
-		overflow: auto;
+		//overflow: auto;
+
 
 		> i {
 			font-size: 2em;
@@ -75,3 +75,4 @@
 		}
 	}
 }
+
