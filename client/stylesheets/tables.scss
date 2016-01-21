@@ -2,3 +2,15 @@ table.hoverable > tbody > tr:hover {
 	background-color: #fafafa;
 	cursor: pointer;
 }
+
+.tableheader {
+	cursor: pointer !important;
+}
+
+.tablehoverable {
+	&:hover {
+		background-color: #fafafa;
+	}
+
+	cursor: pointer;
+}

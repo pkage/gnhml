@@ -1,0 +1,27 @@
+<template name="table">
+
+	{{! set the context variable as the context here}}
+	{{#with context}}
+	<table class="ui very basic table">
+		<thead>
+			{{! create our header}}
+			<tr>
+				{{#each tracking}}
+				<th data-key="{{field}}" class="tableheader">
+					{{title}}<i class="caret up icon"></i><i class="caret down icon"></i>
+				</th>
+				{{/each}}
+			</tr>
+		</thead>
+		<tbody>
+			{{#each search}}
+			<tr class="{{hoverableClass}} tablerow">
+				{{#each fields}}
+				<td data-key="{{key}}">{{value}}</td>
+				{{/each}}
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+	{{/with}}
+</template>
