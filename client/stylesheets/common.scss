@@ -9,7 +9,7 @@
 	src: url(/fonts/LeagueSpartan-Bold.otf);
 }
 
-h1, .leaguespartan {
+h1, h2, h3, h4, h5, .leaguespartan {
 	font-family: "LeagueSpartan", sans-serif;
 }
 
@@ -34,4 +34,8 @@ h1, .leaguespartan {
 }
 .z-depth-5{
   box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
+}
+
+.flex-center {
+  justify-content: center;
 }
