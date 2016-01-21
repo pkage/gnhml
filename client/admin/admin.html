@@ -29,10 +29,35 @@
 			{{/each}}
 		</tbody>
 	</table>
+
+	{{> table context=as_context}}
 	{{#with activeSchool}}
-		{{#modal title=name id="editSchoolModal"}}
-			<p>school id: <code>{{_id}}</code></p>
-		{{/modal}}
+	{{#modal title=name id="editSchoolModal"}}
+
+	<div class="ui statistics flex-center">
+		<div class="statistic">
+			<div class="value">{{school_members}}</div>
+			<div class="label">members</div>
+		</div>
+		<div class="statistic">
+			<div class="value">14</div>
+			<div class="label">scores</div>
+		</div>
+		<div class="statistic">
+			<div class="value">{{school_teams}}</div>
+			<div class="label">teams</div>
+		</div>
+	</div>
+	<br>
+	<form id="updateSchoolName">
+	<div class="ui action input">
+		<input type="text" placeholder="school name" value="{{name}}">
+		<button class="ui button" type="submit">Save</button>
+	</div>
+	</form>
+
+
+	{{/modal}}
 	{{/with}}
 </template>
 

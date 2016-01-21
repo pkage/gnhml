@@ -20,8 +20,8 @@ Template.admin.events({
 })
 
 
+// school shite
 Template.admin_schools.rendered = function() {
-	console.log('rendered admin_schools');
 	Session.set('selected', '');
 }
 
@@ -32,12 +32,39 @@ Template.admin_schools.helpers({
 	'activeSchool': function() {
 		var school = Schools.findOne({_id: Session.get('selected')});
 		return (school == null) ? {} : school; // make sure that #with get's /something/
+	},
+	'school_members': function() {
+		return Profiles.find({school_id: this._id}).count();
+	},
+	'school_teams': function() {
+		return Teams.find({school_id: this._id}).count();
+	},
+	'as_context': function() {
+		return {
+			db: Schools,
+			selector: {},
+			tracking: [
+				{
+					'field': 'name',
+					'title': 'Name'
+				},
+				{
+					'field': '_id',
+					'title': 'ID'
+				}
+			],
+			hoverable: true,
+			onClick: function(ctx) {
+				Session.set('selected', ctx._id);
+				$('#editSchoolModal').transition('fade down');
+			}
+		}
 	}
 })
 
 Template.admin_schools.events({
-	'click .school': function() {
-		Session.set('selected', this._id);
-		$('#editSchoolModal').transition('fade down');
+	'submit #updateSchoolName': function(ev) {
+		ev.preventDefault();
+		Meteor.call('')
 	}
 })
