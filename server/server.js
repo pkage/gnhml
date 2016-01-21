@@ -1,12 +1,8 @@
-// god damn nothing here
-
 bounceLoggedOut = function() {
 	if (Meteor.userId() == null) {
 		throw new Meteor.Error('unauthorized');
 	}
 }
-
-
 
 Meteor.methods({
 	'editSchoolName': function(schoolid, text) {
