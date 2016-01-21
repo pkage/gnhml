@@ -18,3 +18,26 @@ Template.admin.events({
 		Session.set('admin_active', $(ev.target).data('template'));
 	}
 })
+
+
+Template.admin_schools.rendered = function() {
+	console.log('rendered admin_schools');
+	Session.set('selected', '');
+}
+
+Template.admin_schools.helpers({
+	'schools': function() {
+		return Schools.find({});
+	},
+	'activeSchool': function() {
+		var school = Schools.findOne({_id: Session.get('selected')});
+		return (school == null) ? {} : school; // make sure that #with get's /something/
+	}
+})
+
+Template.admin_schools.events({
+	'click .school': function() {
+		Session.set('selected', this._id);
+		$('#editSchoolModal').transition('fade down');
+	}
+})
