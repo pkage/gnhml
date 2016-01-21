@@ -22,6 +22,6 @@ UI.registerHelper('isGrader', function() {
 
 UI.registerHelper('bounceLoggedOut', function() {
 	if (Meteor.userId() == null) {
-		Router.go('splash');
+		Router.go('/');
 	}
 })
