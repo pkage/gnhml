@@ -18,16 +18,21 @@ Template.table.helpers({
 		var out = []
 		// order-dependent pairing - sets us up for the final display
 		for (var i = 0; i < tmpl.data.context.tracking.length; i++) {
-			// fill our list
-			out.push({
-				key: tmpl.data.context.tracking[i].field,
-				value: this[tmpl.data.context.tracking[i].field]
-			})
+			// create our next item in the list with a key 
+			var next = {key: tmpl.data.context.tracking[i].field, value: null};
+
+			// execute a custom function if it's got one, otherwise just get the value
+			if ('func' in tmpl.data.context.tracking[i]) {
+				next.value = tmpl.data.context.tracking[i].func(this[tmpl.data.context.tracking[i].field], this);
+			} else {
+				next.value = this[tmpl.data.context.tracking[i].field];
+			}
+
+			out.push(next);
 		}
 		return out;
 	},
 	'hoverableClass': function() {
-		console.log(Template.instance().data.context.hoverable);
 		return (Template.instance().data.context.hoverable) ? 'tablehoverable' : ''; 
 	}
 });
@@ -51,7 +56,6 @@ Template.table.events({
 			sort[key] = 1;
 			$(ev.target).children('.up').show();
 		}
-		console.log(Session.get('tableSort'), sort);
 		Session.set('tableSort', sort);
 	},
 	'click .tablerow': function(ev, tm) {
