@@ -1,0 +1,27 @@
+<template name="seasontwo">
+	{{> navigation title="season view"}}
+	<div class="season">
+		<div class="ui container">
+			<table class="ui celled table">
+				<thead>
+					<tr>
+						<th>Team Name</th>
+						{{#each competition}}
+							<th>{{competition_date}}</th>
+						{{/each}}
+					</tr>
+				</thead>
+				<tbody>
+					{{#each team}}
+						<tr>
+							<td>{{team_name}}</td>
+							{{#each competition}}
+								<td>{{random_score}}</td>
+							{{/each}}
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</template>

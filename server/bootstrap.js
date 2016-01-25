@@ -156,7 +156,7 @@ Meteor.startup(function() {
     }
     if (Competitions.find().count() == 0) {
         var competition_id = Competitions.insert({
-            date: new Date(),
+            date: new Date("9-18-2015"),
             season: season_id,
             teams: [choate_team_id, exeter_team_id]
         })
