@@ -5,6 +5,7 @@
 			<a class="item admintab" data-template="admin_schools">schools</a>
 			<a class="item admintab" data-template="admin_coaches">coaches</a>
 			<a class="item admintab" data-template="admin_teams">teams</a>
+			<a class="item admintab" data-template="admin_profiles">profiles</a>
 			{{activetab_watcher}}
 		</div>
 		{{> Template.dynamic template=adminsubview}}
@@ -12,25 +13,8 @@
 </template>
 
 <template name="admin_schools">
-	<table class="ui very basic hoverable table">
-		<thead>
-			<tr>
-				<th>_id</th>
-				<th>school name</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			{{#each schools}}
-			<tr class="{{activerow}} school">
-				<td>{{_id}}</td>
-				<td>{{name}}</td>
-			</tr>
-			{{/each}}
-		</tbody>
-	</table>
-
 	{{> table context=as_context}}
+
 	{{#with activeSchool}}
 	{{#modal title=name id="editSchoolModal"}}
 
@@ -50,8 +34,8 @@
 	</div>
 	<br>
 	<form id="updateSchoolName">
-	<div class="ui action input">
-		<input type="text" placeholder="school name" value="{{name}}">
+	<div class="ui action input fullwidth">
+		<input type="text" placeholder="school name" name="school_name" value="{{name}}" required autocomplete="off">
 		<button class="ui button" type="submit">Save</button>
 	</div>
 	</form>
@@ -62,9 +46,13 @@
 </template>
 
 <template name="admin_coaches">
-	<p> coaches list </p>
+	
 </template>
 
 <template name="admin_teams">
-	<p>team lists</p>
+	{{> table context=at_context}}
+</template>
+
+<template name="admin_profiles">
+	{{> table context=ap_context}}
 </template>

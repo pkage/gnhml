@@ -21,3 +21,9 @@ Meteor.publish('competitions', function() {
 Meteor.publish('seasons', function() {
 	return Seasons.find({});
 })
+
+Meteor.publish('users', function() {
+	if (Roles.userIsInRole(this.userId, ['admin'], Roles.GLOBAL_GROUP)) {
+		return Meteor.users.find({});
+	}
+})

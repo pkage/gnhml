@@ -1,5 +1,6 @@
 Template.admin.rendered = function() {
 	Session.set('admin_active', 'admin_schools');
+	Meteor.subscribe('users');
 }
 
 
@@ -65,6 +66,49 @@ Template.admin_schools.helpers({
 Template.admin_schools.events({
 	'submit #updateSchoolName': function(ev) {
 		ev.preventDefault();
-		Meteor.call('')
+		Meteor.call('updateSchoolName', Session.get('selected'), $('[name="school_name"]').val())
+	}
+})
+
+
+Template.admin_profiles.helpers({
+	'ap_context': function() {
+		return {
+			db: Profiles,
+			selector: {},
+			tracking: [{field: 'name', title: 'Name'},
+				{field: 'email', title: 'Email'},
+				{field: '_id', title: 'Profile ID'},
+				{field: 'account_id', title: 'Bound Account ID'},
+				{field: 'school_id', title: 'School', 
+				func: function(value, ctx) {return Schools.findOne(value).name;}
+				}
+				],
+			hoverable: true
+		}
+	}
+});
+
+Template.admin_teams.helpers({
+	'at_context': function() {
+		return {
+			db: Teams,
+			selector: {},
+			tracking: [
+				{
+					field: 'name',
+					title: 'Name'
+				},
+				{
+					field: 'level',
+					title: 'Level'
+				},
+				{
+					field: 'school_id',
+					title: 'School',
+					func: function(value, ctx) {return Schools.findOne(value).name;}
+				}
+			]
+		}
 	}
 })
