@@ -8,3 +8,11 @@ Template.navigation.events({
 		});
 	}
 })
+
+Template.navigation.helpers({
+	'logoutManager': function() {
+		if (!('allowLoggedOut' in this) && Meteor.userId() == null) {
+			Router.go('/');
+		}
+	}
+})

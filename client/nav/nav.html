@@ -19,7 +19,7 @@
 				{{/if}}
 
 				{{#if isGrader}}
-				<h2><a href="#"><i class="checkmark icon"></i>grader panel</a></h2>
+				<h2><a href="{{pathFor 'grader'}}"><i class="checkmark icon"></i>grader panel</a></h2>
 				{{/if}}
 
 				<br>
@@ -27,5 +27,5 @@
 			</div>
 		</div>
 	</div>
-	{{bounceLoggedOut}}
+	{{logoutManager}}
 </template>
