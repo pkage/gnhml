@@ -133,7 +133,7 @@ Meteor.startup(function() {
             name: "Philip Xu",
             email: "jxu16@choate.edu",
             class: "2016",
-            team_id: choate_team_id,
+            team_id: exeter_team_id,
             school_id: choate_id,
             account_id: null
         }, {
@@ -144,9 +144,10 @@ Meteor.startup(function() {
             school_id: exeter_id,
             account_id: null
         }];
-        for (var i = 0; i < profiles.length; i++) {
-            Profiles.insert(profiles[i]);
-        }
+        var student1_id = Profiles.insert(profiles[0]);
+        var student2_id = Profiles.insert(profiles[1]);
+        var student3_id = Profiles.insert(profiles[2]);
+        var student4_id = Profiles.insert(profiles[3]);
     }
     if (Seasons.find().count() == 0) {
         var season_id = Seasons.insert({
@@ -155,11 +156,53 @@ Meteor.startup(function() {
         });
     }
     if (Competitions.find().count() == 0) {
-        var competition_id = Competitions.insert({
+        var competitions = [{
             date: new Date("9-18-2015"),
             season: season_id,
-            teams: [choate_team_id, exeter_team_id]
-        })
+            teams: [choate_team_id, exeter_team_id],
+        },{
+            date: new Date("12-19-2015"),
+            season: season_id,
+            teams: [choate_team_id, exeter_team_id],
+        }]
+        var competition1_id = Competitions.insert(competitions[0]);
+        var competition2_id = Competitions.insert(competitions[1]);
+    }
+    if (Scores.find({}).count() == 0){
+        var scores = [{
+            question_id: "1",
+            round_id: "1",
+            competition_id: competition1_id,
+            student_id: student1_id,
+            team_id: choate_team_id,
+            score: 1
+        },{
+            question_id: "2",
+            round_id: "1",
+            competition_id: competition1_id,
+            student_id: student3_id,
+            team_id: exeter_team_id,
+            score: 2
+        },
+         {
+            question_id: "3",
+            round_id: "1",
+            competition_id: competition2_id,
+            student_id: student2_id,
+            team_id: choate_team_id,
+            score: 3
+        }, {
+            question_id: "2",
+            round_id: "2",
+            competition_id: competition2_id,
+            student_id: student4_id,
+            team_id: exeter_team_id,
+            score: 2
+        }];
+
+        for (var i = 0; i < scores.length; i++) {
+            Scores.insert(scores[i]);
+        }
     }
 
 //     // var competition_dates = [];
