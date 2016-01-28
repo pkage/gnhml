@@ -5,6 +5,7 @@
 	display: flex;
 	align-items: center;
 	flex-direction: row;
+	flex-grow: 0;
 	padding: 1rem;
 	padding-right: calc(1rem + 2em);
 	> h1 {
