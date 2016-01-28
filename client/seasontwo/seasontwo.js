@@ -32,17 +32,17 @@ Template.seasontwo.helpers({
 		for (var c = 0; c < competitions.length; c++) {
 			var _id = competitions[c]._id;
 			tracking.push({
-				field: 'competition_id',
+				field: '',
 				title: Competitions.findOne(_id).date.toString(),
 				func: function(value, ctx) {
-					var temp_scores = Scores.find({competition_id: value, team_id: ctx._id}).fetch();
+					var temp_scores = Scores.find({competition_id: _id, team_id: ctx._id}).fetch();
 					var competition_score = 0;
 					for (var i = 0; i < temp_scores.length; i++) {
-						competition_score += temp_scores[i];
+						competition_score += temp_scores[i].score;
 					}
-					console.log("ID" + ctx._id);
-					console.log("temp" + temp_scores); 
-					console.log("SCORE" + competition_score);
+					console.log(Competitions.find({}).fetch());
+					console.log(Scores.find({}).fetch());
+					console.log("_id:" + _id);
 					return competition_score;
 				}
 			})
