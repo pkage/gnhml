@@ -33,3 +33,7 @@ Router.route('/personal', {
 Router.route('/seasontwo', {
 	template: 'seasontwo'
 });
+
+Router.route('/grader', {
+	template: 'grader'
+})

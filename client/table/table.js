@@ -1,8 +1,27 @@
-Template.table.rendered = function() {
+Template.table.onCreated(function() {
 	Session.set('tableSort', {key: null, direction: null});
 	$('.tableheader').children('.icon').hide();
 
-}
+	// create a random name
+	var randomName = function() {
+		var id_material = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		var out = "";
+		for (var i = 0; i < 10; i++) {
+			out += id_material[Math.floor(Math.random() * id_material.length)];
+		}
+		return out;
+	}
+
+	// preprocess the tracking object
+	var tracking = this.data.context.tracking;
+	for (var c = 0; c < tracking.length; c++) {
+		if (tracking[c].field == '') {
+			tracking[c].field = randomName();
+		}
+	}
+ 	
+ 	this.tracking = new ReactiveVar(tracking);
+});
 
 Template.table.helpers({
 	'context': function() {
@@ -18,7 +37,7 @@ Template.table.helpers({
 		var vals = this.db.find(this.selector).fetch();
 
 		var tmpl = Template.instance();
-
+		var tracking = tmpl.tracking.get();		
 
 		// replace all the function specified values with their post-exec counterparts
 		// ew this is kinda ugly
@@ -26,15 +45,15 @@ Template.table.helpers({
 		for (var c = 0; c < vals.length; c++) {
 			// create the next object we'll insert
 			var next = {};
-			for (var i = 0; i < tmpl.data.context.tracking.length; i++) {
+			for (var i = 0; i < tracking.length; i++) {
 				// watch this key now 
-				var key = tmpl.data.context.tracking[i].field;
+				var key = tracking[i].field;
 
 				// execute a custom function if it's got one, otherwise just get the value
-				if ('func' in tmpl.data.context.tracking[i]) {
-					next[key] = tmpl.data.context.tracking[i].func(vals[c][tmpl.data.context.tracking[i].field], vals[c]);
+				if ('func' in tracking[i]) {
+					next[key] = tracking[i].func(vals[c][tmpl.data.context.tracking[i].field], vals[c]);
 				} else {
-					next[key] = vals[c][tmpl.data.context.tracking[i].field];
+					next[key] = vals[c][tracking[i].field];
 				}
 			}
 			data.push(next);
@@ -52,6 +71,9 @@ Template.table.helpers({
 	'fields': function() {
 		// get a pointer to our template instance
 		var tmpl = Template.instance();
+
+		// get our tracking data
+		var tracking = tmpl.tracking.get();
 		// create our output
 		var out = []
 		// order-dependent pairing - sets us up for the final display
