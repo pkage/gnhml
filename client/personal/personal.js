@@ -1,4 +1,5 @@
-var personalArray = {
+var Tables = new Meteor.Collection(null);
+Tables.insert({
     name: 'Philip', //temp, in the future using new data format for competition date
     team: 'Choate', //temp
     competitions: [{
@@ -86,9 +87,68 @@ var personalArray = {
             score: Math.floor(Math.random() * 10)
         }]
     }]
-}
+})
 
 Template.personal.helpers({
+    'personal_context': function() {
+        return {
+            db: Tables.competitions,
+            selector: {},
+            tracking: [{
+                key: 'date',
+                title: 'Competition Date'
+            }, {
+                key: 'scores',
+                title: 'Round 1 Score',
+                func: function(args, ctx) {
+                    console.log(ctx)
+                    return args[0].score;
+                }
+            }, {
+                key: 'scores',
+                title: 'Round 2 Score',
+                func: function(args, ctx) {
+                    return args[1].score;
+                }
+            }, {
+                key: 'scores',
+                title: 'Round 3 Score',
+                func: function(args, ctx) {
+                    return args[2].score;
+                }
+            }, {
+                key: 'scores',
+                title: 'Round 4 Score',
+                func: function(args, ctx) {
+                    return args[3].score;
+                }
+            }, {
+                key: 'scores',
+                title: 'Round 5 Score',
+                func: function(args, ctx) {
+                    return args[4].score;
+                }
+            }, {
+                key: 'scores',
+                title: 'Round 6 Score',
+                func: function(args, ctx) {
+                    return args[5].score;
+                }
+            }, {
+                key: 'scores',
+                title: 'Total Score',
+                func: function(args, ctx) {
+                    var total = 0;
+                    for (var i = 0; i < args.length; i++) {
+                        total += args[i].score;
+                    };
+                    return total;
+                }
+            }],
+            hoverable: true
+        }
+    },
+
     'PersonalCollection': function() {
         console.log(personalArray);
         return personalArray.competitions;
