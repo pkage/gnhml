@@ -62,6 +62,7 @@ Template.seasontwo.helpers({
 			})
 		}
 
+		console.log(tracking);
 		return {
 			db: Teams,
 			selector: {},

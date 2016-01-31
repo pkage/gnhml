@@ -2,29 +2,33 @@ Template.table.onCreated(function() {
 	Session.set('tableSort', {key: null, direction: null});
 	$('.tableheader').children('.icon').hide();
 
-	// create a random name
-	var randomName = function() {
-		var id_material = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-		var out = "";
-		for (var i = 0; i < 10; i++) {
-			out += id_material[Math.floor(Math.random() * id_material.length)];
-		}
-		return out;
-	}
-
-	// preprocess the tracking object
-	var tracking = this.data.context.tracking;
-	for (var c = 0; c < tracking.length; c++) {
-		if (tracking[c].field == '') {
-			tracking[c].field = randomName();
-		}
-	}
- 	
- 	this.tracking = new ReactiveVar(tracking);
+	this.tracking = new ReactiveVar([]);
 });
 
 Template.table.helpers({
 	'context': function() {
+		// create a random name
+		var randomName = function() {
+			var id_material = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+			var out = "";
+			for (var i = 0; i < 10; i++) {
+				out += id_material[Math.floor(Math.random() * id_material.length)];
+			}
+			return out;
+		}
+
+		var tracking = Template.instance().data.context.tracking;
+		for (var c = 0; c < tracking.length; c++) {
+			if (tracking[c].field == '') {
+				tracking[c].field = randomName();
+			}
+		}
+		if ('tracking' in this) {
+			Template.instance().tracking.set(tracking);
+		} else {
+			Template.instance().tracking = new ReactiveVar(tracking);
+		}
+		
 		return this.context;
 	},
 	'getTitle': function() {
