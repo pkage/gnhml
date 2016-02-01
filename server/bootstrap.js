@@ -123,7 +123,7 @@ Meteor.startup(function() {
             competition_id: competition2_id,
             student_id: student2_id,
             team_id: choate_c_id,
-            score: 3
+            score: 4
         }, {
             question_id: "2",
             round_id: "2",
