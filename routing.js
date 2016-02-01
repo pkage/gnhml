@@ -30,10 +30,6 @@ Router.route('/personal', {
     template: 'personal'
 });
 
-Router.route('/seasontwo', {
-	template: 'seasontwo'
-});
-
 Router.route('/grader', {
 	template: 'grader'
 })

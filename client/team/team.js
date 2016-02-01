@@ -23,15 +23,6 @@ Template.team.helpers({
             }
         }
 
-        var randomName = function() {
-            var id_material = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-            var out = "";
-            for (var i = 0; i < 10; i++) {
-                out += id_material[Math.floor(Math.random() * id_material.length)];
-            }
-            return out;
-        }
-
         for (var c = 0; c < competitions.length; c++) {
             var _id = competitions[c]._id;
             tracking.push({
