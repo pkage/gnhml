@@ -1,24 +1,4 @@
 Template.seasontwo.helpers({
-    // 'competition': function(){
-    // 	return Competitions.find({});
-    // },
-
-    // 'competition_date': function(){
-    // 	return this.date;
-    // },
-
-    // 'team': function(){
-    // 	return Teams.find({});
-    // },
-
-    // 'team_name': function(){
-    // 	return this.name;
-    // },
-
-    // 'random_score': function(){
-    // 	return Math.floor(Math.random() * 10);
-    // }
-
     'season_context': function() {
         var tracking = [{
             field: 'name',
@@ -65,6 +45,26 @@ Template.seasontwo.helpers({
                 func: createFunc(_id)
             })
         }
+
+        var totalFunc = function(){
+            return function(value, ctx) {
+                var team_score = 0;
+                // map a function to each
+                Scores.find({
+                    team_id: ctx._id
+                }).map(function(doc) {
+                    team_score += doc.score;
+                })
+
+                return team_score;
+            }
+        }
+
+        tracking.push({
+            field: '',
+            title: 'Total',
+            func: totalFunc()
+        })
 
         return {
             db: Teams,

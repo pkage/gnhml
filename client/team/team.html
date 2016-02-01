@@ -2,24 +2,7 @@
 {{> navigation title="team view"}}
 	<div class="team">
 		<div class="ui container">
-			<!-- <h1>Team Name</h1>
-			<table class="ui very basic table">
-				<thead>
-					<tr>
-						<th>Student</th>
-						competition names...
-						{{#each competition}}
-							<th>{{competition_name}}</th>
-						{{/each}}
-						<th>Total</th>
-					</tr>
-				</thead>
-				<tbody>
-					student names and scores
-				</tbody>
-			</table> -->
-
-			{{> reactiveTable collection=collection settings=settings}}
+			{{> table context=team_context}}
 		</div>
 	</div>
 </template>
