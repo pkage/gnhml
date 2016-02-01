@@ -95,47 +95,47 @@ Template.personal.helpers({
             db: Tables.competitions,
             selector: {},
             tracking: [{
-                key: 'date',
+                field: 'date',
                 title: 'Competition Date'
             }, {
-                key: 'scores',
+                field: 'scores',
                 title: 'Round 1 Score',
                 func: function(args, ctx) {
                     console.log(ctx)
                     return args[0].score;
                 }
             }, {
-                key: 'scores',
+                field: 'scores',
                 title: 'Round 2 Score',
                 func: function(args, ctx) {
                     return args[1].score;
                 }
             }, {
-                key: 'scores',
+                field: 'scores',
                 title: 'Round 3 Score',
                 func: function(args, ctx) {
                     return args[2].score;
                 }
             }, {
-                key: 'scores',
+                field: 'scores',
                 title: 'Round 4 Score',
                 func: function(args, ctx) {
                     return args[3].score;
                 }
             }, {
-                key: 'scores',
+                field: 'scores',
                 title: 'Round 5 Score',
                 func: function(args, ctx) {
                     return args[4].score;
                 }
             }, {
-                key: 'scores',
+                field: 'scores',
                 title: 'Round 6 Score',
                 func: function(args, ctx) {
                     return args[5].score;
                 }
             }, {
-                key: 'scores',
+                field: 'scores',
                 title: 'Total Score',
                 func: function(args, ctx) {
                     var total = 0;
