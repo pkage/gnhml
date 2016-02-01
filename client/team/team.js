@@ -2,7 +2,12 @@ Template.team.helpers({
 	'team_context': function() {
         var tracking = [{
             field: 'name',
-            title: 'Students'
+            title: 'Students',
+            func: function(value, ctx){ 
+                if (ctx.account_id == null){
+                    return value;
+                }
+            }
         }];
 
         var competitions = Competitions.find({}).fetch();
@@ -27,7 +32,7 @@ Template.team.helpers({
             var _id = competitions[c]._id;
             tracking.push({
                 field: '',
-                title: Competitions.findOne(_id).date.toString(),
+                title: Competitions.findOne(_id).date.toDateString(),
                 func: createFunc(_id)
             })
         }
