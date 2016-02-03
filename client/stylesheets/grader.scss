@@ -9,7 +9,7 @@
 		flex-direction: row;
 		align-items: stretch;
 		justify-content: center;
-		> .search, .round, .grade {
+		> .gcolumn {
 			flex-grow: 2;
 			margin: 1em;
 			display: flex;
@@ -20,6 +20,7 @@
 				flex-grow: 0;
 				text-align: center;
 				text-transform: uppercase;
+				flex-direction: row;
 			}
 			> .listcontainer {
 				flex-grow: 1;

@@ -33,3 +33,7 @@ Router.route('/personal', {
 Router.route('/grader', {
 	template: 'grader'
 })
+
+Router.route('/teamselect', {
+	template: 'teamselect'
+})
