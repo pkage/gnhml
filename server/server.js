@@ -6,15 +6,28 @@ bounceLoggedOut = function() {
 	}
 }
 
+// because typing this out every time is a real drag
+checkRole = function(role) {
+	return Roles.userIsInRole(Meteor.userId(), role, Roles.GLOBAL_GROUP);
+}
+
 restrictToAdmin = function() {
 	bounceLoggedOut(); // bounce logged out users
 
 	// ensure that the current user is an administrator
-	if (!Roles.userIsInRole(Meteor.userId(), 'admin', Roles.GLOBAL_GROUP)) {
+	if (!checkRole('admin')) {
 		throw new Meteor.Error('unauthorized', 'must be admin for this action');
 	}
 }
 
+restrictToCoach = function() {
+	bounceLoggedOut(); // bounce logged out users
+
+	// ensure that the current user is an administrator
+	if (!checkRole(coach) && !checkRole('admin')) {
+		throw new Meteor.Error('unauthorized', 'must be coach or admin for this action');
+	}
+}
 
 // callable methods
 Meteor.methods({
@@ -41,5 +54,30 @@ Meteor.methods({
 			var profiles = Profiles.update({'email': email}, {$set: {account_id: Meteor.userId()}});
 			console.log('bound ' + profiles + ' profile to user ' + Meteor.userId());
 		}
+	},
+	'createTeam': function(name, ids, schoolid, level) {
+		// security checks
+		bounceLoggedOut();
+		restrictToCoach();
+		check(name, String);
+		check(ids, Array);
+		check(schoolid, String);
+		check(level, String);
+		ids.forEach(function(val) {check(val, String)});
+
+
+		// force the list to a unique state, in case the client screwed it up
+		ids = _.uniq(ids);
+
+		// create the team
+		var teamid = Teams.insert({
+			name: name,
+			school_id: schoolid,
+			level: level
+		})
+
+		//
+
+
 	}
 });

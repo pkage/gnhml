@@ -1,0 +1,14 @@
+.dropdown-override {
+	margin-top: 1rem;
+	transition: border .1s;
+	border: 0px !important;
+	border-bottom: 1px solid rgba(34, 36, 38, 0.15) !important;
+	text-transform: none;
+	flex-grow: 1;
+}
+
+.team-icon {
+	margin-left: .25rem !important;
+	width: 1.1em;
+	color: rgba(0, 0, 0, 0.870588);
+}

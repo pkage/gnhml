@@ -27,7 +27,7 @@ Template.season.helpers({
             console.log('prepping: ' + _id);
             tracking.push({
                 field: '',
-                title: Competitions.findOne(_id).date.toString(),
+                title: Competitions.findOne(_id).date.toDateString(),
                 func: createFunc(_id)
             })
         }
