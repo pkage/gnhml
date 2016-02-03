@@ -4,9 +4,12 @@ Meteor.startup(function() {
             name: "Choate Rosemary Hall"
         }, {
             name: "Philips Exeter Academy"
+        }, {
+            name: "Deerfield Academy"
         }];
         var choate_id = Schools.insert(schools[0]);
         var exeter_id = Schools.insert(schools[1]);
+        var deerfield_id = Schools.insert(schools[2]);
     }
 
     if (Teams.find().count() == 0) {
@@ -27,50 +30,58 @@ Meteor.startup(function() {
     if (Profiles.find().count() == 0) {
         var profiles = [{
             name: "Jessica Shi", //CHOATE A TEAM
-            email: "js@choate.edu",
+            email: "jshi17@choate.edu",
             class: "2017",
+            school_id: choate_id,
             team_id: choate_a_id,
             account_id: null
         }, {
             name: "Patrick Kage", //CHOATE A TEAM
-            email: "pk@choate.edu",
+            email: "pkage16@choate.edu",
             class: "2016",
+            school_id: choate_id,
             team_id: choate_a_id,
             account_id: null
         }, {
             name: "Philip Xu", //CHOATE B TEAM
-            email: "px@choate.edu",
+            email: "jxu16@choate.edu",
             class: "2016",
+            school_id: choate_id,
             team_id: choate_b_id,
             account_id: null
         }, {
             name: "Matt Bardoe", //CHOATE B TEAM
             email: "mb@choate.edu",
             class: "2016",
+            school_id: choate_id,
             team_id: choate_b_id,
             account_id: null
         }, {
             name: "Elena Turner", //CHOATE C TEAM
             email: "et@choate.edu",
             class: "2016",
+            school_id: choate_id,
             team_id: choate_c_id,
             account_id: null
         }, {
             name: "Jeff Niu", //CHOATE C TEAM
             email: "jn@choate.edu",
             class: "2016",
+            school_id: choate_id,
             team_id: choate_c_id,
             account_id: null
         }, {
             name: "Stalin Yourheart", //DEERFIELD A TEAM
             email: "sy@deerfield.edu",
             class: "2016",
+            school_id: deerfield_id,
             team_id: deerfield_a_id,
             account_id: null
         }, {
-            name: "Adolf Smitler", //DEERFIELD A TEAM
+            name: "Abradolf Linkler", //DEERFIELD A TEAM
             email: "as@deerfield.edu",
             class: "2016",
+            school_id: deerfield_id, 
             team_id: deerfield_a_id,
             account_id: null
         }];
