@@ -2,7 +2,9 @@
 {{> navigation title="team view"}}
 	<div class="team">
 		<div class="ui container">
+			{{#with currentProfile}}
 			{{> table context=team_context}}
+			{{/with}}
 		</div>
 	</div>
 </template>
