@@ -1,3 +1,11 @@
+Template.team.onRendered(function() {
+    // Session.set('currentTeam', Profiles.findOne(Meteor.userId()).team_id);
+    // console.log(Session.get('currentTeam'));
+    console.log("1" + Profiles.find({}).fetch());
+    console.log("2" + Meteor.userId());
+    console.log("4" + Meteor.userId().team_id);
+});
+
 Template.team.helpers({
 	'team_context': function() {
         var tracking = [{
