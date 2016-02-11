@@ -59,6 +59,7 @@ Template.table.helpers({
 						next[key] = tracking[i].func(vals[c][tmpl.data.context.tracking[i].field], vals[c]);
 
 					} catch (e) {
+						console.log(e);
 						next[key] = '';
 					}
 				} else {
