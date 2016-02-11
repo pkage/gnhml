@@ -55,7 +55,13 @@ Template.table.helpers({
 
 				// execute a custom function if it's got one, otherwise just get the value
 				if ('func' in tracking[i]) {
-					next[key] = tracking[i].func(vals[c][tmpl.data.context.tracking[i].field], vals[c]);
+					try {
+						next[key] = tracking[i].func(vals[c][tmpl.data.context.tracking[i].field], vals[c]);
+
+					} catch (e) {
+						console.log(e);
+						next[key] = '';
+					}
 				} else {
 					next[key] = vals[c][tracking[i].field];
 				}
