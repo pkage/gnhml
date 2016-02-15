@@ -1,21 +1,11 @@
-Template.team.onRendered(function() {
-    // Session.set('currentTeam', Profiles.findOne(Meteor.userId()).team_id);
-    // console.log(Session.get('currentTeam'));
-    console.log("1" + Profiles.find({}).fetch());
-    console.log("2" + Meteor.userId());
-    console.log("4" + Meteor.userId().team_id);
-});
-
 Template.team.helpers({
+    'currentProfile': function() {
+        return Profiles.findOne({account_id: Meteor.userId()});
+    },
 	'team_context': function() {
         var tracking = [{
             field: 'name',
-            title: 'Students',
-            func: function(value, ctx){ 
-                if (ctx.account_id == null){
-                    return value;
-                }
-            }
+            title: 'Students'
         }];
 
         var competitions = Competitions.find({}).fetch();
@@ -67,7 +57,7 @@ Template.team.helpers({
 
         return {
             db: Profiles,
-            selector: {},
+            selector: {team_id: this.team_id},
             tracking: tracking,
             hoverable: true
         }
