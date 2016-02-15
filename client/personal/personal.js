@@ -91,60 +91,85 @@ Tables.insert({
 
 Template.personal.helpers({
     'personal_context': function() {
+        var createFunc = function(comp_id) {
+            return function(value, ctx) {
+                var competition_score = 0;
+
+                // map a function to each
+                Scores.find({
+                    competition_id: comp_id,
+                    student_id: Meteor.user._id
+                }).map(function(doc) {
+                    competition_score += doc.score;
+                })
+
+                return competition_score;
+            }
+        }
         return {
-            db: Tables.competitions,
+            db: Competitions,
             selector: {},
             tracking: [{
                 field: 'date',
                 title: 'Competition Date'
             }, {
-                field: 'scores',
+                field: '',
                 title: 'Round 1 Score',
-                func: function(args, ctx) {
-                    console.log(ctx)
-                    return args[0].score;
-                }
-            }, {
-                field: 'scores',
-                title: 'Round 2 Score',
-                func: function(args, ctx) {
-                    return args[1].score;
-                }
-            }, {
-                field: 'scores',
-                title: 'Round 3 Score',
-                func: function(args, ctx) {
-                    return args[2].score;
-                }
-            }, {
-                field: 'scores',
-                title: 'Round 4 Score',
-                func: function(args, ctx) {
-                    return args[3].score;
-                }
-            }, {
-                field: 'scores',
-                title: 'Round 5 Score',
-                func: function(args, ctx) {
-                    return args[4].score;
-                }
-            }, {
-                field: 'scores',
-                title: 'Round 6 Score',
-                func: function(args, ctx) {
-                    return args[5].score;
-                }
-            }, {
-                field: 'scores',
-                title: 'Total Score',
-                func: function(args, ctx) {
-                    var total = 0;
-                    for (var i = 0; i < args.length; i++) {
-                        total += args[i].score;
+                func: function(value, ctx) {
+                    scores = Scores.find({
+                        competition_id: ctx._id,
+                        student_id: "3BWRKDRAx9J3todoG"
+                    }).fetch();
+                    console.log(ctx._id)
+                    for (var i = 0; i < scores.length; i++) {
+                        console.log(scores[i])
                     };
-                    return total;
+                    // console.log(ctx)
+                    return 'hi';
                 }
-            }],
+            }
+            // , { 3BWRKDRAx9J3todoG
+            //     field: 'scores',
+            //     title: 'Round 2 Score',
+            //     func: function(value, ctx) {
+            //         return value[1].score;
+            //     }
+            // }, {
+            //     field: 'scores',
+            //     title: 'Round 3 Score',
+            //     func: function(value, ctx) {
+            //         return value[2].score;
+            //     }
+            // }, {
+            //     field: 'scores',
+            //     title: 'Round 4 Score',
+            //     func: function(value, ctx) {
+            //         return value[3].score;
+            //     }
+            // }, {
+            //     field: 'scores',
+            //     title: 'Round 5 Score',
+            //     func: function(value, ctx) {
+            //         return value[4].score;
+            //     }
+            // }, {
+            //     field: 'scores',
+            //     title: 'Round 6 Score',
+            //     func: function(value, ctx) {
+            //         return value[5].score;
+            //     }
+            // }, {
+            //     field: 'scores',
+            //     title: 'Total Score',
+            //     func: function(value, ctx) {
+            //         var total = 0;
+            //         for (var i = 0; i < value.length; i++) {
+            //             total += value[i].score;
+            //         };
+            //         return total;
+            //     }
+            // }
+            ],
             hoverable: true
         }
     },
@@ -152,60 +177,5 @@ Template.personal.helpers({
     'PersonalCollection': function() {
         console.log(personalArray);
         return personalArray.competitions;
-    },
-
-    tableSettings: function() {
-        return {
-            fields: [{
-                key: 'date',
-                label: 'Competition Date'
-            }, {
-                key: 'scores',
-                label: 'Round 1 Score',
-                fn: function(value, object) {
-                    return value[0].score;
-                }
-            }, {
-                key: 'scores',
-                label: 'Round 2 Score',
-                fn: function(value, object) {
-                    return value[1].score;
-                }
-            }, {
-                key: 'scores',
-                label: 'Round 3 Score',
-                fn: function(value, object) {
-                    return value[2].score;
-                }
-            }, {
-                key: 'scores',
-                label: 'Round 4 Score',
-                fn: function(value, object) {
-                    return value[3].score;
-                }
-            }, {
-                key: 'scores',
-                label: 'Round 5 Score',
-                fn: function(value, object) {
-                    return value[4].score;
-                }
-            }, {
-                key: 'scores',
-                label: 'Round 6 Score',
-                fn: function(value, object) {
-                    return value[5].score;
-                }
-            }, {
-                key: 'scores',
-                label: 'Total Score',
-                fn: function(value, object) {
-                    var total = 0;
-                    for (var i = 0; i < value.length; i++) {
-                        total += value[i].score;
-                    };
-                    return total;
-                }
-            }]
-        };
     }
 });
