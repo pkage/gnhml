@@ -37,3 +37,7 @@ Router.route('/grader', {
 Router.route('/teamselect', {
 	template: 'teamselect'
 })
+
+Router.route('/studentmgr', {
+	template: 'studentmgr'
+})
