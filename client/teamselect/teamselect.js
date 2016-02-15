@@ -13,6 +13,7 @@ Template.teamselect.events({
 			clist.push(this._id);
 			Session.set('teamselectlist', clist);
 		} else {
+			$(ev.target).transition('pulse');
 			$('[data-type="teammember"][data-value="' + this._id + '"]').transition('pulse');
 		}
 	},
