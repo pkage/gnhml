@@ -1,7 +1,7 @@
 
 // Visibility helpers
 UI.registerHelper('isAdmin', function() {
-	// TODO: check this
+	return Roles.userIsInRole(Meteor.userId(), '', Roles.GLOBAL_GROUP);
 	return true;
 })
 
