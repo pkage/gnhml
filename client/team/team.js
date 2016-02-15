@@ -1,17 +1,11 @@
 Template.team.helpers({
     'currentProfile': function() {
-        return Profiles.findOne({account_id: Meteor.userId});
+        return Profiles.findOne({account_id: Meteor.userId()});
     },
 	'team_context': function() {
-        console.log(this);
         var tracking = [{
             field: 'name',
-            title: 'Students',
-            func: function(value, ctx){
-                if (ctx.account_id == null && ctx.team_id == this.team_id){
-                    return value;
-                }
-            }
+            title: 'Students'
         }];
 
         var competitions = Competitions.find({}).fetch();
@@ -63,7 +57,7 @@ Template.team.helpers({
 
         return {
             db: Profiles,
-            selector: {},
+            selector: {team_id: this.team_id},
             tracking: tracking,
             hoverable: true
         }
