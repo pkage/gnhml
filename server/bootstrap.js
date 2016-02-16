@@ -131,31 +131,101 @@ Meteor.startup(function() {
         }, {
             question_id: "3",
             round_id: "1",
-            competition_id: competition2_id,
+            competition_id: competition1_id,
             student_id: "3BWRKDRAx9J3todoG",
             team_id: choate_c_id,
             score: 4
         }, {
-            question_id: "2",
+            question_id: "1",
             round_id: "2",
-            competition_id: competition2_id,
+            competition_id: competition1_id,
             student_id: "3BWRKDRAx9J3todoG",
             team_id: deerfield_a_id,
             score: 2
         }, {
             question_id: "2",
             round_id: "2",
-            competition_id: competition2_id,
+            competition_id: competition1_id,
             student_id: "3BWRKDRAx9J3todoG",
             team_id: deerfield_a_id,
             score: 2
+        }, {
+            question_id: "1",
+            round_id: "3",
+            competition_id: competition1_id,
+            student_id: "3BWRKDRAx9J3todoG",
+            team_id: deerfield_a_id,
+            score: 3
+        }, {
+            question_id: "1",
+            round_id: "4",
+            competition_id: competition1_id,
+            student_id: "3BWRKDRAx9J3todoG",
+            team_id: deerfield_a_id,
+            score: 4
+        }, {
+            question_id: "1",
+            round_id: "5",
+            competition_id: competition1_id,
+            student_id: "3BWRKDRAx9J3todoG",
+            team_id: deerfield_a_id,
+            score: 5
+        }, {
+            question_id: "1",
+            round_id: "1",
+            competition_id: competition2_id,
+            student_id: "3BWRKDRAx9J3todoG",
+            team_id: choate_a_id,
+            score: 2
+        }, {
+            question_id: "2",
+            round_id: "1",
+            competition_id: competition2_id,
+            student_id: "3BWRKDRAx9J3todoG",
+            team_id: choate_b_id,
+            score: 4
+        }, {
+            question_id: "3",
+            round_id: "1",
+            competition_id: competition2_id,
+            student_id: "3BWRKDRAx9J3todoG",
+            team_id: choate_c_id,
+            score: 5
+        }, {
+            question_id: "1",
+            round_id: "2",
+            competition_id: competition2_id,
+            student_id: "3BWRKDRAx9J3todoG",
+            team_id: deerfield_a_id,
+            score: 1
         }, {
             question_id: "2",
             round_id: "2",
             competition_id: competition2_id,
             student_id: "3BWRKDRAx9J3todoG",
             team_id: deerfield_a_id,
+            score: 3
+        }, {
+            question_id: "1",
+            round_id: "3",
+            competition_id: competition2_id,
+            student_id: "3BWRKDRAx9J3todoG",
+            team_id: deerfield_a_id,
             score: 2
+        }, {
+            question_id: "1",
+            round_id: "4",
+            competition_id: competition2_id,
+            student_id: "3BWRKDRAx9J3todoG",
+            team_id: deerfield_a_id,
+            score: 3
+        }, {
+            question_id: "1",
+            round_id: "5",
+            competition_id: competition2_id,
+            student_id: "3BWRKDRAx9J3todoG",
+            team_id: deerfield_a_id,
+            score: 5
         }];
 
         for (var i = 0; i < scores.length; i++) {
