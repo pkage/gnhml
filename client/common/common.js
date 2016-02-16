@@ -1,3 +1,10 @@
+// startup
+Meteor.startup(function() {
+	sAlert.config({
+		effect: 'stackslide',
+		position: 'bottom-right'
+	});
+})
 
 // Visibility helpers
 UI.registerHelper('isAdmin', function() {

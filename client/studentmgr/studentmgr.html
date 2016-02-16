@@ -1,9 +1,57 @@
 <template name="studentmgr">
-<div class="gradercontainer">
-{{> navigation title="student manager"}}
-<div class="subcontainer">
-<div class="gcolumn"></div>
-
-</div>
-</div>
+	{{> navigation title="student manager"}}
+	<br>
+	<div class="centersubcontainer">
+		<form id="addStudent" class="ui form">
+			<h2 class="uppercase">add a student</h2>
+			<div class="field">
+				<label>Name</label>
+				<input type="text" id="name" autocomplete="off" name="name" placeholder="name">
+			</div>
+			<div class="field">
+				<label>Email</label>
+				<input type="text" id="email" autocomplete="off" name="email" placeholder="email">
+			</div>
+			<div class="field">
+				<label>Graduation Year</label>
+				<select id="yearSelect" class="ui dropdown" name="year">
+					{{#each year}}
+					<option value="{{this}}">{{this}}</option>
+					{{/each}}
+				</select>
+			</div>
+			<div class="field">
+				<label>School</label>
+				<div class="ui selection dropdown" id="selectSchoolDropdown">
+					<input type="hidden" name="school" id="selectSchool">
+					<i class="dropdown icon"></i>
+					<div class="default text">Select School</div>
+					<div class="menu">
+						{{#each schools}}
+						<div class="item" data-value="{{_id}}">
+							{{name}}
+						</div>
+						{{/each}}
+					</div>
+				</div>
+			</div>
+			<div class="field">
+				<label>Team</label>
+				<div class="ui checkbox">
+					<input type="checkbox" id="selectTeamToggle" tabindex="0" class="hidden">
+					<label>Immediately assign to team</label>
+				</div>
+				<select id="teamSelect" class="ui dropdown" disabled name="team">
+					<option value="none"><i>(none)</i></option>
+					{{#each schoolTeam}}
+					<option value="{{_id}}">{{name}}</option>
+					{{/each}}
+				</select>
+			</div>
+			<div class="row-reverse">
+				<button class="ui right labeled icon button">submit<i class="right arrow icon"></i></button>
+			</div>
+		</form>
+	</div>
+	{{schoolSelectedHelper}}
 </template>
