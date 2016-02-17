@@ -1,14 +1,41 @@
+Template.team.onRendered(function() {
+    $('.ui.dropdown').dropdown();
+    Session.set('teamview-season', null);
+});
+
+Template.team.events({
+    'change #season-select': function(evt) {
+        Session.set('teamview-season', $(evt.target).val());
+    }
+});
+
 Template.team.helpers({
     'currentProfile': function() {
         return Profiles.findOne({account_id: Meteor.userId()});
     },
+    'team_name': function(){
+        return Teams.findOne(this.team_id).name;
+    },
+    'season': function() {
+        return Seasons.find({});
+    },
 	'team_context': function() {
+        var season_id = Session.get('teamview-season');
+
         var tracking = [{
             field: 'name',
             title: 'Students'
         }];
 
-        var competitions = Competitions.find({}).fetch();
+        if (season_id == 1){ // all seasons
+            var competitions = Competitions.find({}).fetch();
+        }
+        else {
+            var competitions = Competitions.find({season: season_id}).fetch();
+        }
+
+        Session.set('competition_ids', _.pluck(competitions, '_id'));
+
 
         var createFunc = function(comp_id) {
             return function(value, ctx) {
@@ -40,7 +67,8 @@ Template.team.helpers({
                 var student_score = 0;
                 // map a function to each
                 Scores.find({
-                    student_id: ctx._id
+                    student_id: ctx._id,
+                    competition_id: {$in: Session.get('competition_ids')}
                 }).map(function(doc) {
                     student_score += doc.score;
                 })
