@@ -89,63 +89,119 @@ var headupArray = {
 }
 
 Template.headup.helpers({
-    'HeadupCollection': function() {
-        console.log(headupArray);
-        return headupArray.teams;
-    },
-
-    tableSettings: function() {
+    'headup_context': function() {
         return {
-            fields: [{
-                key: 'team_name',
-                label: 'Teams'
-            }, {
-                key: 'scores',
-                label: 'Round 1 Score',
-                fn: function(value, object) {
-                    return value[0].score;
-                }
-            }, {
-                key: 'scores',
-                label: 'Round 2 Score',
-                fn: function(value, object) {
-                    return value[1].score;
-                }
-            }, {
-                key: 'scores',
-                label: 'Round 3 Score',
-                fn: function(value, object) {
-                    return value[2].score;
-                }
-            }, {
-                key: 'scores',
-                label: 'Round 4 Score',
-                fn: function(value, object) {
-                    return value[3].score;
-                }
-            }, {
-                key: 'scores',
-                label: 'Round 5 Score',
-                fn: function(value, object) {
-                    return value[4].score;
-                }
-            }, {
-                key: 'scores',
-                label: 'Round 6 Score',
-                fn: function(value, object) {
-                    return value[5].score;
-                }
-            }, {
-                key: 'scores',
-                label: 'Total Score',
-                fn: function(value, object) {
-                    var total = 0;
-                    for (var i = 0; i < value.length; i++) {
-                        total += value[i].score;
+            db: Teams,
+            selector: {},
+            tracking: [{
+                field: 'name',
+                title: 'Teams',
+                func: function(value, ctx) {
+                    teamsInComp = Competitions.find({
+                        _id: "iBrN6ErLcJxNcrWvJ" // replace with current comp _id
+                    }).fetch()[0].teams;
+                    for (var i = 0; i < teamsInComp.length; i++) {
+                        if (ctx._id === teamsInComp[i]) {
+                            return ctx.name;
+                        };
                     };
-                    return total;
                 }
-            }]
-        };
+            }, {
+                field: '',
+                title: 'Round 1 Score',
+                func: function(value, ctx) {
+                    scores = Scores.find({
+                        competition_id: "iBrN6ErLcJxNcrWvJ", // replace with current comp _id
+                        team_id: ctx._id,
+                        round_id: "1"
+                    }).fetch();
+                    console.log(scores)
+                    score = 0;
+                    for (var i = 0; i < scores.length; i++) {
+                        score += scores[i].score;
+                    };
+                    return score;
+                }
+            }, {
+                field: '',
+                title: 'Round 2 Score',
+                func: function(value, ctx) {
+                    scores = Scores.find({
+                        competition_id: "iBrN6ErLcJxNcrWvJ", // replace with current comp _id
+                        team_id: ctx._id,
+                        round_id: "2"
+                    }).fetch();
+                    console.log(scores)
+                    score = 0;
+                    for (var i = 0; i < scores.length; i++) {
+                        score += scores[i].score;
+                    };
+                    return score;
+                }
+            }, {
+                field: '',
+                title: 'Round 3 Score',
+                func: function(value, ctx) {
+                    scores = Scores.find({
+                        competition_id: "iBrN6ErLcJxNcrWvJ", // replace with current comp _id
+                        team_id: ctx._id,
+                        round_id: "3"
+                    }).fetch();
+                    console.log(scores)
+                    score = 0;
+                    for (var i = 0; i < scores.length; i++) {
+                        score += scores[i].score;
+                    };
+                    return score;
+                }
+            }, {
+                field: '',
+                title: 'Round 4 Score',
+                func: function(value, ctx) {
+                    scores = Scores.find({
+                        competition_id: "iBrN6ErLcJxNcrWvJ", // replace with current comp _id
+                        team_id: ctx._id,
+                        round_id: "4"
+                    }).fetch();
+                    console.log(scores)
+                    score = 0;
+                    for (var i = 0; i < scores.length; i++) {
+                        score += scores[i].score;
+                    };
+                    return score;
+                }
+            }, {
+                field: '',
+                title: 'Round 5 Score',
+                func: function(value, ctx) {
+                    scores = Scores.find({
+                        competition_id: "iBrN6ErLcJxNcrWvJ", // replace with current comp _id
+                        team_id: ctx._id,
+                        round_id: "5"
+                    }).fetch();
+                    console.log(scores)
+                    score = 0;
+                    for (var i = 0; i < scores.length; i++) {
+                        score += scores[i].score;
+                    };
+                    return score;
+                }
+            }, {
+                field: '',
+                title: 'Total Score',
+                func: function(value, ctx) {
+                    scores = Scores.find({
+                        competition_id: "iBrN6ErLcJxNcrWvJ", // replace with current comp _id
+                        team_id: ctx._id
+                    }).fetch();
+                    score = 0;
+                    for (var i = 0; i < scores.length; i++) {
+                        score += scores[i].score;
+                    };
+                    return score;
+                }
+            }],
+            hoverable: true
+        }
     }
 });

@@ -140,6 +140,13 @@ Meteor.startup(function() {
             team_id: choate_c_id,
             score: 4
         }, {
+            question_id: "3",
+            round_id: "1",
+            competition_id: competition1_id,
+            student_id: "3BWRKDRAx9J3todoG",
+            team_id: choate_c_id,
+            score: 4
+        }, {
             question_id: "1",
             round_id: "2",
             competition_id: competition1_id,
