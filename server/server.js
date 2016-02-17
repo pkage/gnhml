@@ -24,7 +24,7 @@ restrictToCoach = function() {
 	bounceLoggedOut(); // bounce logged out users
 
 	// ensure that the current user is an administrator
-	if (!checkRole(coach) && !checkRole('admin')) {
+	if (!checkRole('coach') && !checkRole('admin')) {
 		throw new Meteor.Error('unauthorized', 'must be coach or admin for this action');
 	}
 }
@@ -76,8 +76,23 @@ Meteor.methods({
 			level: level
 		})
 
-		//
+		for (var c = 0; c < ids.length; c++) {
+			Profiles.update(ids[c], {$set: {team_id: teamid}});
+		}
+	},
+	'addStudent': function(obj) {
+		restrictToCoach();
+		check(obj.school, String);
+		check(obj.name, String);
+		check(obj.email, String);
 
-
+		Profiles.insert({
+			name: obj.name,
+			email: obj.email,
+			school_id: obj.school,
+			account_id: null,
+			team_id: (obj.team == undefined) ? null : obj.team,
+			class: obj.year
+		})
 	}
 });

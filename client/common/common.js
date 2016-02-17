@@ -1,23 +1,30 @@
+// startup
+Meteor.startup(function() {
+	sAlert.config({
+		effect: 'stackslide',
+		position: 'bottom-right'
+	});
+})
 
 // Visibility helpers
 UI.registerHelper('isAdmin', function() {
-	// TODO: check this
 	return true;
+	return Roles.userIsInRole(Meteor.userId(), 'admin', Roles.GLOBAL_GROUP);
 })
 
 UI.registerHelper('isCoach', function() {
-	// TODO: un-stub this
 	return true;
+	return Roles.userIsInRole(Meteor.userId(), 'coach', Roles.GLOBAL_GROUP);
 })
 
 UI.registerHelper('isStudent', function() {
-	// TODO: remove todos
 	return true;
+	return !(Roles.userIsInRole(Meteor.userId(), 'coach', Roles.GLOBAL_GROUP) || Roles.userIsInRole(Meteor.userId(), 'grader', Roles.GLOBAL_GROUP));
 })
 
 UI.registerHelper('isGrader', function() {
-	// TODO: check this role
 	return true;
+	return Roles.userIsInRole(Meteor.userId(), 'grader', Roles.GLOBAL_GROUP);
 })
 
 UI.registerHelper('bounceLoggedOut', function() {
