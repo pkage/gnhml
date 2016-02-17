@@ -101,8 +101,14 @@ Meteor.startup(function() {
     if (Seasons.find().count() == 0) {
         var season_id = Seasons.insert({
             start_date: new Date(),
-            end_date: new Date()
+            end_date: new Date(),
+            name: "Season One"
         });
+        var season2_id = Seasons.insert({
+            start_date: new Date(),
+            end_date: new Date(),
+            name: "Season Two"
+        })
     }
     if (Competitions.find().count() == 0) {
         var competitions = [{
