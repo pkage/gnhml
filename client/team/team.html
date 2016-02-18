@@ -3,17 +3,10 @@
 	<div class="team">
 		<div class="ui container">
 			{{#with currentProfile}}
-			<h2>{{team_name}}</h2>
+			<h2 class="uppercase">{{team_name}}</h2>
 			{{/with}}
-			<div class="season-dropdown">
-				<select class="ui dropdown" id="season-select">
-					<option value="">Select a season</option>
-					 {{#each season}}
-					 	<option value="{{_id}}">{{name}}</option>
-					 {{/each}}
-					 <option value="1">All Seasons</option>
-				</select>
-			</div>
+
+			{{> seasonselect}}
 
 			{{#with currentProfile}}
 			{{> table context=team_context}}

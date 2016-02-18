@@ -1,12 +1,5 @@
 Template.team.onRendered(function() {
-    $('.ui.dropdown').dropdown();
     Session.set('teamview-season', null);
-});
-
-Template.team.events({
-    'change #season-select': function(evt) {
-        Session.set('teamview-season', $(evt.target).val());
-    }
 });
 
 Template.team.helpers({
@@ -15,9 +8,6 @@ Template.team.helpers({
     },
     'team_name': function(){
         return Teams.findOne(this.team_id).name;
-    },
-    'season': function() {
-        return Seasons.find({});
     },
 	'team_context': function() {
         var season_id = Session.get('teamview-season');
@@ -43,8 +33,8 @@ Template.team.helpers({
 
                 // map a function to each
                 Scores.find({
-                    competition_id: comp_id,
-                    student_id: ctx._id
+                    student_id: ctx._id,
+                    competition_id: comp_id
                 }).map(function(doc) {
                     competition_score += doc.score;
                 })

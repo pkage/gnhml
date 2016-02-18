@@ -1,11 +1,24 @@
+Template.season.onRendered(function() {
+    Session.set('teamview-season', null);
+});
+
 Template.season.helpers({
     'season_context': function() {
+        var season_id = Session.get('teamview-season');
+
         var tracking = [{
             field: 'name',
             title: 'Teams'
         }];
 
-        var competitions = Competitions.find({}).fetch();
+        if (season_id == 1){ // all seasons
+            var competitions = Competitions.find({}).fetch();
+        }
+        else {
+            var competitions = Competitions.find({season: season_id}).fetch();
+        }
+
+        Session.set('competition_ids', _.pluck(competitions, '_id'));
 
         var createFunc = function(comp_id) {
             return function(value, ctx) {
@@ -13,11 +26,10 @@ Template.season.helpers({
                 // map a function to each
                 Scores.find({
                     competition_id: comp_id,
-                    team_id: ctx._id
+                    team_id: ctx._id,
                 }).map(function(doc) {
                     competition_score += doc.score;
                 })
-                console.log("\tscore:" + competition_score);
                 return competition_score;
             }
         }
@@ -37,7 +49,8 @@ Template.season.helpers({
                 var team_score = 0;
                 // map a function to each
                 Scores.find({
-                    team_id: ctx._id
+                    team_id: ctx._id,
+                    competition_id: {$in: Session.get('competition_ids')}
                 }).map(function(doc) {
                     team_score += doc.score;
                 })
