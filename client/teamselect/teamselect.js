@@ -30,7 +30,7 @@ Template.teamselect.helpers({
 		if (search == '') {
 			return Profiles.find({}, {sort: {name: 1}});
 		} else {
-			return Profiles.find({name: {$regex: '(' + search + ')\\w+', $options: 'i'}}, {sort: {name: 1}});
+			return Profiles.find({name: {$regex: '(' + search + ')', $options: 'i'}}, {sort: {name: 1}});
 		}
 	},
 	'school': function() {
