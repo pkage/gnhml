@@ -15,7 +15,7 @@ Template.personal.helpers({
                 func: function(value, ctx) {
                     scores = Scores.find({
                         competition_id: ctx._id,
-                        student_id: "3BWRKDRAx9J3todoG"
+                        student_id: "3BWRKDRAx9J3todoG" // Session.get('userProfile')._id
                     }).fetch();
                     score = 0;
                     for (var i = 0; i < scores.length; i++) {
@@ -106,10 +106,5 @@ Template.personal.helpers({
             }],
             hoverable: true
         }
-    },
-
-    'PersonalCollection': function() {
-        console.log(personalArray);
-        return personalArray.competitions;
     }
 });
