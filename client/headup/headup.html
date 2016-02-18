@@ -1,8 +1,8 @@
 <template name="headup">
     {{> navigation title="headup view"}}
     <div class="headup">
-        <div class="ui container reactiveTable ui very basic table">
-            {{> reactiveTable collection=HeadupCollection settings=tableSettings}}
+        <div class="ui container">
+            {{> table context=headup_context}}
         </div>
     </div>
 </template>
