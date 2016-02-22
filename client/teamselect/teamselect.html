@@ -12,7 +12,7 @@
 				</div>
 				<div class="listcontainer">
 					{{#each students}}
-					<div class="listblock" data-type="student" id="teamname" data-value="{{_id}}">{{name}}<br><i>({{school}})</i></div>
+					<div class="listblock" data-type="student" id="teamname" data-value="{{_id}}">{{name}}<br><i>({{school}}{{#with resolveTeam}}, {{name}}{{/with}})</i></div>
 					{{/each}}
 				</div>
 			</div>

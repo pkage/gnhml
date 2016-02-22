@@ -4,6 +4,7 @@ Meteor.startup(function() {
 		effect: 'stackslide',
 		position: 'bottom-right'
 	});
+	Session.set('userProfile', {});
 })
 
 // Visibility helpers
