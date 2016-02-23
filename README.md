@@ -1,8 +1,9 @@
 # gnhml
 gnhml grader
 
-Data Model:
+## Data Model:
 
+```javascript
 Profiles = [{
     _id: PROFILE_ID,
     name: PROFILE_NAME,
@@ -38,3 +39,4 @@ Scores = [{
     team_id: TEAM_ID,
     score: SCORE
 }]
+```
