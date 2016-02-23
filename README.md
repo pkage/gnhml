@@ -1,5 +1,5 @@
 ## GNHML
-Platform application for the Greater New Haven Math League
+Platform application for the [Greater New Haven Math League](http://www.gnhml.org/)
 
 ## Features
 1. Real Time Scoring
