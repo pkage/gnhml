@@ -1,5 +1,12 @@
-# gnhml
-gnhml grader
+## GNHML
+Platform application for the Greater New Haven Math League
+
+## Features
+1. Real Time Scoring
+2. Real Time Ranking
+3. Seasonal Data Compilation
+4. Team Management
+5. Real Time Administration
 
 ## Data Model:
 
