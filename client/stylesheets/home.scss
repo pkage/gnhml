@@ -1,0 +1,41 @@
+.homecontainer {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    > .schedulecontainer {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: center;
+        margin: 1em;
+        transition: color .25s, background-color .25s;
+        > i {
+            margin-left: .5rem;
+            font-size: .5em;
+            pointer-events: none;
+        }
+        &:hover {
+            color: #fff00f;
+            background-color: #aa00aa;
+        }
+    }
+    > .highscorecontainer {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: center;
+        margin: 1em;
+        transition: color .25s, background-color .25s;
+        > i {
+            margin-left: .5rem;
+            font-size: .5em;
+            pointer-events: none;
+        }
+        &:hover {
+            color: #ffffff;
+            background-color: #58a7db;
+        }
+    }
+}
