@@ -107,6 +107,11 @@ Template.admin_teams.helpers({
 					field: 'school_id',
 					title: 'School',
 					func: function(value, ctx) {return Schools.findOne(value).name;}
+				},
+				{
+					field: '',
+					title: 'student_count',
+					func: function(val, ctx) {return Profiles.find({team_id: ctx._id}).count();}
 				}
 			]
 		}

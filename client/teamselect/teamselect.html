@@ -1,4 +1,5 @@
 <template name="teamselect">
+<<<<<<< HEAD
     <div class="gradercontainer">
         {{> navigation title="team selection"}}
         <form class="subcontainer">
@@ -55,3 +56,60 @@
         </form>
     </div>
 </template>
+=======
+	<div class="gradercontainer">
+		{{> navigation title="team selection"}}
+		<form class="subcontainer">
+			<div class="gcolumn">
+				<div class="title"><h2>students</h2></div>
+				<div class="title">
+					<div class="ui transparent  left icon big fluid input">
+						<input type="text" placeholder="search..." id="search" autocomplete="off" autofocus>
+						<i class="search icon"></i>
+					</div>
+				</div>
+				<div class="listcontainer">
+					{{#each students}}
+					<div class="listblock" data-type="student" id="teamname" data-value="{{_id}}">{{name}}<br><i>({{school}}{{#with resolveTeam}}, {{name}}{{/with}})</i></div>
+					{{/each}}
+				</div>
+			</div>
+			<div class="gcolumn">
+				<div class="title"><h2>current team</h2></div>
+				<div class="title">
+					<div class="ui transparent left icon big fluid input">
+						<input type="text" placeholder="team name" required autocomplete="off">
+						<i class="tag icon"></i>
+					</div>
+				</div>
+				<div class="title display-flex align-baseline">
+					<i class="university icon team-icon"></i>
+					<select class="ui dropdown-override dropdown" id="schoolsearch">
+						{{#each schoolmenu}}
+							<option value="{{_id}}">{{name}}</option>
+							{{/each}}
+					</select>
+				</div>
+				<div class="title display-flex align-baseline">
+					<i class="university icon team-icon"></i>
+					<select class="ui dropdown-override dropdown" id="levelselect">
+						<option value="varsity">Varsity</option>
+						<option value="juniorvarsity">Junior Varsity</option>
+					</select>
+				</div>
+				<div class="listcontainer">
+					{{#each team}}
+					{{#with resolveStudent}}
+					<div class="listblock" data-type="teammember" id="teamname" data-value="{{_id}}">{{name}}<br><i>({{school}})</i></div>
+					{{/with}}
+					{{/each}}
+				</div>
+			</div>
+			<div class="submit">
+				<i class="right chevron icon"></i>
+			</div>
+		</form>
+	</div>
+
+</template>
+>>>>>>> f4736160b805005e593ce01738032de64aa585e3
