@@ -1,6 +1,7 @@
 Template.teamselect.onRendered(function() {
 	Session.set('teamselectsearch', '');
 	Session.set('teamselectlist', []);
+	Session.setDefault('userProfile', {});
 })
 
 Template.teamselect.events({
@@ -27,10 +28,18 @@ Template.teamselect.events({
 Template.teamselect.helpers({
 	'students': function() {
 		var search = Session.get('teamselectsearch');
+		var exclude = (Session.get('teamselectlist') == undefined) ? [] : Session.get('teamselectlist');
 		if (search == '') {
-			return Profiles.find({}, {sort: {name: 1}});
+			return Profiles.find({
+				school_id: Session.get('userProfile').school_id,
+				_id: {$nin: exclude}
+			}, {sort: {name: 1}});
 		} else {
-			return Profiles.find({name: {$regex: '(' + search + ')', $options: 'i'}}, {sort: {name: 1}});
+			return Profiles.find({
+				name: {$regex: '(' + search + ')', $options: 'i'},
+				_id: {$nin: exclude},
+				school_id: Session.get('userProfile').school_id
+			}, {sort: {name: 1}});
 		}
 	},
 	'school': function() {
@@ -52,5 +61,8 @@ Template.teamselect.helpers({
 	'resolveStudent': function() {
 		var _id = String(this);
 		return Profiles.findOne(_id);
+	},
+	'resolveTeam': function() {
+		return Teams.findOne(this.team_id);
 	}
 })

@@ -1,66 +1,65 @@
 <template name="grader">
-	<div class="gradercontainer">
-		{{> navigation title="grader panel"}}
-		<div class="subcontainer">
-			<div class="gcolumn">
-				<div class="title"><h2>round</h2></div>
-
-				<div class="selblock" data-type="round" data-value=1>1</div>
-				<div class="selblock" data-type="round" data-value=2>2</div>
-				<div class="selblock" data-type="round" data-value=3>3</div>
-				<div class="selblock" data-type="round" data-value=4>4</div>
-				<div class="selblock" data-type="round" data-value=5>5</div>
-
-			</div>
-			<div class="gcolumn">
-				<div class="title"><h2>student</h2></div>
-				<div class="title">
-					<div class="ui transparent  left icon big fluid input">
-						<input type="text" placeholder="search..." id="search" autocomplete="off" autofocus>
-						<i class="search icon"></i>
-					</div>
-				</div>
-				<div class="listcontainer">
-					{{#each students}}
-					<div class="listblock" data-type="student" data-value="{{_id}}">{{name}}<br><i>({{school}})</i></div>
-					{{/each}}
-				</div>
-			</div>
-			<div class="gcolumn grade ui transition hidden">
-				<div class="title"><h2>score ({{score}})</h2></div>
-				<div class="selblock" data-type="grade" data-value=1>Question 1</div>
-				<div class="selblock" data-type="grade" data-value=2>Question 2</div>
-				<div class="selblock" data-type="grade" data-value=3>Question 3</div>
-			</div>
-			<div class="submit">
-				<i class="right chevron icon"></i>
-			</div>
-		</div>
-	</div>
-
-	{{#modal title=name id="editSchoolModal"}}
-
-	<div class="ui statistics flex-center">
-		<div class="statistic">
-			<div class="value">{{school_members}}</div>
-			<div class="label">members</div>
-		</div>
-		<div class="statistic">
-			<div class="value">14</div>
-			<div class="label">scores</div>
-		</div>
-		<div class="statistic">
-			<div class="value">{{school_teams}}</div>
-			<div class="label">teams</div>
-		</div>
-	</div>
-	<br>
-	<form id="updateSchoolName">
-		<div class="ui action input fullwidth">
-			<input type="text" placeholder="school name" name="school_name" value="{{name}}" required autocomplete="off">
-			<button class="ui button" type="submit">Save</button>
-		</div>
-	</form>
-
-	{{/modal}}
+    <div class="gradercontainer">
+        {{> navigation title="grader panel"}}
+        <div class="subcontainer">
+            <div class="gcolumn">
+                <div class="title">
+                    <h2>round</h2></div>
+                <div class="selblock" data-type="round" data-value=1>1</div>
+                <div class="selblock" data-type="round" data-value=2>2</div>
+                <div class="selblock" data-type="round" data-value=3>3</div>
+                <div class="selblock" data-type="round" data-value=4>4</div>
+                <div class="selblock" data-type="round" data-value=5>5</div>
+            </div>
+            <div class="gcolumn">
+                <div class="title">
+                    <h2>student</h2></div>
+                <div class="title">
+                    <div class="ui transparent  left icon big fluid input">
+                        <input type="text" placeholder="search..." id="search" autocomplete="off" autofocus>
+                        <i class="search icon"></i>
+                    </div>
+                </div>
+                <div class="listcontainer">
+                    {{#each students}}
+                    <div class="listblock" data-type="student" data-value="{{_id}}">{{name}}
+                        <br><i>({{school}})</i></div>
+                    {{/each}}
+                </div>
+            </div>
+            <div class="gcolumn grade ui transition hidden">
+                <div class="title">
+                    <h2>score ({{score}})</h2></div>
+                <div class="selblock" data-type="grade" data-value=1>Question 1</div>
+                <div class="selblock" data-type="grade" data-value=2>Question 2</div>
+                <div class="selblock" data-type="grade" data-value=3>Question 3</div>
+            </div>
+            <div class="submit">
+                <i class="right chevron icon"></i>
+            </div>
+        </div>
+    </div>
+    {{#modal title=name id="editSchoolModal"}}
+    <div class="ui statistics flex-center">
+        <div class="statistic">
+            <div class="value">{{school_members}}</div>
+            <div class="label">members</div>
+        </div>
+        <div class="statistic">
+            <div class="value">14</div>
+            <div class="label">scores</div>
+        </div>
+        <div class="statistic">
+            <div class="value">{{school_teams}}</div>
+            <div class="label">teams</div>
+        </div>
+    </div>
+    <br>
+    <form id="updateSchoolName">
+        <div class="ui action input fullwidth">
+            <input type="text" placeholder="school name" name="school_name" value="{{name}}" required autocomplete="off">
+            <button class="ui button" type="submit">Save</button>
+        </div>
+    </form>
+    {{/modal}}
 </template>
