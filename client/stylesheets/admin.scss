@@ -1,0 +1,28 @@
+.admin-schools .button {
+	border: none;
+	background: none; 
+	padding: 0 !important;
+}
+
+.admin-schools .button:hover {
+	border: none;
+	background: none;
+}
+
+.admin-schools form ul li{
+  list-style-type: none;
+  display: inline-block;
+}
+
+.inputlayout {
+	display: flex;
+	align-items: baseline;
+	flex-direction: row;
+	> .ui.input {
+		flex-grow: 1;
+	}
+}
+
+.admin-schools .addbutton {
+	margin-left: 10px;
+}
