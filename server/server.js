@@ -68,6 +68,7 @@ Meteor.methods({
 
 		// force the list to a unique state, in case the client screwed it up
 		ids = _.uniq(ids);
+		console.log()
 
 		// create the team
 		var teamid = Teams.insert({
@@ -75,6 +76,8 @@ Meteor.methods({
 			school_id: schoolid,
 			level: level
 		})
+		console.log('created team ' + teamid);
+
 
 		for (var c = 0; c < ids.length; c++) {
 			Profiles.update(ids[c], {$set: {team_id: teamid}});
@@ -94,5 +97,13 @@ Meteor.methods({
 			team_id: (obj.team == undefined) ? null : obj.team,
 			class: obj.year
 		})
+	},
+	'addSchool': function(name) {
+		restrictToAdmin();
+		check(name, String);
+
+		return Schools.insert({
+			name: name
+		});
 	}
 });
