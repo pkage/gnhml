@@ -41,3 +41,7 @@ Router.route('/teamselect', {
 Router.route('/studentmgr', {
 	template: 'studentmgr'
 })
+
+Router.route('/rounds', {
+	template: 'rounds'
+})
