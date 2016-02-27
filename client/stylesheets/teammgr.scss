@@ -1,0 +1,48 @@
+.gcolumn.overflowable {
+	overflow-y: auto;
+}
+
+.1em-lr-padding {
+	padding-right: 1em;
+	padding-left: 1em;
+}
+
+.dragcontainer {
+	border-left: 1px solid #eeeeee;
+	padding-right: 0px;
+	min-height: 3em;
+	padding: 1em;
+	transition: border .25s;
+	&.disabled {
+		border-left: 10px solid #e74c3c;
+		color: #b2b2b2;
+	}
+}
+
+.editbutton {
+	color: #2185d0;
+	cursor: pointer;
+	transition: color .25s;
+	&:hover {
+		color: #2980b9;
+	}
+}
+
+.deletebutton {
+	color: black;
+	cursor: pointer;
+	transition: color .25s;
+	&:hover {
+		color: #e74c3c;
+	}
+}
+
+.addteamform {
+	display: flex;
+	flex-direction: row;
+	align-items: baseline;
+}
+
+.emptyinfo {
+	text-color: #b2b2b2;
+}
