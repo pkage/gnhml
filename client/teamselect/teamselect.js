@@ -22,6 +22,15 @@ Template.teamselect.events({
 		var clist = Session.get('teamselectlist');
 		clist = _.without(clist, this._id);
 		Session.set('teamselectlist', clist);
+	},
+	'click .submit': function(ev) {
+		Meteor.call('createTeam', Session.get('teamselectlist'), Session.get('userProfile').school_id, $('#teamname').val(), $('#levelselect').val(), function(err, ret) {
+			if (err == undefined) {
+				sAlert.success('added team successfully!');
+				Session.set('teamselectlist', []);
+				$('#teamname').val('');
+			}
+		})
 	}
 })
 
@@ -30,16 +39,20 @@ Template.teamselect.helpers({
 		var search = Session.get('teamselectsearch');
 		var exclude = (Session.get('teamselectlist') == undefined) ? [] : Session.get('teamselectlist');
 		if (search == '') {
-			return Profiles.find({
-				school_id: Session.get('userProfile').school_id,
-				_id: {$nin: exclude}
-			}, {sort: {name: 1}});
+			try {
+				return Profiles.find({
+					school_id: Profiles.findOne({account_id: Meteor.userId()}).school_id,
+					_id: {$nin: exclude}
+				}, {sort: {name: 1}});
+			} catch (e) {};
 		} else {
-			return Profiles.find({
-				name: {$regex: '(' + search + ')', $options: 'i'},
-				_id: {$nin: exclude},
-				school_id: Session.get('userProfile').school_id
-			}, {sort: {name: 1}});
+			try {
+				return Profiles.find({
+					name: {$regex: '(' + search + ')', $options: 'i'},
+					_id: {$nin: exclude},
+					school_id: Profiles.findOne({account_id: Meteor.userId()}).school_id
+				}, {sort: {name: 1}});
+			} catch (e) {};
 		}
 	},
 	'school': function() {

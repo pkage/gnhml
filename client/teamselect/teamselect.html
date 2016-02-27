@@ -23,7 +23,7 @@
                     <h2>current team</h2></div>
                 <div class="title">
                     <div class="ui transparent left icon big fluid input">
-                        <input type="text" placeholder="team name" required autocomplete="off">
+                        <input type="text" placeholder="team name" id="teamname" required autocomplete="off">
                         <i class="tag icon"></i>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="listcontainer">
                     {{#each team}} {{#with resolveStudent}}
-                    <div class="listblock" data-type="teammember" id="teamname" data-value="{{_id}}">{{name}}
+                    <div class="listblock" data-type="teammember" id="teamnameinput" data-value="{{_id}}">{{name}}
                         <br><i>({{school}})</i></div>
                     {{/with}} {{/each}}
                 </div>
