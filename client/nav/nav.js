@@ -2,6 +2,11 @@ Template.navigation.events({
 	'click .togglenav': function() {
 		$('.navpage').transition('fade right');
 	},
+	'click a': function(ev) {
+		ev.preventDefault();
+		Router.go(ev.target.href);
+		$('.navpage').transition('fade right');
+	},
 	'click #logout': function() {
 		console.log('logging out')
 		Meteor.logout(function() {
