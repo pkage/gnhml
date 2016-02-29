@@ -43,5 +43,8 @@ Router.route('/teammgr', {
 });
 
 Router.route('/rounds', {
-	template: 'rounds'
+	template: 'rounds',
+	waitOn: function() {
+		return Meteor.subscribe('rounds');
+	}
 })

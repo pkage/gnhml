@@ -117,5 +117,20 @@ Meteor.methods({
 		return Schools.insert({
 			name: name
 		});
+	},
+	'addRound': function(col, row) {
+		return SelectedRounds.insert({
+			col: col,
+			row: row
+		});
+	},
+	'deleteRound': function(col, row) {
+		return SelectedRounds.remove({
+			col: col,
+			row: row
+		});
+	},
+	'emptyRounds': function(){
+		return SelectedRounds.remove({});
 	}
 });
