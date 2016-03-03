@@ -13,7 +13,6 @@ Template.rounds.events({
 	'click .toggle': function(ev) {
 		var col = getCol(ev.target);
   		var row = getRow(ev.target);
-  		console.log(col + " " + row);
 
   		var tempArr = SelectedRounds.find({}).fetch();
 

@@ -1,20 +1,19 @@
 Template.studentselect.onRendered(function() {
-    /*$('.ui.dropdown').dropdown({
-    	'action': 'hide',
+    $('.ui.dropdown').dropdown({
     	'onChange': function() {
     		// create an array of all matching selects
 			var selects = $('[data-type="student"]').toArray();
+			
+    		for (var i = 0; i < selects.length; i++){
+    			selects[i] = selects[i].value;
+    		}
 
-			// turn those objects into selects into value
-			selects = _.map(selects, function(el) {
-				return $(el).val()
-			});
-
+    		console.log(selects);
 
 			Session.set('disabledStudents', selects);
 		}
-	});*/
-Session.set('disabledStudents', []);
+	});
+	Session.set('disabledStudents', []);
 });
 
 Template.studentselect.helpers({
@@ -26,21 +25,5 @@ Template.studentselect.helpers({
 	},
 	'disabledStudent': function() {
 		return _.contains(Session.get('disabledStudents'), this._id) ? 'disabled' : '';
-	}
-})
-
-Template.studentselect.events({
-	'change [data-type="student"]': function() {
-		console.log('changed');
-		// create an array of all matching selects
-		var selects = $('[data-type="student"]').toArray();
-
-		// turn those objects into selects into value
-		selects = _.map(selects, function(el) {
-			return $(el).val()
-		});
-
-
-		Session.set('disabledStudents', selects);
 	}
 })
