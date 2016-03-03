@@ -111,7 +111,7 @@ Meteor.methods({
 		})
 	},
 	'addSchool': function(name) {
-		restrictToAdmin();
+		// restrictToAdmin();
 		check(name, String);
 
 		return Schools.insert({

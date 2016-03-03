@@ -69,15 +69,12 @@ Template.admin_schools.events({
 		Meteor.call('updateSchoolName', Session.get('selected'), $('[name="school_name"]').val())
 	},
 	'click #add-button': function() {
-		console.log("HELLO HELLO HELLO HELLO");
 		$('#add-school-form-modal').transition('fade down');
 	},
 
 	'submit #add-school-form': function(ev) {
 		ev.preventDefault();
-		Schools.insert({
-			name: ev.target.schoolname.text
-		});
+		Meteor.call('addSchool', ev.target.schoolname.value);
 		$('#add-school-form-modal').transition('fade down');
 	}
 })

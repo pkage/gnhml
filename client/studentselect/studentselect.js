@@ -24,6 +24,7 @@ Template.studentselect.helpers({
 		return Profiles.find({team_id: this.team_id});
 	},
 	'disabledStudent': function() {
+		console.log(this._id + " " +  _.contains(Session.get('disabledStudents'), this._id) ? 'disabled' : '')
 		return _.contains(Session.get('disabledStudents'), this._id) ? 'disabled' : '';
 	}
 })
