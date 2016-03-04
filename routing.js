@@ -48,3 +48,11 @@ Router.route('/rounds', {
 		return Meteor.subscribe('rounds');
 	}
 })
+
+Router.route('/views', {
+	template: 'views'
+})
+
+Router.route('/individual', {
+	template: 'individual'
+})
