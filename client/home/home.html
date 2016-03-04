@@ -1,7 +1,18 @@
 <template name="home">
-    {{> navigation title="home"}}
-    <div class="homecontainer">
-        <div class="schedulecontainer"></div>
-        <div class="highscorecontainer"></div>
+    <div class="basecontainer">
+        {{> navigation title="home"}}
+        <div class="homecontainer">
+            <div class="newscontainer">
+
+            </div>
+            <div class="listcontainer">
+                <div class="schedulecontainer">
+                    {{> table context=schedule_context}}
+                </div>
+                <div class="highscorecontainer">
+                    {{> table context=schedule_context}}
+                </div>
+            </div>
+        </div>
     </div>
 </template>
