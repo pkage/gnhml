@@ -2,22 +2,25 @@ Template.views.onRendered(function() {
 	Session.set('view-index', 0);
 	// Session.set('label-left', "");
 	// Session.set('label-right', "");
+	$('.ui.button').mouseup(function(){
+    	$(this).blur();
+    })
 })
 
 Template.views.helpers({
 	'chooseTemplate': function(){
 		switch(Session.get('view-index')){
 			case 0:
-				setLabels('Individual', 'Team');
+				setLabels('Personal', 'Team');
 				return 'season';
 				break;
 			case 1: 
-				setLabels('Season', 'Individual');
+				setLabels('Season', 'Personal');
 				return 'team';
 				break;
 			case 2:
 				setLabels('Team', 'Season');
-				return 'individual';
+				return 'personal';
 				break;
 		}
 	},
