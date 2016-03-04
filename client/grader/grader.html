@@ -39,27 +39,4 @@
             </div>
         </div>
     </div>
-    {{#modal title=name id="editSchoolModal"}}
-    <div class="ui statistics flex-center">
-        <div class="statistic">
-            <div class="value">{{school_members}}</div>
-            <div class="label">members</div>
-        </div>
-        <div class="statistic">
-            <div class="value">14</div>
-            <div class="label">scores</div>
-        </div>
-        <div class="statistic">
-            <div class="value">{{school_teams}}</div>
-            <div class="label">teams</div>
-        </div>
-    </div>
-    <br>
-    <form id="updateSchoolName">
-        <div class="ui action input fullwidth">
-            <input type="text" placeholder="school name" name="school_name" value="{{name}}" required autocomplete="off">
-            <button class="ui button" type="submit">Save</button>
-        </div>
-    </form>
-    {{/modal}}
 </template>

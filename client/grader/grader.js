@@ -50,6 +50,8 @@ Template.grader.events({
 			}
 		} else {
 			if (!$('.grade').hasClass('hidden')) {
+				$('.grade').children().removeClass('blockactive');
+				Session.set('graderscore', 0);
 				$('.grade').transition('fade down out');
 			}
 		}
@@ -67,13 +69,39 @@ Template.grader.events({
 			}
 		} else {
 			if (!$('.grade').hasClass('hidden')) {
+				$('.grade').children().removeClass('blockactive');
+				Session.set('graderscore', 0);
 				$('.grade').transition('fade down out');
 			}
 		}
-		
-
 	},
 	'click .submit': function() {
+		var score = Session.get('graderscore');
 
+		// get the round
+		if ($('[data-type="round"].blockactive').length == 0) {
+			sAlert.error('select a round first!');
+			return;
+		}
+		// cast to number (i hate js sometimes)
+		var round = $('[data-type="round"].blockactive').data('value') + 0;
+		
+		// get a student
+		if ($('[data-type="student"].blockactive').length == 0) {
+			sAlert.error('select a student first');
+			return;
+		}
+		var student = $('[data-type="student"].blockactive').data('value');
+
+		Meteor.call('addGrade', student, round, score, function(err, ret) {
+			if (err !== undefined) {
+				sAlert.error(err.reason);
+				return;
+			}
+			$('.blockactive').removeClass('blockactive');
+			Session.set('graderscore', 0);
+			$('.grade').transition('fade down out');
+			sAlert.success('added grade successfully');
+		});
 	}
 })
