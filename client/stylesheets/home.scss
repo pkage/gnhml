@@ -4,8 +4,8 @@
     height: 100vh;
     >.homecontainer {
         margin: 35px;
-        padding-left: 40px;
-        padding-right: 40px;
+        padding-left: 10px;
+        padding-right: 10px;
         display: flex;
         flex-grow: 1;
         flex-direction: row;
@@ -13,25 +13,17 @@
         > .newscontainer {
             padding: 10px;
             display: flex;
-            flex-grow: 1;
+            flex-grow: 6;
             flex-direction: column;
-            margin: 1em;
+            margin: 10px;
             background-color: #FAFAFA;
             overflow-y: auto;
         }
-        > .schedulecontainer {
+        > .tablecontainer {
             display: flex;
-            flex-direction: row;
-            justify-content: center;
-            margin: 1em;
-            background-color: #FAFAFA;
-            padding: 15px;
-        }
-        > .highscorecontainer {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            margin: 1em;
+            flex-direction: column;
+            flex-grow: 1;
+            margin: 10px;
             background-color: #FAFAFA;
             padding: 15px;
         }
@@ -41,20 +33,20 @@
 .title {
     text-align: center;
     font-family: "LeagueSpartan" !important;
-    margin-top: 10px !important;
-    margin-bottom: 5px !important;
+    margin-top: 6px !important;
+    margin-bottom: 1px !important;
 }
 
-.schedulecontainer {
+.tablecontainer {
     margin-top: 30px;
 }
 
-.schedulecontainer th {
+.tablecontainer th {
     text-align: center;
     padding-right: 45px;
 }
 
-.schedulecontainer .reactive-table-navigation {
+.tablecontainer .reactive-table-navigation {
     padding-top: 10px;
 }
 
