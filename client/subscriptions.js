@@ -8,4 +8,5 @@ Meteor.startup(function() {
     Meteor.subscribe('headup');
     Meteor.subscribe('rounds');
     Meteor.subscribe("tweets");
+    Meteor.subscribe("teamHighscore");
 });

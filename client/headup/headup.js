@@ -8,7 +8,7 @@ Template.headup.helpers({
                 title: 'Teams',
                 func: function(value, ctx) {
                     teamsInComp = Competitions.find({
-                        _id: "iBrN6ErLcJxNcrWvJ" // replace with current comp _id
+                        _id: "NLPCATmLLLXaDLQ8Z" // replace with current comp _id
                     }).fetch()[0].teams;
                     for (var i = 0; i < teamsInComp.length; i++) {
                         if (ctx._id === teamsInComp[i]) {
@@ -21,11 +21,11 @@ Template.headup.helpers({
                 title: 'Round 1 Score',
                 func: function(value, ctx) {
                     scores = Scores.find({
-                        competition_id: "iBrN6ErLcJxNcrWvJ", // replace with current comp _id
+                        competition_id: "NLPCATmLLLXaDLQ8Z", // replace with current comp _id
                         team_id: ctx._id,
                         round_id: "1"
                     }).fetch();
-                    console.log(scores)
+                    console.log(Scores.find({}).fetch())
                     score = 0;
                     for (var i = 0; i < scores.length; i++) {
                         score += scores[i].score;
@@ -37,7 +37,7 @@ Template.headup.helpers({
                 title: 'Round 2 Score',
                 func: function(value, ctx) {
                     scores = Scores.find({
-                        competition_id: "iBrN6ErLcJxNcrWvJ", // replace with current comp _id
+                        competition_id: "NLPCATmLLLXaDLQ8Z", // replace with current comp _id
                         team_id: ctx._id,
                         round_id: "2"
                     }).fetch();
@@ -53,7 +53,7 @@ Template.headup.helpers({
                 title: 'Round 3 Score',
                 func: function(value, ctx) {
                     scores = Scores.find({
-                        competition_id: "iBrN6ErLcJxNcrWvJ", // replace with current comp _id
+                        competition_id: "NLPCATmLLLXaDLQ8Z", // replace with current comp _id
                         team_id: ctx._id,
                         round_id: "3"
                     }).fetch();
@@ -69,7 +69,7 @@ Template.headup.helpers({
                 title: 'Round 4 Score',
                 func: function(value, ctx) {
                     scores = Scores.find({
-                        competition_id: "iBrN6ErLcJxNcrWvJ", // replace with current comp _id
+                        competition_id: "NLPCATmLLLXaDLQ8Z", // replace with current comp _id
                         team_id: ctx._id,
                         round_id: "4"
                     }).fetch();
@@ -85,7 +85,7 @@ Template.headup.helpers({
                 title: 'Round 5 Score',
                 func: function(value, ctx) {
                     scores = Scores.find({
-                        competition_id: "iBrN6ErLcJxNcrWvJ", // replace with current comp _id
+                        competition_id: "NLPCATmLLLXaDLQ8Z", // replace with current comp _id
                         team_id: ctx._id,
                         round_id: "5"
                     }).fetch();
@@ -101,7 +101,7 @@ Template.headup.helpers({
                 title: 'Total Score',
                 func: function(value, ctx) {
                     scores = Scores.find({
-                        competition_id: "iBrN6ErLcJxNcrWvJ", // replace with current comp _id
+                        competition_id: "NLPCATmLLLXaDLQ8Z", // replace with current comp _id
                         team_id: ctx._id
                     }).fetch();
                     score = 0;

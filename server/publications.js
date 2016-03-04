@@ -37,5 +37,9 @@ Meteor.publish('rounds', function() {
 })
 
 Meteor.publish('tweets', function() {
-    return Tweets.find();
-});
+    return Tweets.find({});
+})
+
+Meteor.publish('teamHighscore', function() {
+    return TeamHighscore.find({});
+})
