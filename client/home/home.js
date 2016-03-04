@@ -3,6 +3,7 @@ Template.home.helpers({
         return {
             db: Competitions,
             selector: {},
+            sortable: false,
             tracking: [{
                 field: 'date',
                 title: 'Competition Date',
@@ -12,5 +13,8 @@ Template.home.helpers({
             }],
             hoverable: true
         }
+    },
+    tweets: function() {
+        return Tweets.find();
     }
 });

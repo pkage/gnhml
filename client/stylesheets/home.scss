@@ -4,16 +4,15 @@
     height: 100vh;
     >.homecontainer {
         margin: 15px;
-        text-align: center;
         display: flex;
         flex-grow: 1;
         flex-direction: row;
         align-items: stretch;
         > .newscontainer {
+            padding: 10px;
             display: flex;
-            flex-grow: 6;
-            flex-direction: row;
-            justify-content: center;
+            flex-grow: 1;
+            flex-direction: column;
             margin: 1em;
             background-color: #FAFAFA;
         }
@@ -52,4 +51,8 @@
 
 .schedulecontainer .reactive-table-navigation {
     padding-top: 10px;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0px !important;
 }
