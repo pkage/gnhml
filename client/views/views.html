@@ -2,12 +2,21 @@
 	<div class="views">
 		{{> Template.dynamic template=chooseTemplate}}
 		<div class="ui container">
-			<button class="ui left icon button">
-				<i class="circle arrow left big icon"></i>
+		<!-- 	<button class="ui left labeled icon button">
+				<i class="circle arrow left large icon"></i>
+				<p>{{labelLeft}}</p>
 			</button>
-
-			<button class="ui right icon button">
-				<i class="circle arrow right big icon"></i>
+			<button class="ui right labeled icon button">
+				<i class="circle arrow right large icon"></i>
+				<p>{{labelRight}}</p>
+			</button> -->
+			<button class="ui left labeled icon button">
+				<i class="left arrow icon"></i>
+				{{labelLeft}}
+			</button>
+			<button class="ui right labeled icon button">
+				<i class="right arrow icon"></i>
+				{{labelRight}}
 			</button>
 		</div>
 	</div>

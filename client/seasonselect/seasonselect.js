@@ -4,7 +4,7 @@ Template.seasonselect.onRendered(function() {
 
 Template.seasonselect.events({
     'change #season-select': function(evt) {
-        Session.set('teamview-season', $(evt.target).val());
+        Session.set('view-season', $(evt.target).val());
     }
 });
 
