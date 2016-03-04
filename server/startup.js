@@ -35,7 +35,7 @@ Meteor.startup(function() { // setting up team highscore
         sort: {
             score: -1
         },
-        limit: 3
+        limit: 5
     }).forEach(function(doc) {
         TeamHighscore_backup.insert(doc);
     });
@@ -84,7 +84,7 @@ Meteor.startup(function() { // setting up individual highscore
         sort: {
             score: -1
         },
-        limit: 3
+        limit: 5
     }).forEach(function(doc) {
         IndividualHighscore_backup.insert(doc);
     });

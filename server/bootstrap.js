@@ -29,11 +29,21 @@ Meteor.startup(function() {
             name: "Deerfield Academy A",
             school_id: deerfield_id,
             level: 'varsity'
+        }, {
+            name: "Deerfield Academy B",
+            school_id: deerfield_id,
+            level: 'varsity'
+        }, {
+            name: "Deerfield Academy C",
+            school_id: deerfield_id,
+            level: 'varsity'
         }];
         var choate_a_id = Teams.insert(teams[0]);
         var choate_b_id = Teams.insert(teams[1]);
         var choate_c_id = Teams.insert(teams[2]);
         var deerfield_a_id = Teams.insert(teams[3]);
+        var deerfield_b_id = Teams.insert(teams[4]);
+        var deerfield_c_id = Teams.insert(teams[5]);
     }
     if (Profiles.find().count() == 0) {
         var profiles = [{
@@ -123,9 +133,14 @@ Meteor.startup(function() {
             date: new Date("12-19-2015"),
             season: season_id,
             teams: [choate_a_id, choate_b_id, choate_c_id, deerfield_a_id]
+        }, {
+            date: new Date("10-21-2016"),
+            season: season_id,
+            teams: [choate_a_id, choate_b_id, choate_c_id, deerfield_a_id]
         }]
         var competition1_id = Competitions.insert(competitions[0]);
         var competition2_id = Competitions.insert(competitions[1]);
+        var competition3_id = Competitions.insert(competitions[2]);
     }
     if (Scores.find({}).count() == 0) {
         console.log("works tm")

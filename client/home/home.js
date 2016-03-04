@@ -5,10 +5,15 @@ Template.home.helpers({
             selector: {},
             sortable: false,
             tracking: [{
-                field: 'date',
-                title: 'Upcoming Competitions',
+                field: '',
+                title: 'Competitions',
                 func: function(value, ctx) {
-                    return String(value).substring(0, 15);
+                    console.log(ctx)
+                    var date1 = new Date(String(ctx.date));
+                    var date2 = new Date();
+                    if (date1.getTime() > date2.getTime()) {
+                        return String(ctx.date).substring(0, 15);
+                    }
                 }
             }],
             hoverable: true,
@@ -47,7 +52,6 @@ Template.home.helpers({
                 field: '',
                 title: 'Student',
                 func: function(value, ctx) {
-                    console.log(ctx)
                     return String(ctx.name);
                 },
                 sortable: false

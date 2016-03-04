@@ -11,21 +11,20 @@
         flex-direction: row;
         align-items: stretch;
         > .newscontainer {
-            padding: 10px;
+            padding: 25px;
+            padding-top: 10px !important;
             display: flex;
             flex-grow: 6;
             flex-direction: column;
-            margin: 10px;
-            background-color: #FAFAFA;
             overflow-y: auto;
         }
         > .tablecontainer {
             display: flex;
             flex-direction: column;
             flex-grow: 1;
-            margin: 10px;
-            background-color: #FAFAFA;
-            padding: 15px;
+            padding: 26px;
+            padding-top: 10px !important;
+            border-left: 1px solid darkgray;
         }
     }
 }
@@ -33,12 +32,11 @@
 .title {
     text-align: center;
     font-family: "LeagueSpartan" !important;
-    margin-top: 6px !important;
-    margin-bottom: 1px !important;
+    margin-top: 0px !important;
+    margin-bottom: 10px !important;
 }
 
 .tablecontainer {
-    margin-top: 30px;
 }
 
 .tablecontainer th {

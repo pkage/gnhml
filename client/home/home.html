@@ -3,15 +3,17 @@
         {{> navigation title="home"}}
         <div class="homecontainer">
             <div class="newscontainer">
-                <h4 class="title"> NEWS </h4>
+                <h3 class="title"> NEWS </h3>
                 <div>
                     {{#each tweets}} {{> tweetsItem}} {{/each}}
                 </div>
             </div>
             <div class="tablecontainer">
+                <h3 class="title"> UPCOMING </h3>
                 {{> table context=schedule_context}}
             </div>
             <div class="tablecontainer">
+                <h3 class="title"> LEADERBOARD </h3>
                 {{> table context=team_highscore_context}}
                 {{> table context=individual_highscore_context}}
             </div>
