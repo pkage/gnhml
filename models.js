@@ -7,3 +7,4 @@ Seasons = new Mongo.Collection('seasons');
 SelectedRounds = new Mongo.Collection('rounds');
 Tweets = new Mongo.Collection("tweets");
 TeamHighscore = new Mongo.Collection("teamHighscore");
+IndividualHighscore = new Mongo.Collection("individualHighscore");

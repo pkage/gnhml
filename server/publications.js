@@ -43,3 +43,7 @@ Meteor.publish('tweets', function() {
 Meteor.publish('teamHighscore', function() {
     return TeamHighscore.find({});
 })
+
+Meteor.publish('individualHighscore', function() {
+    return IndividualHighscore.find({});
+})

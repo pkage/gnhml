@@ -9,4 +9,5 @@ Meteor.startup(function() {
     Meteor.subscribe('rounds');
     Meteor.subscribe("tweets");
     Meteor.subscribe("teamHighscore");
+    Meteor.subscribe("individualHighscore");
 });

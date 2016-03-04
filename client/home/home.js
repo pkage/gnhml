@@ -40,15 +40,24 @@ Template.home.helpers({
     },
     'individual_highscore_context': function() {
         return {
-            db: Competitions,
+            db: IndividualHighscore,
             selector: {},
             sortable: false,
             tracking: [{
-                field: 'date',
-                title: 'Individual Highscore',
+                field: '',
+                title: 'Student',
                 func: function(value, ctx) {
-                    return String(value).substring(0, 15);
-                }
+                    console.log(ctx)
+                    return String(ctx.name);
+                },
+                sortable: false
+            }, {
+                field: '',
+                title: 'Score',
+                func: function(value, ctx) {
+                    return String(ctx.score);
+                },
+                sortable: false,
             }],
             hoverable: true,
             customCSS: "table-style-class"

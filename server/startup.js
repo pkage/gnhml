@@ -1,4 +1,4 @@
-Meteor.startup(function() {
+Meteor.startup(function() { // setting up team highscore
     if (TeamHighscore.find().count() != 0) {
         TeamHighscore.remove({});
     }
@@ -44,6 +44,55 @@ Meteor.startup(function() {
 
     TeamHighscore_backup.find().forEach(function(doc) {
         TeamHighscore.insert(doc);
+    });
+})
+
+Meteor.startup(function() { // setting up individual highscore
+    if (IndividualHighscore.find().count() != 0) {
+        IndividualHighscore.remove({});
+    }
+    for (var i = 0; i < Profiles.find({}).fetch().length; i++) {
+        IndividualHighscore.insert({
+            _id: Profiles.find({}).fetch()[i]._id,
+            name: Profiles.find({}).fetch()[i].name,
+            score: 0
+        })
+    };
+    for (var i = 0; i < Competitions.find({}).fetch().length; i++) {
+        for (var j = 0; j < Profiles.find({}).fetch().length; j++) {
+            Scores.find({
+                student_id: Profiles.find({}).fetch()[j]._id,
+                competition_id: Competitions.find({}).fetch()[i]._id
+            }).map(function(doc) {
+                if (doc.score) {
+                    IndividualHighscore.update({
+                        _id: Profiles.find({}).fetch()[j]._id
+                    }, {
+                        $set: {
+                            score: IndividualHighscore.find({}).fetch()[j].score + doc.score
+                        }
+                    }, {
+                        upsert: true
+                    });
+                }
+            })
+        };
+    };
+
+    IndividualHighscore_backup = new Mongo.Collection(null);
+    IndividualHighscore.find({}, {
+        sort: {
+            score: -1
+        },
+        limit: 3
+    }).forEach(function(doc) {
+        IndividualHighscore_backup.insert(doc);
+    });
+
+    IndividualHighscore.remove({})
+
+    IndividualHighscore_backup.find().forEach(function(doc) {
+        IndividualHighscore.insert(doc);
     });
 })
 
