@@ -3,15 +3,19 @@
         {{> navigation title="home"}}
         <div class="homecontainer">
             <div class="newscontainer">
-                {{#each tweets}} {{> tweetsItem}} {{/each}}
+                <h2 class="title"> NEWS </h2>
+                <div>
+                    {{#each tweets}} {{> tweetsItem}} {{/each}}
+                </div>
             </div>
-            <div class="listcontainer">
-                <div class="schedulecontainer">
-                    {{> table context=schedule_context}}
-                </div>
-                <div class="highscorecontainer">
-                    {{> table context=schedule_context}}
-                </div>
+            <div class="schedulecontainer">
+                {{> table context=schedule_context}}
+            </div>
+            <div class="highscorecontainer">
+                {{> table context=schedule_context}}
+            </div>
+            <div class="highscorecontainer">
+                {{> table context=schedule_context}}
             </div>
         </div>
     </div>

@@ -3,7 +3,9 @@
     flex-direction: column;
     height: 100vh;
     >.homecontainer {
-        margin: 15px;
+        margin: 35px;
+        padding-left: 40px;
+        padding-right: 40px;
         display: flex;
         flex-grow: 1;
         flex-direction: row;
@@ -15,29 +17,32 @@
             flex-direction: column;
             margin: 1em;
             background-color: #FAFAFA;
+            overflow-y: auto;
         }
-        > .listcontainer {
+        > .schedulecontainer {
             display: flex;
-            flex-grow: 1;
-            flex-direction: column;
-            > .schedulecontainer {
-                display: flex;
-                flex-grow: 1;
-                flex-direction: column;
-                justify-content: center;
-                margin: 1em;
-                background-color: #FAFAFA;
-            }
-            > .highscorecontainer {
-                display: flex;
-                flex-grow: 1;
-                flex-direction: column;
-                justify-content: center;
-                margin: 1em;
-                background-color: #FAFAFA;
-            }
+            flex-direction: row;
+            justify-content: center;
+            margin: 1em;
+            background-color: #FAFAFA;
+            padding: 15px;
+        }
+        > .highscorecontainer {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: 1em;
+            background-color: #FAFAFA;
+            padding: 15px;
         }
     }
+}
+
+.title {
+    text-align: center;
+    font-family: "LeagueSpartan" !important;
+    margin-top: 10px !important;
+    margin-bottom: 5px !important;
 }
 
 .schedulecontainer {
@@ -55,4 +60,8 @@
 
 .no-margin-bottom {
     margin-bottom: 0px !important;
+}
+
+.table-style-class {
+    text-align: center !important;
 }
