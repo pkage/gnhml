@@ -29,6 +29,48 @@ restrictToCoach = function() {
 	}
 }
 
+restrictToGrader = function() {
+	bounceLoggedOut(); // bounce logged out users
+
+	// ensure that the current user is an administrator
+	if (!checkRole('grader') && !checkRole('admin')) {
+		throw new Meteor.Error('unauthorized', 'must be coach or admin for this action');
+	}
+}
+
+getActiveCompetition = function() {
+	// construct a date object for today's bounds
+	// as competitions happen during the day sometime
+	// and there's only one per second.
+	// i hate dates.
+	var todayStart = new Date();
+	todayStart.setHours(0);
+	todayStart.setMinutes(0);
+	todayStart.setSeconds(0);
+
+	var todayEnd = new Date(todayStart);
+	todayEnd.setHours(23);
+	todayEnd.setMinutes(59);
+	todayEnd.setSeconds(59);
+
+
+	// create the cursor cuz it's a pain to type out
+	var cursor = Competitions.find({
+		date: {
+			$gte: todayStart,
+			$lte: todayEnd
+		}
+	});
+
+
+	// if a competition exists then return it
+	if (cursor.count() > 0) {
+		return cursor.fetch()[0];
+	}
+	// otherwise null
+	return null;
+}
+
 // callable methods
 Meteor.methods({
 	'updateSchoolName': function(schoolid, name) {
@@ -132,5 +174,28 @@ Meteor.methods({
 	},
 	'emptyRounds': function(){
 		return SelectedRounds.remove({});
+	},
+	'addGrade': function(student, round, score) {
+		restrictToGrader();
+		check(student, String);
+		check(round, Number);
+		check(score, Number);
+
+		var currentCompetition = getActiveCompetition();
+
+		if (currentCompetition == null) {
+			throw new Meteor.Error('no-competition', 'no active competition!');
+			return;
+		}
+
+		var prof = Profiles.findOne(student);
+
+		return Scores.insert({
+			round_id: round,
+			competition_id: currentCompetition._id,
+			student_id: student._id,
+			team_id: prof.team_id,
+			score: score
+		});
 	}
 });
