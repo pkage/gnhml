@@ -25,6 +25,7 @@
             padding: 26px;
             padding-top: 10px !important;
             border-left: 1px solid darkgray;
+            overflow-y: auto;
         }
     }
 }
@@ -54,4 +55,8 @@
 
 .table-style-class {
     text-align: center !important;
+}
+
+.tablecell {
+    height: 39px;
 }
