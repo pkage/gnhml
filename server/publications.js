@@ -27,3 +27,11 @@ Meteor.publish('users', function() {
 		return Meteor.users.find({});
 	}
 })
+
+Meteor.publish(null, function (){
+  return Meteor.roles.find({})
+})
+
+Meteor.publish('rounds', function() {
+	return SelectedRounds.find({});
+})

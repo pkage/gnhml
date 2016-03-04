@@ -13,36 +13,53 @@
 </template>
 
 <template name="admin_schools">
-	{{> table context=as_context}}
+	<div class="admin-schools">
+		{{> table context=as_context}}
 
-	{{#with activeSchool}}
-	{{#modal title=name id="editSchoolModal"}}
+		{{#with activeSchool}}
+		{{#modal title=name id="editSchoolModal"}}
 
-	<div class="ui statistics flex-center">
-		<div class="statistic">
-			<div class="value">{{school_members}}</div>
-			<div class="label">members</div>
+		<div class="ui statistics flex-center">
+			<div class="statistic">
+				<div class="value">{{school_members}}</div>
+				<div class="label">members</div>
+			</div>
+			<div class="statistic">
+				<div class="value">14</div>
+				<div class="label">scores</div>
+			</div>
+			<div class="statistic">
+				<div class="value">{{school_teams}}</div>
+				<div class="label">teams</div>
+			</div>
 		</div>
-		<div class="statistic">
-			<div class="value">14</div>
-			<div class="label">scores</div>
+		<br>
+		<form id="updateSchoolName">
+		<div class="ui action input fullwidth">
+			<input type="text" placeholder="school name" name="school_name" value="{{name}}" required autocomplete="off">
+			<button class="ui button" type="submit">Save</button>
 		</div>
-		<div class="statistic">
-			<div class="value">{{school_teams}}</div>
-			<div class="label">teams</div>
+		</form>
+
+
+		{{/modal}}
+		{{/with}}
+
+		<button class="ui icon button" id="add-button">
+			<i class="large add square icon"></i>
+		</button>
+
+		{{#modal id="add-school-form-modal" title="add school"}}
+		<div class="add-school-form">
+			<form class="ui form inputlayout" id="add-school-form">
+				<div class="ui input">
+					<input type="text" placeholder="School Name" name="schoolname" id="addschoolname" required>
+				</div>
+				<button class="ui button addbutton" type="submit">Add</button>
+			</form>
 		</div>
+		{{/modal}}
 	</div>
-	<br>
-	<form id="updateSchoolName">
-	<div class="ui action input fullwidth">
-		<input type="text" placeholder="school name" name="school_name" value="{{name}}" required autocomplete="off">
-		<button class="ui button" type="submit">Save</button>
-	</div>
-	</form>
-
-
-	{{/modal}}
-	{{/with}}
 </template>
 
 <template name="admin_coaches">

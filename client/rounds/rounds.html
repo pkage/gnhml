@@ -1,0 +1,58 @@
+<template name="rounds">
+	<div class="rounds">
+		{{> navigation title="round selection"}}
+		<div class="ui container">
+			<p>No more than three students may participate in a round.<br>A student may not participate in more than three rounds.</p>
+			<table class="ui very basic celled hoverable six column table" id="rounds-table">
+				<thead><tr>
+					<th>Students</th>
+					<th>Round 1</th>
+					<th>Round 2</th>
+					<th>Round 3</th>
+					<th>Round 4</th>
+					<th>Round 5</th>
+				</tr></thead>
+				<tbody>
+					<tr>
+						<td>{{> studentselect}}</td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+					</tr>
+					<tr>
+						<td>{{> studentselect}}</td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+					</tr><tr>
+						<td>{{> studentselect}}</td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+					</tr><tr>
+						<td>{{> studentselect}}</td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+					</tr><tr>
+						<td>{{> studentselect}}</td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+						<td class="toggle toggle-inactive"></td>
+					</tr>
+				</tbody>
+			</table>
+			<button class="ui button">Clear</button>
+		</div>
+	</div>
+</template>

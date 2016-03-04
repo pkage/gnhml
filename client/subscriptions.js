@@ -6,4 +6,5 @@ Meteor.startup(function() {
 	Meteor.subscribe('competitions');
 	Meteor.subscribe('seasons');
     Meteor.subscribe('headup');
+    Meteor.subscribe('rounds');
 });

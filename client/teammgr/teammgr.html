@@ -1,0 +1,98 @@
+<template name="teammgr">
+	<div class="gradercontainer">
+		{{> navigation title="team manager"}}
+		<div class="subcontainer 1em-lr-padding">
+			<div class="gcolumn">
+				<div class="title">
+					<h2>Unassigned Students</h2>
+				</div>
+				<div class="dragcontainer flex-grow" data-id="none">
+					{{#if hasUnassignedStudents}}
+					{{#each unassignedStudent}}
+					<div class="listblock" data-id="{{_id}}" data-type="student">
+						{{name}}<br><i>({{#with resolveSchool}}{{name}}{{/with}})</i>
+					</div>
+					{{/each}}
+					{{else}}
+					<i class="emptyinfo">nothing to show here.<br>drag &amp; drop to unassign students.</i>
+					{{/if}}
+				</div>
+			</div>
+			<div class="gcolumn overflowable">
+				<div class="title">
+					<h2>Current Teams (<i class="editbutton write icon"></i>)</h2>
+				</div>
+				{{#each team}}
+				<br>
+				<div class="team" data-id="{{_id}}" data-type="team">
+					<h3>{{name}} (<i>{{level}}</i>)</h3>
+					<div class="dragcontainer" data-id="{{_id}}">
+						{{#if hasStudents}}
+						{{#each teamStudent}}
+						<div class="listblock" data-id="{{_id}}" data-type="student">
+							{{name}}
+							<br><i>({{#with resolveSchool}}{{name}}{{/with}})</i>
+						</div>
+						{{/each}}
+						{{else}}
+						<i class="emptyinfo">nothing to show here.<br>drag &amp; drop to assign students.</i>
+						{{/if}}
+					</div>
+				</div>
+				{{/each}}
+
+			</div>
+		</div>
+	</div>
+	{{schoolHelper}}
+
+	{{#modal title="edit team list" id="editTeamListModal"}}
+	<table class="ui very basic table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Level</th>
+				<th>delete</th>
+			</tr>
+		</thead>
+		<tbody>
+			{{#each team}}
+			<tr>
+				<td>{{name}}</td>
+				<td>{{level}}</td>
+				<td><i class="deletebutton delete icon"></i></td>
+			</tr>
+			{{/each}}
+		</tbody>
+	</table>
+	<br><b>Add Team</b>
+	<form id="addTeamForm" class="addteamform">
+		<div class="ui transparent left icon input flex-grow">
+			<input type="text" placeholder="name" name="name" autocomplete="off" required id="teamname">
+			<i class="tag icon"></i>
+		</div>
+
+		<div class="ui inline dropdown">
+			<input type="hidden" name="level" required id="teamlevel">
+			<div class="default text">Level</div>
+			<i class="dropdown icon"></i>
+			<div class="menu">
+				<div class="item" data-value="varsity" data-text="Varsity">
+					<i class="trophy icon"></i>
+					Varsity
+				</div>
+				<div class="item" data-value="junior varsity" data-text="Junior Varsity">
+					<i class="child icon"></i>
+					Junior Varsity
+				</div>
+			</div>
+		</div>
+
+		<button class="mini ui icon button" style="margin-left: 1em;">
+			submit
+			<i class="right chevron icon"></i>
+		</button>
+	</form>
+
+	{{/modal}}
+</template>

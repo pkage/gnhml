@@ -15,16 +15,20 @@ Meteor.startup(function() {
     if (Teams.find().count() == 0) {
         var teams = [{
             name: "Choate Rosemary Hall A",
-            school_id: choate_id
+            school_id: choate_id,
+            level: 'varsity'
         }, {
             name: "Choate Rosemary Hall B",
-            school_id: choate_id
+            school_id: choate_id,
+            level: 'varsity'
         }, {
             name: "Choate Rosemary Hall C",
-            school_id: choate_id
+            school_id: choate_id,
+            level: 'varsity'
         }, {
             name: "Deerfield Academy A",
-            school_id: deerfield_id
+            school_id: deerfield_id,
+            level: 'varsity'
         }];
         var choate_a_id = Teams.insert(teams[0]);
         var choate_b_id = Teams.insert(teams[1]);

@@ -1,0 +1,12 @@
+<template name="studentselect">
+	<select class="ui selection dropdown student-select" value="" data-type="student">
+		{{#with currentProfile}}
+
+		<option value="">Name</option>
+		{{#each student}}
+		 	<option value="{{_id}}" disabled="{{disabledStudent}}">{{name}}</option>
+		{{/each}}
+
+		{{/with}}
+	</select>
+</template>

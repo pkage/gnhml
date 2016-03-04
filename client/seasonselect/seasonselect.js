@@ -1,4 +1,4 @@
-Template.season.onRendered(function() {
+Template.seasonselect.onRendered(function() {
     $('.ui.dropdown').dropdown();
 });
 

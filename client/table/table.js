@@ -100,10 +100,20 @@ Template.table.helpers({
 });
 
 Template.table.events({
-	'click .tableheader': function(ev) {
-		$('.tableheader').children('.icon').hide();
+	'click .tableheader': function(ev, tm) {
+		if (tm.data.context.sortable === false) {
+			return;
+		}
+				
 		var key = $(ev.target).data('key');
 		var sort = Session.get('tableSort');
+
+		var tracking = _.findWhere(tm.tracking.get(), {field: key})
+		if (tracking != undefined && tracking.sortable === false) {
+			return;
+		}
+
+		$('.tableheader').children('.icon').hide();
 
 		// toggle up/down/disable
 		if (sort.key == key) {

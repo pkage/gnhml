@@ -55,30 +55,45 @@ Meteor.methods({
 			console.log('bound ' + profiles + ' profile to user ' + Meteor.userId());
 		}
 	},
-	'createTeam': function(name, ids, schoolid, level) {
+	'createTeam': function(schoolid, name, level) {
 		// security checks
 		bounceLoggedOut();
 		restrictToCoach();
 		check(name, String);
-		check(ids, Array);
 		check(schoolid, String);
 		check(level, String);
-		ids.forEach(function(val) {check(val, String)});
-
-
-		// force the list to a unique state, in case the client screwed it up
-		ids = _.uniq(ids);
 
 		// create the team
-		var teamid = Teams.insert({
+		return Teams.insert({
 			name: name,
 			school_id: schoolid,
 			level: level
 		})
+	},
+	'deleteTeam': function(id) {
+		bounceLoggedOut();
+		restrictToCoach();
+		check(id, String);
 
-		for (var c = 0; c < ids.length; c++) {
-			Profiles.update(ids[c], {$set: {team_id: teamid}});
+		var affected = _.pluck(Profiles.find({team_id: id}).fetch(), '_id');
+		_.each(affected, function(_id) {
+			Profiles.update(_id, {$set: {team_id: null}});
+		});
+
+
+		return Teams.remove(id);
+	},
+	'assignToTeam': function(profile_id, team_id) {
+		bounceLoggedOut();
+		restrictToCoach();
+		check(profile_id, String);
+		check(team_id, String);
+
+		if (team_id == "none") {
+			team_id = null;
 		}
+
+		return Profiles.update(profile_id, {$set: {team_id: team_id}})
 	},
 	'addStudent': function(obj) {
 		restrictToCoach();
@@ -94,5 +109,28 @@ Meteor.methods({
 			team_id: (obj.team == undefined) ? null : obj.team,
 			class: obj.year
 		})
+	},
+	'addSchool': function(name) {
+		// restrictToAdmin();
+		check(name, String);
+
+		return Schools.insert({
+			name: name
+		});
+	},
+	'addRound': function(col, row) {
+		return SelectedRounds.insert({
+			col: col,
+			row: row
+		});
+	},
+	'deleteRound': function(col, row) {
+		return SelectedRounds.remove({
+			col: col,
+			row: row
+		});
+	},
+	'emptyRounds': function(){
+		return SelectedRounds.remove({});
 	}
 });

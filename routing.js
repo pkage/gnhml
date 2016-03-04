@@ -34,10 +34,17 @@ Router.route('/grader', {
 	template: 'grader'
 })
 
-Router.route('/teamselect', {
-	template: 'teamselect'
-})
-
 Router.route('/studentmgr', {
 	template: 'studentmgr'
+})
+
+Router.route('/teammgr', {
+	template: 'teammgr'
+});
+
+Router.route('/rounds', {
+	template: 'rounds',
+	waitOn: function() {
+		return Meteor.subscribe('rounds');
+	}
 })
