@@ -319,3 +319,70 @@ Meteor.startup(function() {
         }
     }
 });
+
+
+if (Meteor.isServer) {
+    Meteor.startup(function() {
+        if (Tweets.find().count() != 0) {
+            Tweets.remove({});
+        }
+        var Twit = Meteor.npmRequire('twit');
+
+        var T = new Twit({
+            consumer_key: 'WqvaNS6yZECzeJouQSijVuYn0', // API key
+            consumer_secret: 'l2WFE0hBs3UfYCVUkWxUjDvqg5tgFo00jpTDOfFaEyI936O2R0', // API secret
+            access_token: '2155608048-X0tgTpTmU88WUOFx7fSQ9RyL7YeWzRTMf4k4p5H',
+            access_token_secret: 'RPks6pEBnecnoL5psJvONRrsutyHu73NzA6ubVEoxYhHk'
+        });
+
+        T.get('search/tweets', {
+            q: 'GNHML since:2011-07-11',
+            count: 100
+        }, Meteor.bindEnvironment(function(err, data, response) {
+            for (var i = 0; i < data.statuses.length; i++) {
+                var userName = data.statuses[i].user.name;
+                var userScreenName = data.statuses[i].user.screen_name;
+                var userTweet = data.statuses[i].text;
+                var tweetDate = data.statuses[i].created_at;
+                var profileImg = data.statuses[i].user.profile_image_url;
+                Tweets.insert({
+                    user: userName,
+                    userscreen: userScreenName,
+                    tweet: userTweet,
+                    picture: profileImg,
+                    date: tweetDate.substring(0, tweetDate.length - 11)
+                }, function(error) {
+                    if (error)
+                        console.log(error);
+                });
+            };
+            Tweets.find({}, {sort: {date: 1}});
+        }))
+
+        var stream = T.stream('statuses/filter', {
+            track: 'GNHML'
+        })
+
+        stream.on('tweet', Meteor.bindEnvironment(function(tweet) {
+            var userName = tweet.user.name;
+            var userScreenName = tweet.user.screen_name;
+            var userTweet = tweet.text;
+            var tweetDate = tweet.created_at;
+            var profileImg = tweet.user.profile_image_url;
+
+            console.log(userScreenName + " (" + userName + ")" + " said " + userTweet + " at " + tweetDate);
+            console.log("=======================================");
+            Tweets.insert({
+                user: userName,
+                userscreen: userScreenName,
+                tweet: userTweet,
+                picture: profileImg,
+                date: tweetDate.substring(0, tweetDate.length - 11)
+            }, function(error) {
+                if (error)
+                    console.log(error);
+            });
+            Tweets.find({}, {sort: {date: 1}});
+        }))
+    });
+}

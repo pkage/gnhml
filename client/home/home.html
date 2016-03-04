@@ -1,7 +1,40 @@
 <template name="home">
-    {{> navigation title="home"}}
-    <div class="homecontainer">
-        <div class="schedulecontainer"></div>
-        <div class="highscorecontainer"></div>
+    <div class="basecontainer">
+        {{> navigation title="home"}}
+        <div class="homecontainer">
+            <div class="newscontainer">
+                <h2 class="title"> NEWS </h2>
+                <div>
+                    {{#each tweets}} {{> tweetsItem}} {{/each}}
+                </div>
+            </div>
+            <div class="schedulecontainer">
+                {{> table context=schedule_context}}
+            </div>
+            <div class="highscorecontainer">
+                {{> table context=schedule_context}}
+            </div>
+            <div class="highscorecontainer">
+                {{> table context=schedule_context}}
+            </div>
+        </div>
+    </div>
+</template>
+<template name="tweetsItem">
+    <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card-panel grey lighten-5 z-depth-1">
+            <div class="no-margin-bottom row valign-wrapper">
+                <div class="col s2">
+                    <img src="{{picture}}" alt="" class="circle responsive-img">
+                </div>
+                <div class="col s10">
+                    <span class="black-text">
+                        <p>{{tweet}}</p>
+                        <a href="https://www.twitter.com/{{user}}">{{user}}</a>
+                        {{date}}
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
 </template>

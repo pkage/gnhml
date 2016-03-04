@@ -5,3 +5,4 @@ Scores = new Mongo.Collection('scores');
 Competitions = new Mongo.Collection('competitions');
 Seasons = new Mongo.Collection('seasons');
 SelectedRounds = new Mongo.Collection('rounds');
+Tweets = new Mongo.Collection("tweets");

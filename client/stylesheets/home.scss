@@ -1,41 +1,67 @@
-.homecontainer {
+.basecontainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     height: 100vh;
-    > .schedulecontainer {
+    >.homecontainer {
+        margin: 35px;
+        padding-left: 40px;
+        padding-right: 40px;
         display: flex;
         flex-grow: 1;
         flex-direction: row;
         align-items: stretch;
-        justify-content: center;
-        margin: 1em;
-        transition: color .25s, background-color .25s;
-        > i {
-            margin-left: .5rem;
-            font-size: .5em;
-            pointer-events: none;
+        > .newscontainer {
+            padding: 10px;
+            display: flex;
+            flex-grow: 1;
+            flex-direction: column;
+            margin: 1em;
+            background-color: #FAFAFA;
+            overflow-y: auto;
         }
-        &:hover {
-            color: #fff00f;
-            background-color: #aa00aa;
+        > .schedulecontainer {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: 1em;
+            background-color: #FAFAFA;
+            padding: 15px;
         }
-    }
-    > .highscorecontainer {
-        display: flex;
-        flex-grow: 1;
-        flex-direction: row;
-        align-items: stretch;
-        justify-content: center;
-        margin: 1em;
-        transition: color .25s, background-color .25s;
-        > i {
-            margin-left: .5rem;
-            font-size: .5em;
-            pointer-events: none;
-        }
-        &:hover {
-            color: #ffffff;
-            background-color: #58a7db;
+        > .highscorecontainer {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: 1em;
+            background-color: #FAFAFA;
+            padding: 15px;
         }
     }
+}
+
+.title {
+    text-align: center;
+    font-family: "LeagueSpartan" !important;
+    margin-top: 10px !important;
+    margin-bottom: 5px !important;
+}
+
+.schedulecontainer {
+    margin-top: 30px;
+}
+
+.schedulecontainer th {
+    text-align: center;
+    padding-right: 45px;
+}
+
+.schedulecontainer .reactive-table-navigation {
+    padding-top: 10px;
+}
+
+.no-margin-bottom {
+    margin-bottom: 0px !important;
+}
+
+.table-style-class {
+    text-align: center !important;
 }

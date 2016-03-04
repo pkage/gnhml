@@ -1,37 +1,41 @@
 Meteor.publish('profiles', function() {
-	return Profiles.find({});
+    return Profiles.find({});
 })
 
 Meteor.publish('teams', function() {
-	return Teams.find({});
+    return Teams.find({});
 })
 
 Meteor.publish('schools', function() {
-	return Schools.find({});
+    return Schools.find({});
 });
 
 Meteor.publish('scores', function() {
-	return Scores.find({});
+    return Scores.find({});
 });
 
 Meteor.publish('competitions', function() {
-	return Competitions.find({});
+    return Competitions.find({});
 })
 
 Meteor.publish('seasons', function() {
-	return Seasons.find({});
+    return Seasons.find({});
 })
 
 Meteor.publish('users', function() {
-	if (Roles.userIsInRole(this.userId, ['admin'], Roles.GLOBAL_GROUP)) {
-		return Meteor.users.find({});
-	}
+    if (Roles.userIsInRole(this.userId, ['admin'], Roles.GLOBAL_GROUP)) {
+        return Meteor.users.find({});
+    }
 })
 
-Meteor.publish(null, function (){
-  return Meteor.roles.find({})
+Meteor.publish(null, function() {
+    return Meteor.roles.find({})
 })
 
 Meteor.publish('rounds', function() {
-	return SelectedRounds.find({});
+    return SelectedRounds.find({});
 })
+
+Meteor.publish('tweets', function() {
+    return Tweets.find();
+});
