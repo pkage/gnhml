@@ -2,8 +2,16 @@
 	{{> navigation title="season view"}}
 	<div class="season">
 		<div class="ui container">
+			{{#if isAdmin}}
+				<div class="ui two item menu">
+					<a class="active item">Teams</a>
+					<a class="indiv item">Individuals</a>
+				</div>
+			{{/if}}
+
 			{{> seasonselect}}
-			{{> table context=season_context}}
+
+			{{> Template.dynamic template=chooseTemplate}}
 		</div>
 	</div>
 </template>

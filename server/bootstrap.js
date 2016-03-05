@@ -29,11 +29,21 @@ Meteor.startup(function() {
             name: "Deerfield Academy A",
             school_id: deerfield_id,
             level: 'varsity'
+        }, {
+            name: "Deerfield Academy B",
+            school_id: deerfield_id,
+            level: 'varsity'
+        }, {
+            name: "Deerfield Academy C",
+            school_id: deerfield_id,
+            level: 'varsity'
         }];
         var choate_a_id = Teams.insert(teams[0]);
         var choate_b_id = Teams.insert(teams[1]);
         var choate_c_id = Teams.insert(teams[2]);
         var deerfield_a_id = Teams.insert(teams[3]);
+        var deerfield_b_id = Teams.insert(teams[4]);
+        var deerfield_c_id = Teams.insert(teams[5]);
     }
     if (Profiles.find().count() == 0) {
         var profiles = [{
@@ -123,128 +133,149 @@ Meteor.startup(function() {
             date: new Date("12-19-2015"),
             season: season_id,
             teams: [choate_a_id, choate_b_id, choate_c_id, deerfield_a_id]
+        }, {
+            date: new Date("10-21-2016"),
+            season: season_id,
+            teams: [choate_a_id, choate_b_id, choate_c_id, deerfield_a_id]
+        }, {
+            date: new Date("10-22-2016"),
+            season: season_id,
+            teams: [choate_a_id, choate_b_id, choate_c_id, deerfield_a_id]
+        }, {
+            date: new Date("10-23-2016"),
+            season: season_id,
+            teams: [choate_a_id, choate_b_id, choate_c_id, deerfield_a_id]
+        }, {
+            date: new Date("10-24-2016"),
+            season: season_id,
+            teams: [choate_a_id, choate_b_id, choate_c_id, deerfield_a_id]
         }]
         var competition1_id = Competitions.insert(competitions[0]);
         var competition2_id = Competitions.insert(competitions[1]);
+        var competition3_id = Competitions.insert(competitions[2]);
+        var competition3_id = Competitions.insert(competitions[3]);
+        var competition3_id = Competitions.insert(competitions[4]);
+        var competition3_id = Competitions.insert(competitions[5]);
     }
     if (Scores.find({}).count() == 0) {
+        console.log("works tm")
         var scores = [{
             question_id: "1",
             round_id: "1",
             competition_id: competition1_id,
-            student_id: "3BWRKDRAx9J3todoG",
+            student_id: student1_id,
             team_id: choate_a_id,
             score: 1
         }, {
             question_id: "2",
             round_id: "1",
             competition_id: competition1_id,
-            student_id: "3BWRKDRAx9J3todoG",
+            student_id: student3_id,
             team_id: choate_b_id,
             score: 2
         }, {
             question_id: "3",
             round_id: "1",
             competition_id: competition1_id,
-            student_id: "3BWRKDRAx9J3todoG",
+            student_id: student5_id,
             team_id: choate_c_id,
             score: 4
         }, {
             question_id: "3",
             round_id: "1",
             competition_id: competition1_id,
-            student_id: "3BWRKDRAx9J3todoG",
+            student_id: student6_id,
             team_id: choate_c_id,
             score: 4
         }, {
             question_id: "1",
             round_id: "2",
             competition_id: competition1_id,
-            student_id: "3BWRKDRAx9J3todoG",
+            student_id: student7_id,
             team_id: deerfield_a_id,
             score: 2
         }, {
             question_id: "2",
             round_id: "2",
             competition_id: competition1_id,
-            student_id: "3BWRKDRAx9J3todoG",
+            student_id: student7_id,
             team_id: deerfield_a_id,
             score: 2
         }, {
             question_id: "1",
             round_id: "3",
             competition_id: competition1_id,
-            student_id: "3BWRKDRAx9J3todoG",
+            student_id: student8_id,
             team_id: deerfield_a_id,
             score: 3
         }, {
             question_id: "1",
             round_id: "4",
             competition_id: competition1_id,
-            student_id: "3BWRKDRAx9J3todoG",
+            student_id: student8_id,
             team_id: deerfield_a_id,
             score: 4
         }, {
             question_id: "1",
             round_id: "5",
             competition_id: competition1_id,
-            student_id: "3BWRKDRAx9J3todoG",
+            student_id: student7_id,
             team_id: deerfield_a_id,
             score: 5
         }, {
             question_id: "1",
             round_id: "1",
             competition_id: competition2_id,
-            student_id: "3BWRKDRAx9J3todoG",
+            student_id: student2_id,
             team_id: choate_a_id,
             score: 2
         }, {
             question_id: "2",
             round_id: "1",
             competition_id: competition2_id,
-            student_id: "3BWRKDRAx9J3todoG",
+            student_id: student4_id,
             team_id: choate_b_id,
             score: 4
         }, {
             question_id: "3",
             round_id: "1",
             competition_id: competition2_id,
-            student_id: "3BWRKDRAx9J3todoG",
+            student_id: student6_id,
             team_id: choate_c_id,
             score: 5
         }, {
             question_id: "1",
             round_id: "2",
             competition_id: competition2_id,
-            student_id: "3BWRKDRAx9J3todoG",
+            student_id: student7_id,
             team_id: deerfield_a_id,
             score: 1
         }, {
             question_id: "2",
             round_id: "2",
             competition_id: competition2_id,
-            student_id: "3BWRKDRAx9J3todoG",
+            student_id: student8_id,
             team_id: deerfield_a_id,
             score: 3
         }, {
             question_id: "1",
             round_id: "3",
             competition_id: competition2_id,
-            student_id: "3BWRKDRAx9J3todoG",
+            student_id: student8_id,
             team_id: deerfield_a_id,
             score: 2
         }, {
             question_id: "1",
             round_id: "4",
             competition_id: competition2_id,
-            student_id: "3BWRKDRAx9J3todoG",
+            student_id: student7_id,
             team_id: deerfield_a_id,
             score: 3
         }, {
             question_id: "1",
             round_id: "5",
             competition_id: competition2_id,
-            student_id: "3BWRKDRAx9J3todoG",
+            student_id: student7_id,
             team_id: deerfield_a_id,
             score: 5
         }];
@@ -319,70 +350,3 @@ Meteor.startup(function() {
         }
     }
 });
-
-
-if (Meteor.isServer) {
-    Meteor.startup(function() {
-        if (Tweets.find().count() != 0) {
-            Tweets.remove({});
-        }
-        var Twit = Meteor.npmRequire('twit');
-
-        var T = new Twit({
-            consumer_key: 'WqvaNS6yZECzeJouQSijVuYn0', // API key
-            consumer_secret: 'l2WFE0hBs3UfYCVUkWxUjDvqg5tgFo00jpTDOfFaEyI936O2R0', // API secret
-            access_token: '2155608048-X0tgTpTmU88WUOFx7fSQ9RyL7YeWzRTMf4k4p5H',
-            access_token_secret: 'RPks6pEBnecnoL5psJvONRrsutyHu73NzA6ubVEoxYhHk'
-        });
-
-        T.get('search/tweets', {
-            q: 'GNHML since:2011-07-11',
-            count: 100
-        }, Meteor.bindEnvironment(function(err, data, response) {
-            for (var i = 0; i < data.statuses.length; i++) {
-                var userName = data.statuses[i].user.name;
-                var userScreenName = data.statuses[i].user.screen_name;
-                var userTweet = data.statuses[i].text;
-                var tweetDate = data.statuses[i].created_at;
-                var profileImg = data.statuses[i].user.profile_image_url;
-                Tweets.insert({
-                    user: userName,
-                    userscreen: userScreenName,
-                    tweet: userTweet,
-                    picture: profileImg,
-                    date: tweetDate.substring(0, tweetDate.length - 11)
-                }, function(error) {
-                    if (error)
-                        console.log(error);
-                });
-            };
-            Tweets.find({}, {sort: {date: 1}});
-        }))
-
-        var stream = T.stream('statuses/filter', {
-            track: 'GNHML'
-        })
-
-        stream.on('tweet', Meteor.bindEnvironment(function(tweet) {
-            var userName = tweet.user.name;
-            var userScreenName = tweet.user.screen_name;
-            var userTweet = tweet.text;
-            var tweetDate = tweet.created_at;
-            var profileImg = tweet.user.profile_image_url;
-
-            console.log(userScreenName + " (" + userName + ")" + " said " + userTweet + " at " + tweetDate);
-            console.log("=======================================");
-            Tweets.insert({
-                user: userName,
-                userscreen: userScreenName,
-                tweet: userTweet,
-                picture: profileImg,
-                date: tweetDate.substring(0, tweetDate.length - 11)
-            }, function(error) {
-                if (error)
-                    console.log(error);
-            });
-            Tweets.find({}, {sort: {date: 1}});
-        }))
-    });
-}

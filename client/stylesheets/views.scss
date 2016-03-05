@@ -1,15 +1,25 @@
+.views .view-table {
+	margin-bottom: 80px;
+}
+
+.views .footer {
+    position: fixed;
+    bottom: 20pt;
+    width: 88%;
+}
+
 .views ul li {
 	display: inline;
 }
 
 .views .ui.button {
 	margin-top: 50px;
-	background: none;
-	padding: 0px;
+	width: 150px
 }
 
 .views .left {
 	float: left;
+	margin-top: 14px
 }
 
 .views .right {

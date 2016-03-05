@@ -2,7 +2,13 @@
     {{> navigation title="personal view"}}
     <div class="personal">
         <div class="ui container">
-            {{> table context=personal_context}}
+            {{#with currentProfile}}
+			<h2 class="uppercase">{{name}}</h2>
+
+			{{> seasonselect}}
+
+			{{> table context=personal_context}}
+			{{/with}}
         </div>
     </div>
 </template>

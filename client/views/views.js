@@ -1,20 +1,34 @@
 Template.views.onRendered(function() {
 	Session.set('view-index', 0);
+	// Session.set('label-left', "");
+	// Session.set('label-right', "");
+	$('.ui.button').mouseup(function(){
+    	$(this).blur();
+    })
 })
 
 Template.views.helpers({
 	'chooseTemplate': function(){
 		switch(Session.get('view-index')){
 			case 0:
+				setLabels('Personal', 'Team');
 				return 'season';
 				break;
 			case 1: 
+				setLabels('Season', 'Personal');
 				return 'team';
 				break;
 			case 2:
-				return 'individual';
+				setLabels('Team', 'Season');
+				return 'personal';
 				break;
 		}
+	},
+	'labelLeft': function(){
+		return Session.get('label-left');
+	},
+	'labelRight': function(){
+		return Session.get('label-right');
 	}
 })
 
@@ -39,4 +53,10 @@ changeIndex = function(num) {
 	}
 
 	Session.set('view-index', a);
+}
+
+setLabels = function(left, right){
+	console.log("hi");
+	Session.set('label-left', left);
+	Session.set('label-right', right);
 }

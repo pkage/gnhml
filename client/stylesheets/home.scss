@@ -3,56 +3,61 @@
     flex-direction: column;
     height: 100vh;
     >.homecontainer {
-        margin: 15px;
+        margin: 35px;
+        padding-left: 10px;
+        padding-right: 10px;
         display: flex;
         flex-grow: 1;
         flex-direction: row;
         align-items: stretch;
         > .newscontainer {
-            padding: 10px;
+            padding: 25px;
+            padding-top: 10px !important;
             display: flex;
-            flex-grow: 1;
+            flex-grow: 6;
             flex-direction: column;
-            margin: 1em;
-            background-color: #FAFAFA;
+            overflow-y: auto;
         }
-        > .listcontainer {
+        > .tablecontainer {
             display: flex;
-            flex-grow: 1;
             flex-direction: column;
-            > .schedulecontainer {
-                display: flex;
-                flex-grow: 1;
-                flex-direction: column;
-                justify-content: center;
-                margin: 1em;
-                background-color: #FAFAFA;
-            }
-            > .highscorecontainer {
-                display: flex;
-                flex-grow: 1;
-                flex-direction: column;
-                justify-content: center;
-                margin: 1em;
-                background-color: #FAFAFA;
-            }
+            flex-grow: 1;
+            padding: 26px;
+            padding-top: 10px !important;
+            border-left: 1px solid darkgray;
+            overflow-y: auto;
+            min-width: 250px;
         }
     }
 }
 
-.schedulecontainer {
-    margin-top: 30px;
+.title {
+    text-align: center;
+    font-family: "LeagueSpartan" !important;
+    margin-top: 0px !important;
+    margin-bottom: 10px !important;
 }
 
-.schedulecontainer th {
+.tablecontainer {
+}
+
+.tablecontainer th {
     text-align: center;
     padding-right: 45px;
 }
 
-.schedulecontainer .reactive-table-navigation {
+.tablecontainer .reactive-table-navigation {
     padding-top: 10px;
 }
 
 .no-margin-bottom {
     margin-bottom: 0px !important;
+}
+
+.table-style-class {
+    text-align: center !important;
+}
+
+.tablecell {
+    height: 39px;
 }

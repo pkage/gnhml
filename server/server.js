@@ -1,74 +1,74 @@
 // helper functions
 bounceLoggedOut = function() {
-	// throw an error if a user isn't logged in
-	if (Meteor.userId() == null) {
-		throw new Meteor.Error('unauthorized', 'not logged in');
-	}
+    // throw an error if a user isn't logged in
+    if (Meteor.userId() == null) {
+        throw new Meteor.Error('unauthorized', 'not logged in');
+    }
 }
 
 // because typing this out every time is a real drag
 checkRole = function(role) {
-	return Roles.userIsInRole(Meteor.userId(), role, Roles.GLOBAL_GROUP);
+    return Roles.userIsInRole(Meteor.userId(), role, Roles.GLOBAL_GROUP);
 }
 
 restrictToAdmin = function() {
-	bounceLoggedOut(); // bounce logged out users
+    bounceLoggedOut(); // bounce logged out users
 
-	// ensure that the current user is an administrator
-	if (!checkRole('admin')) {
-		throw new Meteor.Error('unauthorized', 'must be admin for this action');
-	}
+    // ensure that the current user is an administrator
+    if (!checkRole('admin')) {
+        throw new Meteor.Error('unauthorized', 'must be admin for this action');
+    }
 }
 
 restrictToCoach = function() {
-	bounceLoggedOut(); // bounce logged out users
+    bounceLoggedOut(); // bounce logged out users
 
-	// ensure that the current user is an administrator
-	if (!checkRole('coach') && !checkRole('admin')) {
-		throw new Meteor.Error('unauthorized', 'must be coach or admin for this action');
-	}
+    // ensure that the current user is an administrator
+    if (!checkRole('coach') && !checkRole('admin')) {
+        throw new Meteor.Error('unauthorized', 'must be coach or admin for this action');
+    }
 }
 
 restrictToGrader = function() {
-	bounceLoggedOut(); // bounce logged out users
+    bounceLoggedOut(); // bounce logged out users
 
-	// ensure that the current user is an administrator
-	if (!checkRole('grader') && !checkRole('admin')) {
-		throw new Meteor.Error('unauthorized', 'must be coach or admin for this action');
-	}
+    // ensure that the current user is an administrator
+    if (!checkRole('grader') && !checkRole('admin')) {
+        throw new Meteor.Error('unauthorized', 'must be coach or admin for this action');
+    }
 }
 
 getActiveCompetition = function() {
-	// construct a date object for today's bounds
-	// as competitions happen during the day sometime
-	// and there's only one per second.
-	// i hate dates.
-	var todayStart = new Date();
-	todayStart.setHours(0);
-	todayStart.setMinutes(0);
-	todayStart.setSeconds(0);
+    // construct a date object for today's bounds
+    // as competitions happen during the day sometime
+    // and there's only one per second.
+    // i hate dates.
+    var todayStart = new Date();
+    todayStart.setHours(0);
+    todayStart.setMinutes(0);
+    todayStart.setSeconds(0);
 
-	var todayEnd = new Date(todayStart);
-	todayEnd.setHours(23);
-	todayEnd.setMinutes(59);
-	todayEnd.setSeconds(59);
-
-
-	// create the cursor cuz it's a pain to type out
-	var cursor = Competitions.find({
-		date: {
-			$gte: todayStart,
-			$lte: todayEnd
-		}
-	});
+    var todayEnd = new Date(todayStart);
+    todayEnd.setHours(23);
+    todayEnd.setMinutes(59);
+    todayEnd.setSeconds(59);
 
 
-	// if a competition exists then return it
-	if (cursor.count() > 0) {
-		return cursor.fetch()[0];
-	}
-	// otherwise null
-	return null;
+    // create the cursor cuz it's a pain to type out
+    var cursor = Competitions.find({
+        date: {
+            $gte: todayStart,
+            $lte: todayEnd
+        }
+    });
+
+
+    // if a competition exists then return it
+    if (cursor.count() > 0) {
+        return cursor.fetch()[0];
+    }
+    // otherwise null
+    return null;
 }
 
 // callable methods
@@ -235,3 +235,4 @@ Meteor.methods({
 		}
 	}
 });
+
