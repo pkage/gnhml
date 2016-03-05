@@ -2,7 +2,16 @@
     {{> navigation title="headup view"}}
     <div class="headup">
         <div class="ui container">
-            {{> table context=headup_context}}
+        	{{#if currentCompetition}}
+	        	<h2 class="uppercase">{{date}}</h2>
+	        {{else}}
+	        	<p>No competition is currently taking place. Please select a competition date.</p>
+	        	{{> competitionselect}}
+            {{/if}}
+
+            {{#with comp}}
+            	{{> table context=headup_context}}
+            {{/with}}
         </div>
     </div>
 </template>

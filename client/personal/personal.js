@@ -1,17 +1,17 @@
 Template.personal.onRendered(function() {
-    Session.set('view-season', "");
+    Session.set('view-season', Seasons.find().fetch()[0]._id);
 })
 
 Template.personal.helpers({
+    'notStudent': function(){
+        return Profiles.findOne({account_id: Meteor.userId()}) == null;
+    },
     'currentProfile': function() {
         return Profiles.findOne({account_id: Meteor.userId()});
     },
     'personal_context': function() {
         var season_id = Session.get('view-season');
         var current_student = this._id;
-        if (season_id == 1){
-            season_id = "";
-        }
 
         var tracking = [{
             field: 'date',
@@ -67,11 +67,22 @@ Template.personal.helpers({
             func: totalFunc()
         });
 
-        return {
-            db: Competitions,
-            selector: {season: season_id},
-            tracking: tracking,
-            hoverable: true
+        if (season_id == 1) {
+            return {
+                db: Competitions,
+                selector: {},
+                tracking: tracking,
+                hoverable: true
+            }
         }
+        else {
+            return {
+                db: Competitions,
+                selector: {season: season_id},
+                tracking: tracking,
+                hoverable: true
+            }
+        }
+        
     }
 });

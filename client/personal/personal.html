@@ -2,13 +2,17 @@
     {{> navigation title="personal view"}}
     <div class="personal">
         <div class="ui container">
-            {{#with currentProfile}}
-			<h2 class="uppercase">{{name}}</h2>
+            {{#if notStudent}}
+                <p>You are not registered as a student. No scores to display.</p>
+            {{else}}
+                {{#with currentProfile}}
+    			<h2 class="uppercase">{{name}}</h2>
 
-			{{> seasonselect}}
+    			{{> seasonselect}}
 
-			{{> table context=personal_context}}
-			{{/with}}
+    			{{> table context=personal_context}}
+    			{{/with}}
+            {{/if}}
         </div>
     </div>
 </template>

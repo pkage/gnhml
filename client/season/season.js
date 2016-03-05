@@ -1,5 +1,5 @@
 Template.season.onRendered(function() {
-    Session.set('view-season', null);
+    Session.set('view-season', Seasons.find().fetch()[0]._id);
     Session.set('current-team-id', "none");
     Session.set('selected-menu-item', "");
 });

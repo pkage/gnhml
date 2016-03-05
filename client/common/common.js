@@ -9,22 +9,22 @@ Meteor.startup(function() {
 
 // Visibility helpers
 UI.registerHelper('isAdmin', function() {
-	return true;
+	// return true;
 	return Roles.userIsInRole(Meteor.userId(), 'admin', Roles.GLOBAL_GROUP);
 })
 
 UI.registerHelper('isCoach', function() {
-	return true;
+	// return true;
 	return Roles.userIsInRole(Meteor.userId(), 'coach', Roles.GLOBAL_GROUP);
 })
 
 UI.registerHelper('isStudent', function() {
-	return true;
+	// return true;
 	return !(Roles.userIsInRole(Meteor.userId(), 'coach', Roles.GLOBAL_GROUP) || Roles.userIsInRole(Meteor.userId(), 'grader', Roles.GLOBAL_GROUP));
 })
 
 UI.registerHelper('isGrader', function() {
-	return true;
+	// return true;
 	return Roles.userIsInRole(Meteor.userId(), 'grader', Roles.GLOBAL_GROUP);
 })
 

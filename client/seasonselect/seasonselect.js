@@ -1,5 +1,6 @@
 Template.seasonselect.onRendered(function() {
-    $('.ui.dropdown').dropdown();
+	$('.ui.dropdown').dropdown();
+	Session.set('view-season', Seasons.find().fetch()[0]._id);
 });
 
 Template.seasonselect.events({

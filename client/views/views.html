@@ -1,7 +1,15 @@
 <template name="views">
 	<div class="views">
 		<div class="view-table">
-		{{> Template.dynamic template=chooseTemplate}}
+			{{#if isCoach}}
+				{{> Template.dynamic template=coachTemplates}}
+			{{else}}
+				{{#if isStudent}}
+					{{> Template.dynamic template=studentTemplates}}
+				{{else}}
+					{{> Template.dynamic template=generalTemplates}}
+				{{/if}}
+			{{/if}}
 		</div>
 		<div class="ui container">
 			<div class="footer">

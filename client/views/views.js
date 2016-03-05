@@ -1,5 +1,8 @@
 Template.views.onRendered(function() {
 	Session.set('view-index', 0);
+	Session.get('viewable-pages', []);
+	Session.set('view-season', Seasons.find().fetch()[0]._id);
+	console.log(Session.get('view-season'));
 	// Session.set('label-left', "");
 	// Session.set('label-right', "");
 	$('.ui.button').mouseup(function(){
@@ -8,21 +11,17 @@ Template.views.onRendered(function() {
 })
 
 Template.views.helpers({
-	'chooseTemplate': function(){
-		switch(Session.get('view-index')){
-			case 0:
-				setLabels('Personal', 'Team');
-				return 'season';
-				break;
-			case 1: 
-				setLabels('Season', 'Personal');
-				return 'team';
-				break;
-			case 2:
-				setLabels('Team', 'Season');
-				return 'personal';
-				break;
-		}
+	'coachTemplates': function(){
+		Session.set('viewable-pages', ['Season', 'Headup', 'Team']);
+		return chooseTemplates();
+	},
+	'studentTemplates': function(){
+		Session.set('viewable-pages', ['Season', 'Headup', 'Personal']);
+		return chooseTemplates();
+	},
+	'generalTemplates': function(){
+		Session.set('viewable-pages', ['Season', 'Headup']);
+		return chooseTemplates();
 	},
 	'labelLeft': function(){
 		return Session.get('label-left');
@@ -34,29 +33,34 @@ Template.views.helpers({
 
 Template.views.events({
 	'click .left.button': function() {
-		changeIndex(-1);
+		Session.set('view-index', changeIndex(-1));
 	},
 	'click .right.button': function() {
-		changeIndex(1);
+		Session.set('view-index', changeIndex(1));
 	}
 })
 
 changeIndex = function(num) {
-	var a = Session.get('view-index');
-	a += num;
-	
-	if (a < 0) {
-		a = 2;
+	var i = Session.get('view-index');
+	i += num;
+
+	var len = Session.get('viewable-pages').length;
+	if (i < 0) {
+		i = len - 1;
 	}
-	else if (a > 2){
-		a = 0;
+	else if (i >= len){
+		i = 0;
 	}
 
-	Session.set('view-index', a);
+	return i;
 }
 
-setLabels = function(left, right){
-	console.log("hi");
-	Session.set('label-left', left);
-	Session.set('label-right', right);
+setLabels = function(){
+	Session.set('label-left', Session.get('viewable-pages')[changeIndex(-1)]);
+	Session.set('label-right', Session.get('viewable-pages')[changeIndex(1)]);
+}
+
+chooseTemplates = function(){
+	setLabels();
+	return Session.get('viewable-pages')[Session.get('view-index')].toLowerCase();
 }

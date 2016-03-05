@@ -50,7 +50,10 @@ Router.route('/rounds', {
 })
 
 Router.route('/views', {
-	template: 'views'
+	template: 'views',
+	waitOn: function() {
+		return Meteor.subscribe('seasons');
+	}
 })
 
 Router.route('/individual', {

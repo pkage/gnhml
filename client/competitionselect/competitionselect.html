@@ -1,0 +1,9 @@
+<template name="competitionselect">
+	<div class="competition-dropdown">
+		<select class="ui dropdown" id="competition-select">
+			 {{#each competition}}
+			 	<option value="{{_id}}">{{date}}</option>
+			 {{/each}}
+		</select>
+	</div>
+</template>

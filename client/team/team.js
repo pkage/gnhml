@@ -1,5 +1,5 @@
 Template.team.onRendered(function() {
-    Session.set('view-season', null);
+    Session.set('view-season', Seasons.find().fetch()[0]._id);
 });
 
 Template.team.helpers({
