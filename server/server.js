@@ -220,5 +220,167 @@ Meteor.methods({
         }
         // otherwise null
         return null;
-    }
+    },
+	'updateSchoolName': function(schoolid, name) {
+		restrictToAdmin(); // admin only
+
+		// ensure that the args are strings
+		check(schoolid, String);
+		check(name, String);
+
+		// update the school name
+		return Schools.update({_id: schoolid}, {$set: {name: name}});
+	},
+	'checkForBindableProfiles': function() {
+		bounceLoggedOut(); // need to be logged in for this
+		console.log("binding profiles for " + Meteor.userId());
+
+		// find the user's email
+		var email = Meteor.user().emails[0].address;
+
+		// check if profiles exist that reference that email
+		if (Profiles.find({'email': email}).count() > 0) {
+			// set those profiles' account_id to the user_id of the current user
+			var profiles = Profiles.update({'email': email}, {$set: {account_id: Meteor.userId()}});
+			console.log('bound ' + profiles + ' profile to user ' + Meteor.userId());
+
+			// assign pending roles
+			var p_id = Profiles.findOne({'email': email})._id;
+			var roles = PendingRoles.find({profile_id: p_id}).fetch();
+
+			console.log(roles.length + ' pending roles');
+
+			// set roles
+			_.each(roles, function(pending) {
+				Roles.addUsersToRoles(Meteor.userId(), pending.role, Roles.GLOBAL_GROUP);
+			})
+
+			PendingRoles.remove({profile_id: p_id});
+
+		}
+	},
+	'createTeam': function(schoolid, name, level) {
+		// security checks
+		bounceLoggedOut();
+		restrictToCoach();
+		check(name, String);
+		check(schoolid, String);
+		check(level, String);
+
+		// create the team
+		return Teams.insert({
+			name: name,
+			school_id: schoolid,
+			level: level
+		})
+	},
+	'deleteTeam': function(id) {
+		bounceLoggedOut();
+		restrictToCoach();
+		check(id, String);
+
+		var affected = _.pluck(Profiles.find({team_id: id}).fetch(), '_id');
+		_.each(affected, function(_id) {
+			Profiles.update(_id, {$set: {team_id: null}});
+		});
+
+
+		return Teams.remove(id);
+	},
+	'assignToTeam': function(profile_id, team_id) {
+		bounceLoggedOut();
+		restrictToCoach();
+		check(profile_id, String);
+		check(team_id, String);
+
+		if (team_id == "none") {
+			team_id = null;
+		}
+
+		return Profiles.update(profile_id, {$set: {team_id: team_id}})
+	},
+	'addStudent': function(obj) {
+		restrictToCoach();
+		check(obj.school, String);
+		check(obj.name, String);
+		check(obj.email, String);
+
+		Profiles.insert({
+			name: obj.name,
+			email: obj.email,
+			school_id: obj.school,
+			account_id: null,
+			team_id: (obj.team == undefined) ? null : obj.team,
+			class: obj.year
+		})
+	},
+	'addSchool': function(name) {
+		// restrictToAdmin();
+		check(name, String);
+
+		return Schools.insert({
+			name: name
+		});
+	},
+	'addRound': function(col, row) {
+		return SelectedRounds.insert({
+			col: col,
+			row: row
+		});
+	},
+	'deleteRound': function(col, row) {
+		return SelectedRounds.remove({
+			col: col,
+			row: row
+		});
+	},
+	'emptyRounds': function(){
+		return SelectedRounds.remove({});
+	},
+	'addGrade': function(student, round, score) {
+		restrictToGrader();
+		check(student, String);
+		check(round, Number);
+		check(score, Number);
+
+		var currentCompetition = getActiveCompetition();
+
+		if (currentCompetition == null) {
+			throw new Meteor.Error('no-competition', 'no active competition!');
+			return;
+		}
+
+		var prof = Profiles.findOne(student);
+
+		return Scores.insert({
+			round_id: round,
+			competition_id: currentCompetition._id,
+			student_id: student._id,
+			team_id: prof.team_id,
+			score: score
+		});
+	},
+	'assignRole': function(profile_id, role) {
+		restrictToAdmin();
+
+		check(profile_id, String);
+		check(role, String);
+
+		var account_id = Profiles.findOne(profile_id).account_id
+
+		if (account_id == undefined) {
+			PendingRoles.insert({
+				role: role,
+				profile_id: profile_id
+			})
+			return 'pending';
+		}
+
+		if (Roles.userIsInRole(account_id, role)) {
+			Roles.removeUsersFromRoles(account_id, role, Roles.GLOBAL_GROUP);
+		} else {
+			Roles.addUsersToRoles(account_id, role, Roles.GLOBAL_GROUP);
+		}
+	}
 });
+

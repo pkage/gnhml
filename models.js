@@ -6,5 +6,6 @@ Competitions = new Mongo.Collection('competitions');
 Seasons = new Mongo.Collection('seasons');
 SelectedRounds = new Mongo.Collection('rounds');
 Tweets = new Mongo.Collection("tweets");
+PendingRoles = new Mongo.Collection('pendingroles')
 TeamHighscore = new Mongo.Collection("teamHighscore");
 IndividualHighscore = new Mongo.Collection("individualHighscore");

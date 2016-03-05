@@ -35,10 +35,10 @@
 		</div>
 		<br>
 		<form id="updateSchoolName">
-		<div class="ui action input fullwidth">
-			<input type="text" placeholder="school name" name="school_name" value="{{name}}" required autocomplete="off">
-			<button class="ui button" type="submit">Save</button>
-		</div>
+			<div class="ui action input fullwidth">
+				<input type="text" placeholder="school name" name="school_name" value="{{name}}" required autocomplete="off">
+				<button class="ui button" type="submit">Save</button>
+			</div>
 		</form>
 
 
@@ -72,4 +72,49 @@
 
 <template name="admin_profiles">
 	{{> table context=ap_context}}
+	
+	<button id="open-add-profile-modal" class="ui left icon button"><i class="plus icon"></i>add profile</button>
+
+	{{#modal id="edit-profile-modal" title="edit profile"}}
+	{{#with modalContext}}
+	<div class="flex-row align-baseline">
+		<div class="ui checked checkbox roleCB-container">
+			<input {{roleCBDriver 'admin'}}>
+			<label data-role="admin">Admin</label>
+		</div>
+		<div class="ui checked checkbox roleCB-container">
+			<input {{roleCBDriver 'coach'}}>
+			<label data-role="coach">Coach</label>
+		</div>
+		<span class="flex-grow"></span>
+		<i>double click to&nbsp;</i>
+		<button class="ui delete button">remove</button>
+	</div>
+	{{/with}}
+	{{/modal}}
+
+	{{#modal id="add-new-profile-modal" title="add new profile"}}
+	<form id="add-new-profile-form">
+		<div class="field">
+			<label>Name</label>
+			<input type="text" name="name" placeholder="Name" required autocomplete="off">
+		</div>
+		<div class="field">
+			<label>Email</label>
+			<input type="email" name="email" placeholder="Email" required autocomplete="off">
+		</div>
+		<div class="field">
+			<label>School</label>
+			<select class="ui selection dropdown" name="school" required autocomplete="off">
+				{{#each school}}
+				<option value="{{_id}}">{{name}}</option>
+				{{/each}}
+			</select>
+		</div>
+		<br>
+		<div class="flex-row-reverse">
+			<button type="submit" class="ui button">submit</button>
+		</div>
+	</form>
+	{{/modal}}
 </template>

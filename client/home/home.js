@@ -1,20 +1,4 @@
 Template.home.helpers({
-    'schedule_context': function() {
-        return {
-            db: Competitions,
-            selector: {},
-            sortable: false,
-            tracking: [{
-                field: 'date',
-                title: 'Upcoming Competitions',
-                func: function(value, ctx) {
-                    return String(value).substring(0, 15);
-                }
-            }],
-            hoverable: true,
-            customCSS: "table-style-class"
-        }
-    },
     'team_highscore_context': function() {
         return {
             db: TeamHighscore,
@@ -47,7 +31,6 @@ Template.home.helpers({
                 field: '',
                 title: 'Student',
                 func: function(value, ctx) {
-                    console.log(ctx)
                     return String(ctx.name);
                 },
                 sortable: false
@@ -65,5 +48,16 @@ Template.home.helpers({
     },
     tweets: function() {
         return Tweets.find();
+    },
+    comps: function() {
+        var arr = [];
+        for (var i = 0; i < Competitions.find().fetch().length; i++) {
+            var date1 = new Date(String(Competitions.find().fetch()[i].date));
+            var date2 = new Date();
+            if (date1.getTime() > date2.getTime()) {
+                arr.push({date: String(Competitions.find().fetch()[i].date).substring(0, 15)});
+            }
+        };
+        return arr;
     }
 });

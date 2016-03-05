@@ -3,17 +3,28 @@
         {{> navigation title="home"}}
         <div class="homecontainer">
             <div class="newscontainer">
-                <h4 class="title"> NEWS </h4>
+                <h3 class="title"> NEWS </h3>
                 <div>
                     {{#each tweets}} {{> tweetsItem}} {{/each}}
                 </div>
             </div>
             <div class="tablecontainer">
-                {{> table context=schedule_context}}
+                <h3 class="title"> UPCOMING </h3>
+                <table class="ui very basic table table-style-class">
+                    <thead>
+                        <tr>
+                            <th data-key="thqWSplPqK" class="tableheader">
+                                Competitions<i class="caret up icon" style="display: none;"></i><i class="caret down icon" style="display: none;"></i>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each comps}} {{> comp}} {{/each}}
+                    </tbody>
+                </table>
             </div>
             <div class="tablecontainer">
-                {{> table context=team_highscore_context}}
-                {{> table context=individual_highscore_context}}
+                <h3 class="title"> LEADERBOARD </h3> {{> table context=team_highscore_context}} {{> table context=individual_highscore_context}}
             </div>
         </div>
     </div>
@@ -35,4 +46,9 @@
             </div>
         </div>
     </div>
+</template>
+<template name="comp">
+    <tr class="tablehoverable tablerow tablecell">
+        <td> {{date}} </td>
+    </tr>
 </template>
