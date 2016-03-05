@@ -137,10 +137,25 @@ Meteor.startup(function() {
             date: new Date("10-21-2016"),
             season: season_id,
             teams: [choate_a_id, choate_b_id, choate_c_id, deerfield_a_id]
+        }, {
+            date: new Date("10-22-2016"),
+            season: season_id,
+            teams: [choate_a_id, choate_b_id, choate_c_id, deerfield_a_id]
+        }, {
+            date: new Date("10-23-2016"),
+            season: season_id,
+            teams: [choate_a_id, choate_b_id, choate_c_id, deerfield_a_id]
+        }, {
+            date: new Date("10-24-2016"),
+            season: season_id,
+            teams: [choate_a_id, choate_b_id, choate_c_id, deerfield_a_id]
         }]
         var competition1_id = Competitions.insert(competitions[0]);
         var competition2_id = Competitions.insert(competitions[1]);
         var competition3_id = Competitions.insert(competitions[2]);
+        var competition3_id = Competitions.insert(competitions[3]);
+        var competition3_id = Competitions.insert(competitions[4]);
+        var competition3_id = Competitions.insert(competitions[5]);
     }
     if (Scores.find({}).count() == 0) {
         console.log("works tm")
