@@ -14,7 +14,7 @@ UI.registerHelper('isAdmin', function() {
 })
 
 UI.registerHelper('isCoach', function() {
-	return true;
+	// return true;
 	return Roles.userIsInRole(Meteor.userId(), 'coach', Roles.GLOBAL_GROUP);
 })
 
