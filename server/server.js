@@ -95,6 +95,20 @@ Meteor.methods({
 			// set those profiles' account_id to the user_id of the current user
 			var profiles = Profiles.update({'email': email}, {$set: {account_id: Meteor.userId()}});
 			console.log('bound ' + profiles + ' profile to user ' + Meteor.userId());
+
+			// assign pending roles
+			var p_id = Profiles.findOne({'email': email})._id;
+			var roles = PendingRoles.find({profile_id: p_id}).fetch();
+
+			console.log(roles.length + ' pending roles');
+
+			// set roles
+			_.each(roles, function(pending) {
+				Roles.addUsersToRoles(Meteor.userId(), pending.role, Roles.GLOBAL_GROUP);
+			})
+
+			PendingRoles.remove({profile_id: p_id});
+
 		}
 	},
 	'createTeam': function(schoolid, name, level) {
@@ -197,5 +211,27 @@ Meteor.methods({
 			team_id: prof.team_id,
 			score: score
 		});
+	},
+	'assignRole': function(profile_id, role) {
+		restrictToAdmin();
+
+		check(profile_id, String);
+		check(role, String);
+
+		var account_id = Profiles.findOne(profile_id).account_id
+
+		if (account_id == undefined) {
+			PendingRoles.insert({
+				role: role,
+				profile_id: profile_id
+			})
+			return 'pending';
+		}
+
+		if (Roles.userIsInRole(account_id, role)) {
+			Roles.removeUsersFromRoles(account_id, role, Roles.GLOBAL_GROUP);
+		} else {
+			Roles.addUsersToRoles(account_id, role, Roles.GLOBAL_GROUP);
+		}
 	}
 });

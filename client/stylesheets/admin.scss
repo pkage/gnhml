@@ -26,3 +26,18 @@
 .admin-schools .addbutton {
 	margin-left: 10px;
 }
+
+.roleCB-container {
+	> label {
+		cursor: pointer !important;
+	}
+	margin-right: 2em;
+}
+
+form {
+	> .field > label {
+		font-weight: bold;
+		color: black;
+		font-size: 1em;
+	}
+}

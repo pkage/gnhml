@@ -45,14 +45,14 @@ Template.admin_schools.helpers({
 			db: Schools,
 			selector: {},
 			tracking: [
-				{
-					'field': 'name',
-					'title': 'Name'
-				},
-				{
-					'field': '_id',
-					'title': 'ID'
-				}
+			{
+				'field': 'name',
+				'title': 'Name'
+			},
+			{
+				'field': '_id',
+				'title': 'ID'
+			}
 			],
 			hoverable: true,
 			onClick: function(ctx) {
@@ -85,18 +85,97 @@ Template.admin_profiles.helpers({
 		return {
 			db: Profiles,
 			selector: {},
-			tracking: [{field: 'name', title: 'Name'},
-				{field: 'email', title: 'Email'},
-				{field: '_id', title: 'Profile ID'},
-				{field: 'account_id', title: 'Bound Account ID'},
-				{field: 'school_id', title: 'School', 
+			tracking: [
+			{field: 'name', title: 'Name'},
+			{field: 'email', title: 'Email'},
+			{field: '_id', title: 'Profile ID'},
+			{field: 'account_id', title: 'Bound Account ID'},
+			{
+				field: 'school_id',
+				title: 'School', 
 				func: function(value, ctx) {return Schools.findOne(value).name;}
+			},
+			{
+				field: '',
+				title: 'Admin',
+				func: function(val, ctx) {
+					return Roles.userIsInRole(ctx.account_id, 'admin') ? 'Yes' : 'No'
 				}
-				],
-			hoverable: true
+			},
+			{
+				field: '',
+				title: 'Coach',
+				func: function(val, ctx) {
+					return Roles.userIsInRole(ctx.account_id, 'coach') ? 'Yes' : 'No'
+				}
+			}
+			],
+			hoverable: true,
+			onClick: function(ctx) {
+				Session.set('admin-profile-edit', ctx._id);
+				$('#edit-profile-modal').transition('fade down');
+			}
 		}
+	},
+	'modalContext': function() {
+		return Profiles.findOne(Session.get('admin-profile-edit'));
+	},
+	'roleCBDriver': function(rolename) {
+		var attrs = {
+			'type': 'checkbox',
+			'class': 'roleCB'
+		}
+		if (rolename) {
+			attrs['data-role'] = rolename
+			if (Roles.userIsInRole(this.account_id, rolename)) {
+				attrs.checked = ''
+			}
+		}
+
+		return attrs
+	},
+	'school': function() {
+		return Schools.find();
 	}
 });
+
+Template.admin_profiles.events({
+	'click .roleCB-container': function(ev) {
+		Meteor.call('assignRole', this._id, $(ev.target).data('role'), function(err, ret) {
+			if (err !== undefined) {
+				sAlert.error(error.reason ? error.reason : error.error);
+				return;
+			}
+			if (ret == 'pending') {
+				sAlert.warning('no bound account, role will be set on next login');
+			}
+
+		});
+	},
+	'dblclick .delete.button': function() {
+		sAlert.error('not yet implemented');
+	},
+	'click #open-add-profile-modal': function() {
+		$('#add-new-profile-modal').transition('fade down');
+	},
+	'submit #add-new-profile-form': function(ev) {
+		ev.preventDefault();
+		var data = $('#add-new-profile-form').serializeArray().reduce(function(obj, item) {
+			obj[item.name] = item.value;
+			return obj;
+		}, {}); // reduce to key-value pairs
+
+		// insert student
+		Meteor.call('addStudent', data, function(err, ret) {
+			if (err != undefined) {
+				sAlert.error('The server bounced the request!');
+				return;
+			}
+			$('input, select').val('');
+			sAlert.success('Added profile!');
+		})
+	}
+})
 
 Template.admin_teams.helpers({
 	'at_context': function() {
@@ -104,24 +183,24 @@ Template.admin_teams.helpers({
 			db: Teams,
 			selector: {},
 			tracking: [
-				{
-					field: 'name',
-					title: 'Name'
-				},
-				{
-					field: 'level',
-					title: 'Level'
-				},
-				{
-					field: 'school_id',
-					title: 'School',
-					func: function(value, ctx) {return Schools.findOne(value).name;}
-				},
-				{
-					field: '',
-					title: 'student_count',
-					func: function(val, ctx) {return Profiles.find({team_id: ctx._id}).count();}
-				}
+			{
+				field: 'name',
+				title: 'Name'
+			},
+			{
+				field: 'level',
+				title: 'Level'
+			},
+			{
+				field: 'school_id',
+				title: 'School',
+				func: function(value, ctx) {return Schools.findOne(value).name;}
+			},
+			{
+				field: '',
+				title: 'student_count',
+				func: function(val, ctx) {return Profiles.find({team_id: ctx._id}).count();}
+			}
 			]
 		}
 	}
