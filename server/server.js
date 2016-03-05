@@ -11,6 +11,38 @@ checkRole = function(role) {
     return Roles.userIsInRole(Meteor.userId(), role, Roles.GLOBAL_GROUP);
 }
 
+getActiveCompetition = function() {
+    // construct a date object for today's bounds
+    // as competitions happen during the day sometime
+    // and there's only one per second.
+    // i hate dates.
+    var todayStart = new Date();
+    todayStart.setHours(0);
+    todayStart.setMinutes(0);
+    todayStart.setSeconds(0);
+
+    var todayEnd = new Date(todayStart);
+    todayEnd.setHours(23);
+    todayEnd.setMinutes(59);
+    todayEnd.setSeconds(59);
+
+
+    // create the cursor cuz it's a pain to type out
+    var cursor = Competitions.find({
+        date: {
+            $gte: todayStart,
+            $lte: todayEnd
+        }
+    });
+
+    // if a competition exists then return it
+    if (cursor.count() > 0) {
+        return cursor.fetch()[0];
+    }
+    // otherwise null
+    return null;
+}
+
 restrictToAdmin = function() {
     bounceLoggedOut(); // bounce logged out users
 
@@ -189,38 +221,6 @@ Meteor.methods({
             score: score
         });
     },
-    'getActiveCompetition': function() {
-        // construct a date object for today's bounds
-        // as competitions happen during the day sometime
-        // and there's only one per second.
-        // i hate dates.
-        var todayStart = new Date();
-        todayStart.setHours(0);
-        todayStart.setMinutes(0);
-        todayStart.setSeconds(0);
-
-        var todayEnd = new Date(todayStart);
-        todayEnd.setHours(23);
-        todayEnd.setMinutes(59);
-        todayEnd.setSeconds(59);
-
-
-        // create the cursor cuz it's a pain to type out
-        var cursor = Competitions.find({
-            date: {
-                $gte: todayStart,
-                $lte: todayEnd
-            }
-        });
-
-        console.log("hi");
-        // if a competition exists then return it
-        if (cursor.count() > 0) {
-            return cursor.fetch()[0];
-        }
-        // otherwise null
-        return null;
-    },
 	'updateSchoolName': function(schoolid, name) {
 		restrictToAdmin(); // admin only
 
@@ -381,6 +381,9 @@ Meteor.methods({
 		} else {
 			Roles.addUsersToRoles(account_id, role, Roles.GLOBAL_GROUP);
 		}
-	}
+	},
+    'getActiveCompetition': function() {
+        getActiveCompetition();
+    }
 });
 

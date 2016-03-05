@@ -4,7 +4,7 @@
 
 		<option value="">Name</option>
 		{{#each student}}
-		 	<option value="{{_id}}" disabled="{{disabledStudent}}">{{name}}</option>
+		 	<option {{disabledStudent}}>{{name}}</option>
 		{{/each}}
 
 		{{/with}}

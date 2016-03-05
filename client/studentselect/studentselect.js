@@ -8,8 +8,6 @@ Template.studentselect.onRendered(function() {
     			selects[i] = selects[i].value;
     		}
 
-    		console.log(selects);
-
 			Session.set('disabledStudents', selects);
 		}
 	});
@@ -24,7 +22,13 @@ Template.studentselect.helpers({
 		return Profiles.find({team_id: this.team_id});
 	},
 	'disabledStudent': function() {
-		console.log(this._id + " " +  _.contains(Session.get('disabledStudents'), this._id) ? 'disabled' : '')
-		return _.contains(Session.get('disabledStudents'), this._id) ? 'disabled' : '';
+	    var attrs = {value: this._id};
+	    if (_.contains(Session.get('disabledStudents'), this._id)) {
+	        attrs.disabled = "disabled"
+	        $('.item[data-value="' + this._id + '"]').addClass('disabled');
+	    } else {
+	        $('.item[data-value="' + this._id + '"]').removeClass('disabled');
+	    }
+	    return attrs;
 	}
 })
